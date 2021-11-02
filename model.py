@@ -10,14 +10,14 @@ class User(db.Model):
     __tablename__ = "users"
 
     user_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    full_name = db.Column(db.String, nullable=False, unique=True)
-    email = db.Column(db.String(50), nullable=False)
+    full_name = db.Column(db.String, nullable=False)
+    email = db.Column(db.String(50), nullable=False, unique=True)
     password = db.Column(db.String(20), nullable=False)
     book_goal = db.Column(db.Integer)
     goal_date = db.Column(db.Date)
 
     reviews = db.relationship("Review", back_populates="user")
-    bookusers = db.relationshipt("Book_User", back_populates="user")
+    bookusers = db.relationship("Book_User", back_populates="user")
 
     def __repr__(self):
         return f"<User email={self.email} name={self.name}>"
@@ -48,7 +48,7 @@ class Book_User(db.Model):
     """users who added book"""
 
     __tablename__ = "bookusers"
-    
+
     bookuser_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     user_id = db.Column(db.Integer, db.ForeignKey(users.user_id), nullable=False)
     volume_id = db.Column(db.String, db.ForeignKey(volumes.volume_id), nullable=False)
@@ -78,3 +78,21 @@ class Review(db.Model):
 
     def __repr__(self):
         return f"<Review review_title={self.review_title} title={self.title} review={self.review} user={self.user_id}>"
+
+
+
+def connect_to_db(flask_app, db_uri="postgresql:///tracker", echo=True):
+    flask_app_config["SQLALCHEMY_DATABASE_URI"] = db.uri
+    flask_app_config["SQLALCHEMY_ECHO"] = echo
+    flask_app_config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
+    db.app = flask_app
+    db.init_app(flask_app)
+
+    print("Connected to the db!")
+
+if __name__ == "__main__":
+    from server import app
+
+
+    connect_to_db(app)
