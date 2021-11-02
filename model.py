@@ -15,12 +15,12 @@ class User(db.Model):
     full_name = db.Column(db.String, nullable=False)
     email = db.Column(db.String(50), nullable=False, unique=True)
     password = db.Column(db.String(20), nullable=False)
-    book_goal = db.Column(db.Integer)
-    goal_date = db.Column(db.Date)
+    book_goal = db.Column(db.Integer, default=0)
+    goal_date = db.Column(db.DateTime)
 
     
     def __repr__(self):
-        return f"<User email={self.email} name={self.name}>"
+        return f"<User email={self.email} password={self.password}>"
 
 
 class Volume(db.Model):
@@ -33,7 +33,7 @@ class Volume(db.Model):
     authors = db.Column(db.String)
     genre = db.Column(db.String)
     summary = db.Column(db.Text)
-    published_date = db.Column(db.Date)
+    published_date = db.Column(db.DateTime)
     page_count = db.Column(db.Integer)
     img_links = db.Column(db.String)
 
@@ -50,7 +50,7 @@ class Book_User(db.Model):
     bookuser_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"), nullable=False)
     volume_id = db.Column(db.String, db.ForeignKey("volumes.volume_id"), nullable=False)
-    completed = db.Column(db.String, default=True)
+    completed = db.Column(db.String, default=False)
 
     user = db.relationship("User", backref="bookusers")
     volume = db.relationship("Volume", backref="bookusers")
@@ -67,7 +67,7 @@ class Review(db.Model):
     title = db.Column(db.String, nullable=False)
     review_title = db.Column(db.String, nullable=False)
     review = db.Column(db.Text, nullable=False)
-    published = db.Column(db.Date)
+    published = db.Column(db.DateTime)
     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"), nullable=False)
     volume_id = db.Column(db.String, db.ForeignKey("volumes.volume_id"), nullable=False)
 
