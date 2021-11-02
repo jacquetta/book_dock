@@ -47,6 +47,9 @@ class Book_Users(db.Model):
     volume_id = db.Column(db.String, db.ForeignKey(volumes.volume_id))
     completed = db.Column(db.String, default=True)
 
+    def __repr__(self):
+        return f"<Book User volume_id={self.volume_id} user={self.user_id} completed={self.completed}>"
+
 class Review(db.Model):
     """user review for book"""
 
