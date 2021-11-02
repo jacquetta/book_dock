@@ -25,6 +25,18 @@ class Volume(db.Model):
 
     __tablename__ = "volumes"
 
+    volume_id = db.Column(db.String, primary_key=True)
+    title = db.Column(db.String, nullable=False)
+    authors = db.Column(db.String)
+    genre = db.Column(db.String)
+    summary = db.Column(db.Text)
+    published_date = db.Column(db.Date)
+    page_count = db.Column(db.Integer)
+    img_links = db.Column(db.String)
+
+    def __repr__(self):
+        return f"<Volume id={self.volume_id} title={self.title} authors={self.authors}>"
+
 
 class Book_Users(db.Model):
     """users who added book"""
