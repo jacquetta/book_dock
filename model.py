@@ -43,8 +43,8 @@ class Book_Users(db.Model):
 
     __tablename__ = "bookusers"
     bookuser_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    user_id = db.Column(db.Integer, db.ForeignKey(users.user_id))
-    volume_id = db.Column(db.String, db.ForeignKey(volumes.volume_id))
+    user_id = db.Column(db.Integer, db.ForeignKey(users.user_id), nullable=False)
+    volume_id = db.Column(db.String, db.ForeignKey(volumes.volume_id), nullable=False)
     completed = db.Column(db.String, default=True)
 
     def __repr__(self):
@@ -54,3 +54,14 @@ class Review(db.Model):
     """user review for book"""
 
     __tablename__ = "reviews"
+
+    review_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    title = db.Column(db.String, nullable=False)
+    review_title = db.Column(db.String, nullable=False)
+    review = db.Column(db.Text, nullable=False)
+    published = db.Column(db.Date)
+    user_id = db.Column(db.Integer, db.ForeignKey(users.user_id), nullable=False)
+    volume_id = db.Column(db.String, db.ForeignKey(volumes.volume_id), nullable=False)
+
+    def __repr__(self):
+        return f"<Review review_title={self.review_title} title={self.title} review={self.review} user={self.user_id}>"
