@@ -42,6 +42,10 @@ class Book_Users(db.Model):
     """users who added book"""
 
     __tablename__ = "bookusers"
+    bookuser_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    user_id = db.Column(db.Integer, db.ForeignKey(users.user_id))
+    volume_id = db.Column(db.String, db.ForeignKey(volumes.volume_id))
+    completed = db.Column(db.String, default=True)
 
 class Review(db.Model):
     """user review for book"""
