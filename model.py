@@ -16,6 +16,9 @@ class User(db.Model):
     book_goal = db.Column(db.Integer)
     goal_date = db.Column(db.Date)
 
+    reviews = db.relationship("Review", back_populates="user")
+    bookusers = db.relationshipt("Book_User", back_populates="user")
+
     def __repr__(self):
         return f"<User email={self.email} name={self.name}>"
 
@@ -34,18 +37,25 @@ class Volume(db.Model):
     page_count = db.Column(db.Integer)
     img_links = db.Column(db.String)
 
+    reviews = db.relationship("Review", back_populates="volume")
+    bookusers = db.relationshipt("Book_User", back_populates="volume")
+
     def __repr__(self):
         return f"<Volume id={self.volume_id} title={self.title} authors={self.authors}>"
 
 
-class Book_Users(db.Model):
+class Book_User(db.Model):
     """users who added book"""
 
     __tablename__ = "bookusers"
+    
     bookuser_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     user_id = db.Column(db.Integer, db.ForeignKey(users.user_id), nullable=False)
     volume_id = db.Column(db.String, db.ForeignKey(volumes.volume_id), nullable=False)
     completed = db.Column(db.String, default=True)
+
+    user = db.relationship("User", back_populates="bookusers")
+    volume = db.relationship("Volume", back_populates="bookusers")
 
     def __repr__(self):
         return f"<Book User volume_id={self.volume_id} user={self.user_id} completed={self.completed}>"
@@ -62,6 +72,9 @@ class Review(db.Model):
     published = db.Column(db.Date)
     user_id = db.Column(db.Integer, db.ForeignKey(users.user_id), nullable=False)
     volume_id = db.Column(db.String, db.ForeignKey(volumes.volume_id), nullable=False)
+
+    user = db.relationship("User", back_populates="reviews")
+    volume = db.relationship("Volume", back_populates="reviews")
 
     def __repr__(self):
         return f"<Review review_title={self.review_title} title={self.title} review={self.review} user={self.user_id}>"
