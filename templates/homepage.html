@@ -1,9 +1,65 @@
 {% extends 'base.html' %}
 
-{% block title %}Book Deck{% endblock %}
+{% block title %}Book Dock{% endblock %}
+
 
 {% block content %}
+    <h1>Book Dock</h1>
 
-<h1>Testing</h1>
+    <h3>Book Dock Subtitle</h3>
 
+    <p>Information about what Book Dock is</p>
+
+    <p>Cupcake ipsum dolor sit amet bear claw I love I love I love. 
+        Cotton candy cookie I love gummi bears icing lollipop. 
+        Gingerbread sweet roll lemon drops topping gummies lollipop.</p>
+
+    <p>I love tiramisu jelly beans chupa chups wafer. Bonbon apple pie sweet chocolate cake 
+        I love danish chocolate cake I love cake. Muffin sweet roll 
+        gummi bears chocolate cake soufflé candy canes caramels fruitcake croissant.</p>
+    <p>Cake croissant chocolate cake gummies chocolate pudding dessert dragée lemon drops.
+        Cotton candy chocolate bar soufflé jelly beans chocolate cake. 
+        Tiramisu I love donut soufflé biscuit candy sugar plum I love.</p>
+
+    <p>Halvah cake pastry ice cream bonbon. Sweet marshmallow pastry marshmallow bear claw pastry jelly.
+        Chupa chups pie I love chupa chups I love dragée chocolate cake jujubes.</p>
+    <p>Chocolate chocolate cake dragée soufflé soufflé tiramisu muffin. 
+        Donut pudding pudding icing gummies jelly beans toffee I love pie.
+        Dragée muffin cotton candy shortbread tart pie. Candy canes sesame snaps cheesecake 
+        jelly-o bear claw croissant cotton candy chocolate bar croissant.</p>
+
+    <button class="btn-signup">Sign Up</button>
+
+    {# 
+        creating an modal login form using w3schools for reference
+        https://www.w3schools.com/howto/howto_css_login_form.asp
+    #}
+
+    <button id="signin-btn">Sign In</button>
+    {# modal #}
+    <div id="modalOne">
+        {# will create a event function to close modal and open#}
+        <span class="closeModal" title="Close Modal">&times;</span>
+
+    {# content for modal #}
+        <form action="/signin" class="modalForm animate" method="POST">
+            <h5>Please Log In</h5>
+            <div class="container">
+                <label for="email">Email:</label>
+                <input type="text" id="email" name="email" required>
+                <br>
+                <label for="password">Password:</label>
+                <input type="text" id="password" name="password" required>
+                <br>
+                <input type="submit" id="loginSubmit">
+            </div>
+            <div class="container">
+                {# will create a event function for cancel btn #}
+                <button class="cancelbtn">Cancel</button>
+
+                {# will look into forgot password #}
+                <span class="password">Forgot <a href="#">password?</a></span>
+            </div>
+        </form>
+    </div>
 {% endblock %}
