@@ -8,7 +8,6 @@ if __name__ == '__main__':
     connect_to_db(app)
 
 """create a new user"""
-
 def new_user(full_name, email, password, book_goal, date_goal):
     user = User(full_name=full_name, email=email, password=password, book_goal=book_goal, date_goal=date_goal)
 
@@ -17,12 +16,20 @@ def new_user(full_name, email, password, book_goal, date_goal):
     return user
 
 """user login"""
+def login(email, password):
+    return User.query.filter(User.email == email) & (User.password == password)
 
 """get all users"""
+def all_users():
+    return User.query.all()
 
 """get user_id"""
+def get_user_id(user_id):
+    return User.query.get(user_id)
 
 """get user email"""
+def get_user_email(email):
+    return User.query.get(email)
 
 """create a volume"""
 
