@@ -1,22 +1,55 @@
 from flask import (Flask, render_template, request, flash, session, redirect)
 from model import connect_to_db
-# import crud
-
+import crud
+from flask_debugtoolbar import DebugToolbarExtension
 from jinja2 import StrictUndefined
 
 app = Flask(__name__)
-app.secret_key = "dev"
-app.jinja_env.undefined = StrictUndefined
 
+app.debug = True
+app.secret_key = "books2012"
+app.jinja_env.undefined = StrictUndefined
+# toolbar = DebugToolbarExtension(app)
+# toolbar.init_app(app)
 
 @app.route('/')
 def homepage():
-    return render_template('homepage.html')
+    return render_template('/homepage.html')
 
+@app.route('/signup')
+def sign_up():
+    full_name = request.form.get('full_name')
+    email = request.form.get('email')
+    password = request.form.get('password')
+    book_goal = request.form.get('book_goal')
+    goal_date = request.form.get('goal_date')
 
+    user_email = crud.get_user_email(email)
 
+    if user_email:
+        flash('Cannot create account. Please try again!')
+    else:
+        crud.new_user(full_name, email, password, book_goal, goal_date)
+        flash('Account created!')
+    return redirect('/user_home')
 
+@app.route('/signin')
+def sign_in(email, password):
+    email = request.form.get('email')
+    password = request.form.get('password')
+    user = crud.login(email, password)
 
+    if user:
+        user_key = user.user_id
+        session['key'] = user_key
+        flash('Signed In') 
+    else: 
+        flash('Please re-enter email and password')
+    return redirect('/user_home')
+
+@app.route('/book_list')
+def book_list():
+    return render_template('/book_list.html')
 
 
 
