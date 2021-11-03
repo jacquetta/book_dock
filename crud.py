@@ -52,5 +52,13 @@ def get_bookuser_id(bookuser_id):
     return Book_User.query.get(bookuser_id)
 
 """create a new review"""
+def create_review(title, review_title, review, published, user_id, volume_id):
+    user_review = Review(title=title, review_title=review_title, review=review, published=published, user_id=user_id, volume_id=volume_id)
+
+    db.session.add(user_review)
+    db.session.commit()
+    return user_review
 
 """list all reviews for book"""
+def book_reviews():
+    return Review.query.all()
