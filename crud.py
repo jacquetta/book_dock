@@ -29,7 +29,7 @@ def get_user_id(user_id):
 
 """get user email"""
 def get_user_email(email):
-    return User.query.get(email)
+    return User.query.get(email).first()
 
 """create a volume"""
 def create_volume(title, authors, genre, summary, published_date, page_count, img_links):
@@ -45,11 +45,11 @@ def all_volumes():
 
 """get volume_id"""
 def get_volume_id(volume_id):
-    return Volume.query.get(volume_id)
+    return Volume.query.get(volume_id).first()
 
 """get book_users id"""
 def get_bookuser_id(bookuser_id):
-    return Book_User.query.get(bookuser_id)
+    return Book_User.query.get(bookuser_id).first()
 
 """create a new review"""
 def create_review(title, review_title, review, published, user_id, volume_id):
