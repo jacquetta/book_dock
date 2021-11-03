@@ -32,13 +32,24 @@ def get_user_email(email):
     return User.query.get(email)
 
 """create a volume"""
+def create_volume(title, authors, genre, summary, published_date, page_count, img_links):
+    volume = Volume(title=title, authors=authors, genre=genre, summary=summary, published_date=published_date, page_count=page_count, img_links=img_links)
 
+    db.session.add(volume)
+    db.session.commit()
+    return volume
 
 """return all volumes"""
+def all_volumes():
+    return Volume.query.all()
 
 """get volume_id"""
+def get_volume_id(volume_id):
+    return Volume.query.get(volume_id)
 
 """get book_users id"""
+def get_bookuser_id(bookuser_id):
+    return Book_User.query.get(bookuser_id)
 
 """create a new review"""
 
