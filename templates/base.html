@@ -15,6 +15,7 @@
             <p>Book Dock</p>
             <a href="{{ url_for('homepage') }}">Home</a>
             <a id="book_list" href="{{ url_for('book_list') }}">View Books</a>
+            {% block link %} <a  href="#sign-in">Sign In</a> {% endblock %}
         {% endblock %}
     </nav>
     

@@ -28,14 +28,15 @@
         Dragée muffin cotton candy shortbread tart pie. Candy canes sesame snaps cheesecake 
         jelly-o bear claw croissant cotton candy chocolate bar croissant.</p>
 
-    <button class="btn-signup">Sign Up</button>
+    {# link that is a button to route to sign up form #}
+    <a type="button" href="{{ url_for('signup_form') }}" class="btn btn-primary">Sign Up</a>
 
     {# 
         creating an modal login form using w3schools for reference
         https://www.w3schools.com/howto/howto_css_login_form.asp
     #}
 
-    <button id="signin-btn">Sign In</button>
+    <button type="button" id="sign_in" class="btn btn-secondary">Sign In</button>
     {# modal #}
     <div id="modalOne">
         {# will create a event function to close modal and open#}
