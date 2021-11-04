@@ -196,6 +196,8 @@ COPY public.reviews (review_id, title, review_title, review, published, user_id,
 
 COPY public.users (user_id, full_name, email, password, book_goal, goal_date) FROM stdin;
 1	Janey Doe	janey@gmail.com	password	3	2021-11-02 16:12:16.682776
+2	Betty Test	bettytest@email.com	Password123	30	2021-12-31 00:00:00
+3	Luigi Nintendo	luigi@email.com	Luigi2021	40	2022-03-24 00:00:00
 \.
 
 
@@ -226,7 +228,7 @@ SELECT pg_catalog.setval('public.reviews_review_id_seq', 1, true);
 -- Name: users_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: jacquetta
 --
 
-SELECT pg_catalog.setval('public.users_user_id_seq', 1, true);
+SELECT pg_catalog.setval('public.users_user_id_seq', 3, true);
 
 
 --
