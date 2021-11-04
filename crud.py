@@ -8,8 +8,8 @@ if __name__ == '__main__':
     connect_to_db(app)
 
 """create a new user"""
-def new_user(full_name, email, password, book_goal, date_goal):
-    user = User(full_name=full_name, email=email, password=password, book_goal=book_goal, date_goal=date_goal)
+def new_user(full_name, email, password, book_goal, goal_date):
+    user = User(full_name=full_name, email=email, password=password, book_goal=book_goal, goal_date=goal_date)
 
     db.session.add(user)
     db.session.commit()
@@ -17,7 +17,7 @@ def new_user(full_name, email, password, book_goal, date_goal):
 
 """user login"""
 def login(email, password):
-    return User.query.filter(User.email == email) & (User.password == password)
+    return User.query.filter((User.email == email) & (User.password == password)).first()
 
 """get all users"""
 def all_users():
@@ -29,7 +29,7 @@ def get_user_id(user_id):
 
 """get user email"""
 def get_user_email(email):
-    return User.query.get(email).first()
+    return User.query.filter(User.email == email).first()
 
 """create a volume"""
 def create_volume(title, authors, genre, summary, published_date, page_count, img_links):
