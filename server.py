@@ -16,41 +16,58 @@ app.jinja_env.undefined = StrictUndefined
 def homepage():
     return render_template('/homepage.html')
 
-@app.route('/signup')
+@app.route('/signup', methods=["POST"])
 def sign_up():
     full_name = request.form.get('full_name')
     email = request.form.get('email')
     password = request.form.get('password')
     book_goal = request.form.get('book_goal')
     goal_date = request.form.get('goal_date')
+    userid = request.args.get('user_id')
 
     user_email = crud.get_user_email(email)
+    # user_id = crud.get_user_id(userid)
 
     if user_email:
         flash('Cannot create account. Please try again!')
     else:
         crud.new_user(full_name, email, password, book_goal, goal_date)
         flash('Account created!')
-    return redirect('/user_home')
+    return render_template('user_home.html')
 
-@app.route('/signin')
-def sign_in(email, password):
+@app.route('/signin', methods=["POST"])
+def sign_in():
     email = request.form.get('email')
     password = request.form.get('password')
     user = crud.login(email, password)
 
     if user:
-        user_key = user.user_id
-        session['key'] = user_key
+        session['key'] = user.user_id
         flash('Signed In') 
+        return redirect('/user_home')
     else: 
         flash('Please re-enter email and password')
-    return redirect('/user_home')
+    return render_template('/')
+
+@app.route('/user_home')
+def user_home():
+    if 'key' in session:
+        return render_template('/user_home.html')
+
+@app.route('/log_out')
+def log_out():
+    # work on log out 
+    if 'key' in session:
+        session.pop('key')
+        return redirect('/')
 
 @app.route('/book_list')
 def book_list():
     return render_template('/book_list.html')
 
+@app.route('/signup_form')
+def signup_form():
+    return render_template('/signup_form.html')
 
 
 if __name__ == "__main__":
