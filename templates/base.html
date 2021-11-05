@@ -15,11 +15,23 @@
             <p>Book Dock</p>
             <a href="{{ url_for('homepage') }}">Home</a>
             <a id="book_list" href="{{ url_for('book_list') }}">View Books</a>
-            {% block link %} <a  href="#sign-in">Sign In</a> {% endblock %}
+            {% block link %} <a  id="homepage" href="{{ url_for('homepage') }}">Sign In</a> {% endblock %}
         {% endblock %}
     </nav>
     
+    {# get_flashed_messages will register any flashed messages #}
+    {% with messages = get_flashed_messages() %} 
 
+        {% if messages %}  {# checks for any messages #}
+            {% for message in messages %} {# iterates over messages if more than one flash registers #}
+                <div class="alert alert-info alert-dismissible">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+    {% endwith %}
     {% block content %}
 
     {% endblock %}
