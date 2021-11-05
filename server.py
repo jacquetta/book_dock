@@ -30,10 +30,11 @@ def sign_up():
 
     if user_email:
         flash('Cannot create account. Please try again!')
+        return render_template('signup_form.html')
     else:
         crud.new_user(full_name, email, password, book_goal, goal_date)
         flash('Account created!')
-    return render_template('user_home.html')
+        return render_template('user_home.html')
 
 @app.route('/signin', methods=["POST"])
 def sign_in():
@@ -46,8 +47,10 @@ def sign_in():
         flash('Signed In') 
         return redirect('/user_home')
     else: 
+        # https://flask.palletsprojects.com/en/1.1.x/patterns/flashing/
+        # https://pythonise.com/series/learning-flask/flask-message-flashing
         flash('Please re-enter email and password')
-    return render_template('/')
+        return render_template('homepage.html')
 
 @app.route('/user_home')
 def user_home():
