@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
 
-{% block title %}ADD TITLE HERE{% endblock %}
-
+{% block title %}Book List{% endblock %}
+{% block link %} 
+<a id="user_home" href="{{url_for('user_home')}}">Home</a>
+<a id="log_out" href="{{url_for('log_out')}}">Log Out</a> 
+{% endblock %}
 {% block content %}
 
 ADD CONTENT HERE

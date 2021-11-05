@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
 
 {% block title %}Personal Book Dock{% endblock %}
-{% block link %} <a id="log_out" href="{{url_for('log_out')}}">Log Out</a> {% endblock %}
+{% block link %} 
+<a id="book_list" href="{{url_for('book_list')}}">Add Book</a>
+<a id="log_out" href="{{url_for('log_out')}}">Log Out</a> 
+{% endblock %}
 
 {% block content %}
 
