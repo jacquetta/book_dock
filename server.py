@@ -62,7 +62,7 @@ def log_out():
     # work on log out 
     if 'key' in session:
         session.pop('key')
-        return render_template('/homepage.html')
+    return render_template('/homepage.html')
 
 @app.route('/book_list')
 def book_list():
