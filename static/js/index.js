@@ -3,7 +3,7 @@ let capLetter = document.getElementById('capLetter')
 let lowLetter = document.getElementById('lowLetter')
 let number = document.getElementById('number')
 let length = document.getElementById('length')
-
+let confirm_password = document.getElementById('confirm-pw')
 
 // shows when user clicks on password field
 userPassword.onfocus = () => {
@@ -56,3 +56,16 @@ userPassword.onkeyup = () => {
         length.classList.add("invalid");
     }
 }
+
+//checking to see if password and confirm-pw match
+
+const confirmPassword = () => {
+    if(userPassword.value != confirm_password.value){
+        confirm_password.setCustomValidity("Passwords do not match");
+    } else {
+        confirm_password.setCustomValidity("");
+    }
+}
+
+userPassword.onchange = confirmPassword;
+confirm_password.onkeyup = confirmPassword;
