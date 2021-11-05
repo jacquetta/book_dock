@@ -17,10 +17,10 @@
         <input type="password" id="password" name="password" pattern="(?=.*\d) (?=.*[a-z]) (?=.*[A-Z]).{8, 20}" title="Password must include at least one number, one uppercase, one lowercase letter, and at min 8 characters and max 20 characters" required><br>
 
         <label for="confirm-pw">Confirm Password:</label><br>
-        <input type="password" id="confirm-pw" name="confirm-pw"><br>
+        <input type="password" id="confirm-pw" name="confirm-pw" required><br>
 
         <label for="book_goal">Set Book Goal:</label><br>
-        <input type="number" id="book_goal" name="book_goal" min="0" max="300"><br>
+        <input type="number" id="book_goal" name="book_goal" min="0" max="300" value="0"><br>
 
         <label for="goal_date">Choose Goal Date:</label><br>
         <input type="date" id="goal_date" name="goal_date"><br>

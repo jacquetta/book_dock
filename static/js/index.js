@@ -69,3 +69,18 @@ const confirmPassword = () => {
 
 userPassword.onchange = confirmPassword;
 confirm_password.onkeyup = confirmPassword;
+
+
+const dateD = new Date();
+
+let current_day = dateD.getDate();
+if(current_day < 10){
+    current_day = `0${current_day}`;
+};
+
+// add 1 to current month as index for months start with 0 ex. January would be 0
+const current_month = dateD.getMonth()+1;
+const current_year = dateD.getFullYear();
+
+const form_date = `${current_year}-${current_month}-${current_day}`;
+current_date = document.getElementById("goal_date").defaultValue = form_date;

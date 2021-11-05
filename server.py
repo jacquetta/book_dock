@@ -70,6 +70,7 @@ def book_list():
 
 @app.route('/signup_form')
 def signup_form():
+    
     return render_template('/signup_form.html')
 
 
