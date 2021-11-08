@@ -198,6 +198,11 @@ COPY public.users (user_id, full_name, email, password, book_goal, goal_date) FR
 1	Janey Doe	janey@gmail.com	password	3	2021-11-02 16:12:16.682776
 2	Betty Test	bettytest@email.com	Password123	30	2021-12-31 00:00:00
 3	Luigi Nintendo	luigi@email.com	Luigi2021	40	2022-03-24 00:00:00
+4	Pebbles Flintstone	pebbles@email.com	123	6	2021-11-25 00:00:00
+5	Wilma Flintstone	wilma@gmail.com	Password1	6	2021-12-31 00:00:00
+6	Betty Rubble	bettyrubble@email.com	Password123	29	2022-06-13 00:00:00
+7	Pink Ranger	pranger@email.com	Password2	0	2021-11-05 00:00:00
+8	Green Ranger	granger@gmail.com	Password3	5	2021-12-10 00:00:00
 \.
 
 
@@ -207,6 +212,12 @@ COPY public.users (user_id, full_name, email, password, book_goal, goal_date) FR
 
 COPY public.volumes (volume_id, title, authors, genre, summary, published_date, page_count, img_links) FROM stdin;
 HP1	Harry Potter and the Sorcerer's Stone	J.K Rowling	fantasy	Boy who finds out he is a wizard and will be going to Hogwarts	1997-06-26 00:00:00	309	img for book
+HP2	Harry Potter and the Chamber of Secrets	JK. Rowling	Fantasy	Ever since Harry Potter had come home for the summer, the Dursleys had been so mean and hideous that all Harry wanted was to get back to the Hogwarts School for Witchcraft and Wizardry	1998-07-02 00:00:00	341	https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1474169725l/15881._SY475_.jpg
+HP3	Harry Potter and the Prisoner of Azkaban	JK. Rowling	Fantasy	Ever since Harry Potter had come home for the summer, the Dursleys had been so mean and hideous that all Harry wanted was to get back to the Hogwarts School for Witchcraft and Wizardry	2004-05-01 00:00:00	435	https://loremflickr.com/320/240
+HP4	Harry Potter and the Goblet of Fire	JK. Rowling	Fantasy	Harry Potter is midway through his training as a wizard and his coming of age. 	2004-05-01 00:00:00	734	https://loremflickr.com/320/240
+HP5	Harry Potter and the Order of the Phoenix	JK. Rowling	Fantasy	There is a door at the end of a silent corridor. And it’s haunting Harry Pottter’s dreams. Why else would he be waking in the middle of the night, screaming in terror?	2003-06-21 00:00:00	870	https://icons8.com/icon/4276
+HP6	Harry Potter and the Half Blood Prince	JK. Rowling	Fantasy	The war against Voldemort is not going well; even Muggle governments are noticing.	2006-07-16 00:00:00	652	https://icons8.com/icon/4276
+HP7	Harry Potter and the Deathly Hallows	JK. Rowling	Fantasy	It's no longer safe for Harry at Hogwarts, so he and his best friends, Ron and Hermione, are on the run. 	2007-07-21 00:00:00	759	https://icons8.com/icon/4276
 \.
 
 
@@ -228,7 +239,7 @@ SELECT pg_catalog.setval('public.reviews_review_id_seq', 1, true);
 -- Name: users_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: jacquetta
 --
 
-SELECT pg_catalog.setval('public.users_user_id_seq', 3, true);
+SELECT pg_catalog.setval('public.users_user_id_seq', 8, true);
 
 
 --

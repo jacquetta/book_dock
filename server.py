@@ -49,13 +49,15 @@ def sign_in():
     else: 
         # https://flask.palletsprojects.com/en/1.1.x/patterns/flashing/
         # https://pythonise.com/series/learning-flask/flask-message-flashing
-        flash('Please re-enter email and password')
+        flash('Invalid email or password')
         return render_template('homepage.html')
 
 @app.route('/user_home')
 def user_home():
     if 'key' in session:
         return render_template('/user_home.html')
+    else:
+        return redirect('/homepage')
 
 @app.route('/log_out')
 def log_out():
@@ -64,14 +66,15 @@ def log_out():
         session.pop('key')
     return render_template('/homepage.html')
 
-@app.route('/book_list')
+@app.route('/volumes')
 def book_list():
-    return render_template('/book_list.html')
+    volumes = crud.all_volumes();
+    return render_template("/book_list.html", volumes=volumes)
 
 @app.route('/signup_form')
 def signup_form():
-    
     return render_template('/signup_form.html')
+
 
 
 if __name__ == "__main__":

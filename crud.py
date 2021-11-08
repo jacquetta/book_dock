@@ -60,5 +60,6 @@ def create_review(title, review_title, review, published, user_id, volume_id):
     return user_review
 
 """list all reviews for book"""
+# change query to filter by book
 def book_reviews():
     return Review.query.all()
