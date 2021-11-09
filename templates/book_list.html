@@ -10,7 +10,7 @@
     <h2>Main Book List</h2>
     <h4>Add books to your list.</h4>
     {% for volume in volumes %}
-        <div class="volume-card card">
+        <div class="volume-card card" id="{{volume.volume_id}}">
             <a href="/volumes/{{volume.volume_id}}">
                 <img src="{{volume.img_links}}" alt="placeholder img">
             </a>
@@ -19,4 +19,6 @@
             <button class="add-btn">Add</button>
         </div>
     {% endfor %}
+
+   
 {% endblock %}
