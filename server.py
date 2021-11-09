@@ -71,6 +71,12 @@ def book_list():
     volumes = crud.all_volumes();
     return render_template("/book_list.html", volumes=volumes)
 
+@app.route('/volumes/<volume_id>')
+def book_details(volume_id):
+    volume = crud.get_volume_id(volume_id)
+    return render_template("/book_details.html", volume=volume)
+
+
 @app.route('/signup_form')
 def signup_form():
     return render_template('/signup_form.html')

@@ -45,7 +45,7 @@ def all_volumes():
 
 """get volume_id"""
 def get_volume_id(volume_id):
-    return Volume.query.get(volume_id).first()
+    return Volume.query.get(volume_id)
 
 """get book_users id"""
 def get_bookuser_id(bookuser_id):
@@ -61,5 +61,5 @@ def create_review(title, review_title, review, published, user_id, volume_id):
 
 """list all reviews for book"""
 # change query to filter by book
-def book_reviews():
-    return Review.query.all()
+def book_reviews(volume_id):
+    return Review.query.filter(volume_id)

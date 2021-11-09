@@ -1,9 +1,23 @@
 {% extends 'base.html' %}
 
-{% block title %}ADD TITLE HERE{% endblock %}
+{% block title %}{{volume.title}}{% endblock %}
+{% block link %} 
+    <a id="user_home" href="{{url_for('book_list')}}">Back</a>
+    <a id="user_home" href="{{url_for('user_home')}}">Home</a>
+    <a id="log_out" href="{{url_for('log_out')}}">Log Out</a> 
+{% endblock %}
 
 {% block content %}
 
-ADD CONTENT HERE
+<div id="{{volume.title}}">
+    <h2>{{volume.title}}</h2>
+    <h5>{{volume.authors}}</h5>
+    <img src="{{volume.img_links}}" alt="book image">
+    <p>{{volume.summary}}</p>
+    <p>{{volume.page_count}}</p>
+    <p>{{volume.published_date}}</p>
+    <p>{{volume.genre}}</p>
+    <button id={{volume.volume_id}} class="add-btn">Add</button>
+</div>
 
 {% endblock %}
