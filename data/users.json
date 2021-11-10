@@ -1,0 +1,9 @@
+[{"user_id": "1", "full_name": "Pink PRanger", "email": "pranger@email.com", "password": "Password1", "book_goal": "10", "goal_date": "2022-02-19"},
+{"user_id": "2", "full_name": "Yellow YRanger", "email": "yranger@email.com", "password": "Password2", "book_goal": "20", "goal_date": "2022-03-19"},
+{"user_id": "3", "full_name": "Red Ranger", "email": "rranger@email.com", "password": "Password3", "book_goal": "55", "goal_date": "2022-04-19"},
+{"user_id": "4", "full_name": "Green GRanger", "email": "granger@email.com", "password": "Password4", "book_goal": "85", "goal_date": "2022-05-19"},
+{"user_id": "5", "full_name": "Black BRanger", "email": "branger@email.com", "password": "Password5", "book_goal": "156", "goal_date": "2022-06-19"},
+{"user_id": "6", "full_name": "Blue RangerB", "email": "rangerb@email.com", "password": "Password6", "book_goal": "300", "goal_date": "2022-07-19"}
+
+]
+

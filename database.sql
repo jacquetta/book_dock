@@ -177,7 +177,16 @@ ALTER TABLE ONLY public.users ALTER COLUMN user_id SET DEFAULT nextval('public.u
 --
 
 COPY public.bookusers (bookuser_id, user_id, volume_id, completed) FROM stdin;
-1	1	HP1	false
+1	1	HPBook1	false
+2	1	HPBook4	false
+3	6	HPBook3	false
+4	6	HPBook4	false
+5	6	HPBook4	false
+6	6	HPBook3	false
+7	1	HPBook6	false
+8	1	HPBook6	false
+9	5	HPBook3	false
+10	5	HPBook4	false
 \.
 
 
@@ -186,7 +195,6 @@ COPY public.bookusers (bookuser_id, user_id, volume_id, completed) FROM stdin;
 --
 
 COPY public.reviews (review_id, title, review_title, review, published, user_id, volume_id) FROM stdin;
-1	Harry Potter and the Sorcerer's Stone	Great Book	Awesome read and takes you to another world	\N	1	HP1
 \.
 
 
@@ -195,14 +203,13 @@ COPY public.reviews (review_id, title, review_title, review, published, user_id,
 --
 
 COPY public.users (user_id, full_name, email, password, book_goal, goal_date) FROM stdin;
-1	Janey Doe	janey@gmail.com	password	3	2021-11-02 16:12:16.682776
-2	Betty Test	bettytest@email.com	Password123	30	2021-12-31 00:00:00
-3	Luigi Nintendo	luigi@email.com	Luigi2021	40	2022-03-24 00:00:00
-4	Pebbles Flintstone	pebbles@email.com	123	6	2021-11-25 00:00:00
-5	Wilma Flintstone	wilma@gmail.com	Password1	6	2021-12-31 00:00:00
-6	Betty Rubble	bettyrubble@email.com	Password123	29	2022-06-13 00:00:00
-7	Pink Ranger	pranger@email.com	Password2	0	2021-11-05 00:00:00
-8	Green Ranger	granger@gmail.com	Password3	5	2021-12-10 00:00:00
+1	Pink PRanger	pranger@email.com	Password1	10	2022-02-19 00:00:00
+2	Yellow YRanger	yranger@email.com	Password2	20	2022-03-19 00:00:00
+3	Red Ranger	rranger@email.com	Password3	55	2022-04-19 00:00:00
+4	Green GRanger	granger@email.com	Password4	85	2022-05-19 00:00:00
+5	Black BRanger	branger@email.com	Password5	156	2022-06-19 00:00:00
+6	Blue RangerB	rangerb@email.com	Password6	300	2022-07-19 00:00:00
+7	White Ranger	wranger@email.com	Password7	55	2022-11-09 00:00:00
 \.
 
 
@@ -211,13 +218,13 @@ COPY public.users (user_id, full_name, email, password, book_goal, goal_date) FR
 --
 
 COPY public.volumes (volume_id, title, authors, genre, summary, published_date, page_count, img_links) FROM stdin;
-HP1	Harry Potter and the Sorcerer's Stone	J.K Rowling	fantasy	Boy who finds out he is a wizard and will be going to Hogwarts	1997-06-26 00:00:00	309	img for book
-HP2	Harry Potter and the Chamber of Secrets	JK. Rowling	Fantasy	Ever since Harry Potter had come home for the summer, the Dursleys had been so mean and hideous that all Harry wanted was to get back to the Hogwarts School for Witchcraft and Wizardry	1998-07-02 00:00:00	341	https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1474169725l/15881._SY475_.jpg
-HP3	Harry Potter and the Prisoner of Azkaban	JK. Rowling	Fantasy	Ever since Harry Potter had come home for the summer, the Dursleys had been so mean and hideous that all Harry wanted was to get back to the Hogwarts School for Witchcraft and Wizardry	2004-05-01 00:00:00	435	https://loremflickr.com/320/240
-HP4	Harry Potter and the Goblet of Fire	JK. Rowling	Fantasy	Harry Potter is midway through his training as a wizard and his coming of age. 	2004-05-01 00:00:00	734	https://loremflickr.com/320/240
-HP5	Harry Potter and the Order of the Phoenix	JK. Rowling	Fantasy	There is a door at the end of a silent corridor. And it’s haunting Harry Pottter’s dreams. Why else would he be waking in the middle of the night, screaming in terror?	2003-06-21 00:00:00	870	https://icons8.com/icon/4276
-HP6	Harry Potter and the Half Blood Prince	JK. Rowling	Fantasy	The war against Voldemort is not going well; even Muggle governments are noticing.	2006-07-16 00:00:00	652	https://icons8.com/icon/4276
-HP7	Harry Potter and the Deathly Hallows	JK. Rowling	Fantasy	It's no longer safe for Harry at Hogwarts, so he and his best friends, Ron and Hermione, are on the run. 	2007-07-21 00:00:00	759	https://icons8.com/icon/4276
+HPBook1	Harry Potter and the Sorcerers Stone	J.K Rowling	fantasy	Boy who finds out he is a wizard and will be going to Hogwarts	1997-06-26 00:00:00	309	https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1474154022l/3._SY475_.jpg
+HPBook2	Harry Potter and the Chamber of Secrets	J.K Rowling	fantasy	Ever since Harry Potter had come home for the summer, the Dursleys had been so mean and hideous that all Harry wanted was to get back to the Hogwarts School for Witchcraft and Wizardry	1998-07-02 00:00:00	341	https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1474169725l/15881._SY475_.jpg
+HPBook3	Harry Potter and the Prisoner of Azkaban	J.K Rowling	fantasy	For twelve long years, the dread fortress of Azkaban held an infamous prisoner named Sirius Black.	1999-07-08 00:00:00	435	https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1630547330l/5._SY475_.jpg
+HPBook4	Harry Potter and the Goblet of Fire	J.K Rowling	fantasy	Harry Potter is midway through his training as a wizard and his coming of age	2000-07-08 00:00:00	734	https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1554006152l/6.jpg
+HPBook5	Harry Potter and the Order of the Phoenix	J.K Rowling	fantasy	There is a door at the end of a silent corridor. And it’s haunting Harry Pottter’s dreams. Why else would he be waking in the middle of the night, screaming in terror?	2003-06-21 00:00:00	870	https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1546910265l/2.jpg
+HPBook6	Harry Potter and the Half Blood Prince	J.K Rowling	fantasy	The war against Voldemort is not going well; even Muggle governments are noticing.	2006-07-16 00:00:00	652	https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1587697303l/1._SX318_.jpg
+HPBook7	Harry Potter and the Deathly Hallows	J.K Rowling	fantasy	Its no longer safe for Harry at Hogwarts, so he and his best friends, Ron and Hermione, are on the run.	2007-07-21 00:00:00	759	https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1474171184l/136251._SY475_.jpg
 \.
 
 
@@ -225,21 +232,21 @@ HP7	Harry Potter and the Deathly Hallows	JK. Rowling	Fantasy	It's no longer safe
 -- Name: bookusers_bookuser_id_seq; Type: SEQUENCE SET; Schema: public; Owner: jacquetta
 --
 
-SELECT pg_catalog.setval('public.bookusers_bookuser_id_seq', 1, true);
+SELECT pg_catalog.setval('public.bookusers_bookuser_id_seq', 10, true);
 
 
 --
 -- Name: reviews_review_id_seq; Type: SEQUENCE SET; Schema: public; Owner: jacquetta
 --
 
-SELECT pg_catalog.setval('public.reviews_review_id_seq', 1, true);
+SELECT pg_catalog.setval('public.reviews_review_id_seq', 1, false);
 
 
 --
 -- Name: users_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: jacquetta
 --
 
-SELECT pg_catalog.setval('public.users_user_id_seq', 8, true);
+SELECT pg_catalog.setval('public.users_user_id_seq', 7, true);
 
 
 --
