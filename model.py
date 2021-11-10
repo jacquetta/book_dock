@@ -20,15 +20,14 @@ class User(db.Model):
 
     
     def __repr__(self):
-        return f"<User email={self.email} password={self.password}>"
-
+        return f'<User email={self.email} password={self.password}>'
 
 class Volume(db.Model):
     """volume(book)"""
 
     __tablename__ = "volumes"
 
-    volume_id = db.Column(db.String, primary_key=True)
+    volume_id = db.Column(db.String, primary_key=True, nullable=False)
     title = db.Column(db.String, nullable=False)
     authors = db.Column(db.String)
     genre = db.Column(db.String)
