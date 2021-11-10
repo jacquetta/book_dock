@@ -32,8 +32,8 @@ def get_user_email(email):
     return User.query.filter(User.email == email).first()
 
 """create a volume"""
-def create_volume(title, authors, genre, summary, published_date, page_count, img_links):
-    volume = Volume(title=title, authors=authors, genre=genre, summary=summary, published_date=published_date, page_count=page_count, img_links=img_links)
+def create_volume(volume_id, title, authors, genre, summary, published_date, page_count, img_links):
+    volume = Volume(volume_id=volume_id,title=title, authors=authors, genre=genre, summary=summary, published_date=published_date, page_count=page_count, img_links=img_links)
 
     db.session.add(volume)
     db.session.commit()
@@ -47,9 +47,25 @@ def all_volumes():
 def get_volume_id(volume_id):
     return Volume.query.get(volume_id)
 
+"""create book_user"""
+def create_bookuser(volume_id, user_id):
+    book_user = Book_User(volume_id=volume_id, user_id=user_id)
+
+    db.session.add(book_user)
+    db.session.commit()
+    return book_user
+
 """get book_users id"""
 def get_bookuser_id(bookuser_id):
-    return Book_User.query.get(bookuser_id).first()
+    return Book_User.query.filter(bookuser_id)
+
+def user_list(user_id):
+    return Book_User.query.filter(Book_User.user_id == user_id).all()
+
+"""check if user_id and volume_id share bookusers_id"""
+def check_bookuser(volume_id, user_id):
+    return Book_User.query.filter((Book_User.volume_id == volume_id) & (Book_User.user_id == user_id )).all()
+
 
 """create a new review"""
 def create_review(title, review_title, review, published, user_id, volume_id):
