@@ -49,6 +49,8 @@
         $(document).ready(function () {
         $("#{{request.endpoint}}").addClass("active"); })
       </script>
-    <script src="/static/js/index.js"></script>
+    {% block js %}
+        
+    {% endblock %}
 </body>
 </html>
