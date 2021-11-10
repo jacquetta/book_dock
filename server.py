@@ -1,5 +1,6 @@
 from flask import (Flask, render_template, request, flash, session, redirect)
-from model import connect_to_db
+from model import Book_User, connect_to_db
+import json
 import crud
 from flask_debugtoolbar import DebugToolbarExtension
 from jinja2 import StrictUndefined
@@ -11,11 +12,12 @@ app.secret_key = "books2012"
 app.jinja_env.undefined = StrictUndefined
 # toolbar = DebugToolbarExtension(app)
 # toolbar.init_app(app)
-
+"""HOMEPAGE ROUTE"""
 @app.route('/')
 def homepage():
     return render_template('/homepage.html')
 
+"""SIGN UP ROUTE"""
 @app.route('/signup', methods=["POST"])
 def sign_up():
     full_name = request.form.get('full_name')
@@ -36,6 +38,7 @@ def sign_up():
         flash('Account created!')
         return render_template('user_home.html')
 
+"""SIGN IN ROUTE"""
 @app.route('/signin', methods=["POST"])
 def sign_in():
     email = request.form.get('email')
@@ -52,13 +55,25 @@ def sign_in():
         flash('Invalid email or password')
         return render_template('homepage.html')
 
+"""SIGN UP FORM ROUTE"""
+@app.route('/signup_form')
+def signup_form():
+    return render_template('/signup_form.html')
+
+
+"""USER HOME ROUTE"""
 @app.route('/user_home')
 def user_home():
+    user_id = session['key']
+    bookuser = crud.user_list(user_id)
+    volumes = crud.all_volumes()
+    
     if 'key' in session:
-        return render_template('/user_home.html')
+        return render_template('/user_home.html', bookuser=bookuser,volumes=volumes)
     else:
         return redirect('/homepage')
-
+    
+"""LOG OUT ROUTE"""
 @app.route('/log_out')
 def log_out():
     # work on log out 
@@ -66,20 +81,41 @@ def log_out():
         session.pop('key')
     return render_template('/homepage.html')
 
+"""VOLUMES ROUTE"""
 @app.route('/volumes')
 def book_list():
     volumes = crud.all_volumes();
     return render_template("/book_list.html", volumes=volumes)
 
+"""VOLUME ROUTE"""
 @app.route('/volumes/<volume_id>')
 def book_details(volume_id):
     volume = crud.get_volume_id(volume_id)
     return render_template("/book_details.html", volume=volume)
 
+"""ADD A BOOK ROUTE"""
+@app.route('/add_book', methods=["POST"])
+def create_list():
+    user_id = session['key']
+    volume_id = request.form.get('volume_id')
+    bookuser_id = crud.check_bookuser(volume_id, user_id)
 
-@app.route('/signup_form')
-def signup_form():
-    return render_template('/signup_form.html')
+    volumes = crud.all_volumes()
+
+    if user_id in bookuser_id and volume_id in bookuser_id:
+        flash('Book already on list')
+        return render_template('book_list.html', volumes=volumes)  
+    else:
+        crud.create_bookuser(volume_id, user_id)
+        flash('Book Added!')
+        return redirect('user_home')
+
+# @app.route('/user_list')
+# def user_list(volumes):
+#     user_id = session['key']
+#     bookuser = crud.user_list(user_id)
+#     volumes = crud.all_volumes()
+#     return render_template('/user_home.html', bookuser=bookuser, volumes=volumes)
 
 
 
