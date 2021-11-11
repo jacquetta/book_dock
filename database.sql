@@ -106,7 +106,7 @@ CREATE TABLE public.users (
     email character varying(50) NOT NULL,
     password character varying(20) NOT NULL,
     book_goal integer,
-    goal_date timestamp without time zone
+    goal_date date
 );
 
 
@@ -178,6 +178,11 @@ ALTER TABLE ONLY public.users ALTER COLUMN user_id SET DEFAULT nextval('public.u
 --
 
 COPY public.bookusers (bookuser_id, user_id, volume_id, reading, completed) FROM stdin;
+1	4	HPBook1	false	false
+2	4	HPBook3	false	false
+3	1	HPBook3	false	false
+4	1	HPBook4	false	false
+5	1	HPBook6	false	false
 \.
 
 
@@ -194,12 +199,12 @@ COPY public.reviews (review_id, title, review_title, review, published, user_id,
 --
 
 COPY public.users (user_id, full_name, email, password, book_goal, goal_date) FROM stdin;
-1	Pink PRanger	pranger@email.com	Password1	10	2022-02-19 00:00:00
-2	Yellow YRanger	yranger@email.com	Password2	20	2022-03-19 00:00:00
-3	Red Ranger	rranger@email.com	Password3	55	2022-04-19 00:00:00
-4	Green GRanger	granger@email.com	Password4	85	2022-05-19 00:00:00
-5	Black BRanger	branger@email.com	Password5	156	2022-06-19 00:00:00
-6	Blue RangerB	rangerb@email.com	Password6	300	2022-07-19 00:00:00
+1	Pink PRanger	pranger@email.com	Password1	10	2022-02-19
+2	Yellow YRanger	yranger@email.com	Password2	20	2022-03-19
+3	Red Ranger	rranger@email.com	Password3	55	2022-04-19
+4	Green GRanger	granger@email.com	Password4	85	2022-05-19
+5	Black BRanger	branger@email.com	Password5	156	2022-06-19
+6	Blue RangerB	rangerb@email.com	Password6	300	2022-07-19
 \.
 
 
@@ -222,7 +227,7 @@ HPBook7	Harry Potter and the Deathly Hallows	J.K Rowling	fantasy	Its no longer s
 -- Name: bookusers_bookuser_id_seq; Type: SEQUENCE SET; Schema: public; Owner: jacquetta
 --
 
-SELECT pg_catalog.setval('public.bookusers_bookuser_id_seq', 1, false);
+SELECT pg_catalog.setval('public.bookusers_bookuser_id_seq', 5, true);
 
 
 --
