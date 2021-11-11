@@ -110,12 +110,11 @@ def create_list():
         flash('Book Added!')
         return redirect('user_home')
 
-# @app.route('/user_list')
-# def user_list(volumes):
-#     user_id = session['key']
-#     bookuser = crud.user_list(user_id)
-#     volumes = crud.all_volumes()
-#     return render_template('/user_home.html', bookuser=bookuser, volumes=volumes)
+@app.route('/profile')
+def update_profile():
+    user_id = session['key']
+    user_profile = crud.profile(user_id)
+    return render_template('/profile.html', user_profile=user_profile)
 
 
 
