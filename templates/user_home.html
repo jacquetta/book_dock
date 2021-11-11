@@ -18,8 +18,11 @@
     <h3>To Read:</h3>
     <ul id="user-list">
         {% for book in bookuser %}
-            <li>{{book.volume.title}}
-                <img src="{{book.volume.img_links}}" alt="harry potter book img"/>
+            <li>
+                <div class="book-card">
+                    {{book.volume.title}}
+                    <img src="{{book.volume.img_links}}" alt="harry potter book img"/>
+                </div>
             </li>
         {% endfor %}
     </ul>
