@@ -1,9 +1,35 @@
 {% extends 'base.html' %}
 
-{% block title %}ADD TITLE HERE{% endblock %}
+{% block title %}Your Profile{% endblock %}
 
+{% block link %} 
+<a id="book_list" href="{{url_for('book_list')}}">Add Book</a>
+<a id="user_home" href="{{url_for('user_home')}}">Home</a> 
+<a id="log_out" href="{{url_for('log_out')}}">Log Out</a>
+{% endblock %}
 {% block content %}
+<legend>Update Profile</legend>
+<form action="/signup" method="get">
+    
+    <label for="full_name">Full Name:</label><br>
+    <input type="text" id="full_name" name="full_name" required value={{user_profile.full_name}}><br>
 
-ADD CONTENT HERE
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email" required value={{user_profile.email}}><br>
 
+    
+    <label for="password">Password:</label><br>
+    <input type="password" id="password" name="password" pattern="(?=.*\d) (?=.*[a-z]) (?=.*[A-Z]).{8, 20}" title="Password must include at least one number, one uppercase, one lowercase letter, and at min 8 characters and max 20 characters" required value={{user_profile.password}}><br>
+
+    <label for="confirm-pw">Confirm Password:</label><br>
+    <input type="password" id="confirm-pw" name="confirm-pw" required><br>
+
+    <label for="book_goal">Set Book Goal:</label><br>
+    <input type="number" id="book_goal" name="book_goal" min="0" max="300" value={{user_profile.book_goal}}><br>
+
+    <label for="goal_date">Choose Goal Date:</label><br>
+    <input type="date" id="goal_date" name="goal_date" value={{user_profile.goal_date}}><br>
+
+    <input type="submit" value="Update">
+    <a id="user_home" class="btn-link" href="{{url_for('user_home')}}">Back</a> 
 {% endblock %}
