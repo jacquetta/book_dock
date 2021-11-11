@@ -17,7 +17,10 @@
     <p>{{volume.page_count}}</p>
     <p>{{volume.published_date}}</p>
     <p>{{volume.genre}}</p>
-    <button id={{volume.volume_id | safe}} class="add-btn">Add</button>
+    <form action="/add_book" method="post">
+        <input type="hidden" id={{volume.volume_id}} name="volume_id" value={{volume.volume_id}}>
+        <input type="submit">
+    </form>
 </div>
 <div id="read-list">
     <ul>
