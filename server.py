@@ -113,7 +113,7 @@ def create_list():
 @app.route('/profile')
 def update_profile():
     user_id = session['key']
-    user_profile = crud.profile(user_id)
+    user_profile = crud.get_user_id(user_id)
     return render_template('/profile.html', user_profile=user_profile)
 
 
