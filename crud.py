@@ -20,8 +20,8 @@ def login(email, password):
     return User.query.filter((User.email == email) & (User.password == password)).first()
 
 """get all users"""
-def all_users():
-    return User.query.all()
+def profile(user_id):
+    return User.query.get(user_id)
 
 """get user_id"""
 def get_user_id(user_id):
