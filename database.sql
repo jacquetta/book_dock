@@ -181,12 +181,9 @@ COPY public.bookusers (bookuser_id, user_id, volume_id, completed) FROM stdin;
 2	1	HPBook4	false
 3	6	HPBook3	false
 4	6	HPBook4	false
-5	6	HPBook4	false
-6	6	HPBook3	false
-7	1	HPBook6	false
-8	1	HPBook6	false
-9	5	HPBook3	false
-10	5	HPBook4	false
+5	1	HPBook6	false
+6	5	HPBook3	false
+7	5	HPBook4	false
 \.
 
 
