@@ -17,8 +17,19 @@
 <div id="read-list">
     <h3>To Read:</h3>
     <ul id="user-list">
-        
+        {% for book in bookuser %}
+            <li>{{book.volume.title}}
+                <img src="{{book.volume.img_links}}" alt="harry potter book img"/>
+            </li>
+        {% endfor %}
     </ul>
 </div>
 
+
+{% endblock %}
+
+{% block js %}
+    <script src="{{ url_for('static', filename='js/index.js')}}"> 
+        
+    </script>
 {% endblock %}
