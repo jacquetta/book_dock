@@ -28,6 +28,7 @@ CREATE TABLE public.bookusers (
     bookuser_id integer NOT NULL,
     user_id integer NOT NULL,
     volume_id character varying NOT NULL,
+    reading character varying,
     completed character varying
 );
 
@@ -176,14 +177,7 @@ ALTER TABLE ONLY public.users ALTER COLUMN user_id SET DEFAULT nextval('public.u
 -- Data for Name: bookusers; Type: TABLE DATA; Schema: public; Owner: jacquetta
 --
 
-COPY public.bookusers (bookuser_id, user_id, volume_id, completed) FROM stdin;
-1	1	HPBook1	false
-2	1	HPBook4	false
-3	6	HPBook3	false
-4	6	HPBook4	false
-5	1	HPBook6	false
-6	5	HPBook3	false
-7	5	HPBook4	false
+COPY public.bookusers (bookuser_id, user_id, volume_id, reading, completed) FROM stdin;
 \.
 
 
@@ -206,7 +200,6 @@ COPY public.users (user_id, full_name, email, password, book_goal, goal_date) FR
 4	Green GRanger	granger@email.com	Password4	85	2022-05-19 00:00:00
 5	Black BRanger	branger@email.com	Password5	156	2022-06-19 00:00:00
 6	Blue RangerB	rangerb@email.com	Password6	300	2022-07-19 00:00:00
-7	White Ranger	wranger@email.com	Password7	55	2022-11-09 00:00:00
 \.
 
 
@@ -229,7 +222,7 @@ HPBook7	Harry Potter and the Deathly Hallows	J.K Rowling	fantasy	Its no longer s
 -- Name: bookusers_bookuser_id_seq; Type: SEQUENCE SET; Schema: public; Owner: jacquetta
 --
 
-SELECT pg_catalog.setval('public.bookusers_bookuser_id_seq', 10, true);
+SELECT pg_catalog.setval('public.bookusers_bookuser_id_seq', 1, false);
 
 
 --
@@ -243,7 +236,7 @@ SELECT pg_catalog.setval('public.reviews_review_id_seq', 1, false);
 -- Name: users_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: jacquetta
 --
 
-SELECT pg_catalog.setval('public.users_user_id_seq', 7, true);
+SELECT pg_catalog.setval('public.users_user_id_seq', 6, true);
 
 
 --
