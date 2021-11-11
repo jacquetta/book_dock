@@ -31,7 +31,7 @@ def sign_up():
     # user_id = crud.get_user_id(userid)
 
     if user_email:
-        flash('Cannot create account. Please try again!')
+        flash('User email already exists. Please try again!')
         return render_template('signup_form.html')
     else:
         crud.new_user(full_name, email, password, book_goal, goal_date)
@@ -102,7 +102,7 @@ def create_list():
 
     volumes = crud.all_volumes()
 
-    if user_id in bookuser_id and volume_id in bookuser_id:
+    if bookuser_id:
         flash('Book already on list')
         return render_template('book_list.html', volumes=volumes)  
     else:

@@ -19,9 +19,6 @@ def new_user(full_name, email, password, book_goal, goal_date):
 def login(email, password):
     return User.query.filter((User.email == email) & (User.password == password)).first()
 
-"""get all users"""
-def profile(user_id):
-    return User.query.get(user_id)
 
 """get user_id"""
 def get_user_id(user_id):
@@ -78,4 +75,4 @@ def create_review(title, review_title, review, published, user_id, volume_id):
 """list all reviews for book"""
 # change query to filter by book
 def book_reviews(volume_id):
-    return Review.query.filter(volume_id)
+    return Review.query.filter(volume_id).all()
