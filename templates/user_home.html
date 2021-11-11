@@ -3,15 +3,20 @@
 {% block title %}Personal Book Dock{% endblock %}
 {% block link %} 
 <a id="book_list" href="{{url_for('book_list')}}">Add Book</a>
-<a id="log_out" href="{{url_for('log_out')}}">Log Out</a> 
+<a id="profile" href="{{url_for('profile')}}">Profile</a> 
+<a id="log_out" href="{{url_for('log_out')}}">Log Out</a>
 {% endblock %}
 
 {% block content %}
 
 <h1>Welcome to Book Dock!</h1>
-
+<h2>Book Goal:</h2>
+<h2>Goal Date:</h2>
 <div class="current">
     <h3>Currently Reading</h3>
+    <div class="book-card">
+        {# will list book and image and link to book details}
+    </div>
 </div>
 
 <div id="read-list">
@@ -22,13 +27,21 @@
                 <div class="book-card">
                     {{book.volume.title}}
                     <img src="{{book.volume.img_links}}" alt="harry potter book img"/>
+                    <button class="currently">Reading</button>
+                    <button class="remove">Delete</button>
                 </div>
             </li>
         {% endfor %}
     </ul>
 </div>
 
+<div id="finished">
+    <h3>Books Completed</h3>
+    <ul id="finished-list">
+        {# will list title of book and button to move read list #}
+    </ul>
 
+</div>
 {% endblock %}
 
 {% block js %}
