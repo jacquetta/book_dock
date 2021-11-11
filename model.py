@@ -49,6 +49,7 @@ class Book_User(db.Model):
     bookuser_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"), nullable=False)
     volume_id = db.Column(db.String, db.ForeignKey("volumes.volume_id"), nullable=False)
+    reading = db.Column(db.String, default=False)
     completed = db.Column(db.String, default=False)
 
     user = db.relationship("User", backref="bookusers")
