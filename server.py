@@ -1,5 +1,5 @@
 from flask import (Flask, render_template, request, flash, session, redirect)
-from model import Book_User, connect_to_db
+from model import db, Book_User, connect_to_db
 import json
 import crud
 from flask_debugtoolbar import DebugToolbarExtension
@@ -65,11 +65,12 @@ def signup_form():
 @app.route('/user_home')
 def user_home():
     user_id = session['key']
+    user = crud.get_user_id(user_id)
     bookuser = crud.user_list(user_id)
     volumes = crud.all_volumes()
     
     if 'key' in session:
-        return render_template('/user_home.html', bookuser=bookuser,volumes=volumes)
+        return render_template('/user_home.html', bookuser=bookuser,volumes=volumes, user=user)
     else:
         return redirect('/homepage')
     
@@ -115,6 +116,26 @@ def update_profile():
     user_id = session['key']
     user_profile = crud.get_user_id(user_id)
     return render_template('/profile.html', user_profile=user_profile)
+
+@app.route('/current', methods=["POST"])
+def move_book():
+    user_id = session['key']
+    volume_id = request.form.get('volume_id')
+    bookuser_id = crud.bookuser(volume_id, user_id)
+    # bookuser = crud.get_bookuser(bookuser_id)
+    bookuser_id.reading = "true"
+    db.session.commit()
+    return redirect('user_home')
+
+
+
+
+
+
+
+
+
+
 
 
 

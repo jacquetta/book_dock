@@ -16,7 +16,7 @@ class User(db.Model):
     email = db.Column(db.String(50), nullable=False, unique=True)
     password = db.Column(db.String(20), nullable=False)
     book_goal = db.Column(db.Integer, default=0)
-    goal_date = db.Column(db.DateTime)
+    goal_date = db.Column(db.Date)
 
     
     def __repr__(self):
@@ -56,7 +56,7 @@ class Book_User(db.Model):
     volume = db.relationship("Volume", backref="bookusers")
 
     def __repr__(self):
-        return f"<Book User volume_id={self.volume_id} user={self.user_id} completed={self.completed}>"
+        return f"<Book User volume_id={self.volume_id} user={self.user_id} reading={self.reading} completed={self.completed}>"
 
 class Review(db.Model):
     """user review for book"""

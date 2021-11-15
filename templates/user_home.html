@@ -10,27 +10,60 @@
 {% block content %}
 
 <h1>Welcome to Book Dock!</h1>
-<h2>Book Goal:</h2>
-<h2>Goal Date:</h2>
-<div class="current">
+<h2>Book Goal:{{user.book_goal}}</h2>
+<h2>Goal Date:{{user.goal_date}}</h2>
+<div id="current">
     <h3>Currently Reading</h3>
-    <div class="book-card">
+    <ul class="book-card">
         {# will list book and image and link to book details #}
-    </div>
+        {# update list and database with user_id.completed#}
+        {% for book in bookuser %}
+            {% if book.reading == "true" %}
+                    <li id={{book.volume_id}}>
+                        <div class="book-card">
+                            {{book.volume.title}}
+                            <img src="{{book.volume.img_links}}" alt="harry potter book img"/>
+                            {# update list and database with user_id.reading#}
+                            <form action="/completed" method="post">
+                                <input type="hidden" id={{book.volume.volume_id}} name="volume_id" value={{book.volume_id}}>
+                                <input type="submit" value="Completed" id="completed">
+                            </form>
+
+                            {# update list and database with bookuser delete from database#}
+                            <form action="/toRead" method="post">
+                                <input type="hidden" class={{book.bookuser_id}} name="volume_id" value={{book.volume_id}}>
+                                <input type="submit" value="To Read" id="To Read">
+                            </form>
+                        </div>
+                    </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
 </div>
 
 <div id="read-list">
     <h3>To Read:</h3>
     <ul id="user-list">
         {% for book in bookuser %}
-            <li>
-                <div class="book-card">
-                    {{book.volume.title}}
-                    <img src="{{book.volume.img_links}}" alt="harry potter book img"/>
-                    <button class="currently">Reading</button>
-                    <button class="remove">Delete</button>
-                </div>
-            </li>
+            {% if book.reading == "false" %}
+                    <li id={{book.volume_id}}>
+                        <div class="book-card">
+                            {{book.volume.title}}
+                            <img src="{{book.volume.img_links}}" alt="harry potter book img"/>
+                            {# update list and database with user_id.reading#}
+                            <form action="/current" method="post">
+                                <input type="hidden" id={{book.volume.volume_id}} name="volume_id" value={{book.volume_id}}>
+                                <input type="submit" value="Reading" id="reading">
+                            </form>
+
+                            {# update list and database with bookuser delete from database#}
+                            <form action="/delete" method="post">
+                                <input type="hidden" class={{book.bookuser_id}} name="volume_id" value={{book.volume_id}}>
+                                <input type="submit" value="Delete" id="deleteItem">
+                            </form>
+                        </div>
+                    </li>
+            {% endif %}
         {% endfor %}
     </ul>
 </div>
@@ -39,13 +72,12 @@
     <h3>Books Completed</h3>
     <ul id="finished-list">
         {# will list title of book and button to move read list #}
+        {# update list and database with user_id.completed. If completed == False move to to read list else True completed#}
     </ul>
 
 </div>
 {% endblock %}
 
 {% block js %}
-    <script src="{{ url_for('static', filename='js/index.js')}}"> 
-        
-    </script>
+    <script src="{{ url_for('static', filename='js/index.js')}}"> </script>
 {% endblock %}

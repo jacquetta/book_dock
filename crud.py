@@ -53,8 +53,12 @@ def create_bookuser(volume_id, user_id):
     return book_user
 
 """get book_users id"""
-def get_bookuser_id(bookuser_id):
-    return Book_User.query.filter(bookuser_id)
+def get_bookuser(bookuser_id):
+    return Book_User.query.get(bookuser_id)
+
+def bookuser(volume_id, user_id):
+    return Book_User.query.filter((Book_User.volume_id == volume_id) & (Book_User.user_id == user_id )).first()
+
 
 def user_list(user_id):
     return Book_User.query.filter(Book_User.user_id == user_id).all()
@@ -63,6 +67,9 @@ def user_list(user_id):
 def check_bookuser(volume_id, user_id):
     return Book_User.query.filter((Book_User.volume_id == volume_id) & (Book_User.user_id == user_id )).all()
 
+# def update_reading(bookuser):
+#     bookuser = Book_User.query.filter(Book_User.reading)
+#     return bookuser
 
 """create a new review"""
 def create_review(title, review_title, review, published, user_id, volume_id):
