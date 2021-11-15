@@ -18,7 +18,7 @@
         {# will list book and image and link to book details #}
         {# update list and database with user_id.completed#}
         {% for book in bookuser %}
-            {% if book.reading == "true" %}
+            {% if book.reading == "true" and book.completed == "false" %}
                     <li id={{book.volume_id}}>
                         <div class="book-card">
                             {{book.volume.title}}
