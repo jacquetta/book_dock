@@ -127,7 +127,15 @@ def move_book():
     db.session.commit()
     return redirect('user_home')
 
+@app.route('/completed', methods=["POST"])
+def completed_book():
+    user_id = session['key']
+    volume_id = request.form.get('volume_id')
+    bookuser_id = crud.bookuser(volume_id, user_id)
 
+    bookuser_id.completed = "true"
+    db.session.commit()
+    return redirect('user_home')
 
 
 

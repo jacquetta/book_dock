@@ -73,6 +73,22 @@
     <ul id="finished-list">
         {# will list title of book and button to move read list #}
         {# update list and database with user_id.completed. If completed == False move to to read list else True completed#}
+        {% for book in bookuser %}
+            {% if book.completed == "true" %}
+                    <li id={{book.volume_id}}>
+                        <div class="book-card">
+                            {{book.volume.title}}
+                            <img src="{{book.volume.img_links}}" alt="harry potter book img"/>
+
+                            {# update list and database with bookuser delete from database#}
+                            <form action="/toRead" method="post">
+                                <input type="hidden" class={{book.bookuser_id}} name="volume_id" value={{book.volume_id}}>
+                                <input type="submit" value="To Read" id="To Read">
+                            </form>
+                        </div>
+                    </li>
+            {% endif %}
+        {% endfor %}
     </ul>
 
 </div>
