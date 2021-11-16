@@ -118,12 +118,13 @@ def update_profile():
     return render_template('/profile.html', user_profile=user_profile)
 
 @app.route('/current', methods=["POST"])
-def move_book():
+def move_current():
     user_id = session['key']
     volume_id = request.form.get('volume_id')
     bookuser_id = crud.bookuser(volume_id, user_id)
     # bookuser = crud.get_bookuser(bookuser_id)
     bookuser_id.reading = "true"
+    bookuser_id.completed = "false"
     db.session.commit()
     return redirect('user_home')
 
@@ -138,7 +139,15 @@ def completed_book():
     return redirect('user_home')
 
 
+@app.route('/to_read', methods=["POST"])
+def move_toread():
+    user_id = session['key']
+    volume_id = request.form.get('volume_id')
+    bookuser_id = crud.bookuser(volume_id, user_id)
 
+    bookuser_id.reading = "false"
+    db.session.commit()
+    return redirect('user_home')
 
 
 

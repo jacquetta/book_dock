@@ -30,7 +30,7 @@
                             </form>
 
                             {# update list and database and moving book back to To Read List #}
-                            <form action="/toRead" method="post">
+                            <form action="/to_read" method="post">
                                 <input type="hidden" class={{book.bookuser_id}} name="volume_id" value={{book.volume_id}}>
                                 <input type="submit" value="To Read" id="To Read">
                             </form>
@@ -81,9 +81,9 @@
                             <img src="{{book.volume.img_links}}" alt="harry potter book img"/>
 
                             {# update list and database completed == False #}
-                            <form action="/toRead" method="post">
+                            <form action="/current" method="post">
                                 <input type="hidden" class={{book.bookuser_id}} name="volume_id" value={{book.volume_id}}>
-                                <input type="submit" value="To Read" id="To Read">
+                                <input type="submit" value="To Current" id="toCurrent">
                             </form>
                         </div>
                     </li>
