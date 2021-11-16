@@ -2,6 +2,10 @@ from flask import (Flask, render_template, request, flash, session, redirect)
 from model import db, Book_User, connect_to_db
 import json
 import crud
+import os
+import requests
+from pprint import pformat, pprint
+from sys import argv
 from flask_debugtoolbar import DebugToolbarExtension
 from jinja2 import StrictUndefined
 
@@ -10,6 +14,9 @@ app = Flask(__name__)
 app.debug = True
 app.secret_key = "books2012"
 app.jinja_env.undefined = StrictUndefined
+
+API_KEY = os.environ['API_KEY']
+
 # toolbar = DebugToolbarExtension(app)
 # toolbar.init_app(app)
 """HOMEPAGE ROUTE"""
@@ -88,11 +95,6 @@ def book_list():
     volumes = crud.all_volumes();
     return render_template("/book_list.html", volumes=volumes)
 
-"""VOLUME ROUTE"""
-@app.route('/volumes/<volume_id>')
-def book_details(volume_id):
-    volume = crud.get_volume_id(volume_id)
-    return render_template("/book_details.html", volume=volume)
 
 """ADD A BOOK ROUTE"""
 @app.route('/add_book', methods=["POST"])
@@ -149,12 +151,32 @@ def move_toread():
     db.session.commit()
     return redirect('user_home')
 
+# SEARCH THROUGH GOOGLE BOOKS USING API
+@app.route('/search')
+def book_search():
+    q = request.args.get('q', '')
 
+    url = 'https://www.googleapis.com/books/v1/volumes'
+    payload = {'key': API_KEY, 'q': q ,' maxResult': 20}
 
+    res = requests.get(url, params=payload)
+    data = res.json()
+    # print(data)
+    volumes = data['items']
+    return render_template('/search.html', pformat=pformat, data=data, results=volumes)
 
+"""VOLUME ROUTE"""
+@app.route('/volumes/<volumeId>')
+def book_details(volumeId):
+    # volume = crud.get_volume_id(volume_id)
+    # return render_template("/book_details.html", volume=volume)
+    url = 'https://www.googleapis.com/books/v1/volumes/volumeId'
+    payload = {'key': API_KEY}
 
-
-
+    res = requests.get(url, params=payload)
+    volume = res.json()
+    volumeInfo = volume
+    return render_template('/book_details.html', volume=volumeInfo)
 
 if __name__ == "__main__":
     connect_to_db(app)
