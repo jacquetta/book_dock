@@ -44,3 +44,8 @@
     height: 400px;
     padding-bottom: 20px;
 }
+
+/* TOGGLE DESCRIPTION FOR BOOK IN SEARCH RESULTS */
+#moreInfo {
+    display: none;
+}

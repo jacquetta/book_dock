@@ -21,7 +21,13 @@
                     <div class="card-body">
                         <h5 class="card-title">{{volume.volumeInfo.title}}</h5>
                         <p class="card-text">{{volume.volumeInfo.authors}}</p>
-                        <a href="/volumes/{{volume.id}}" target="_blank" rel="noreferrer noopener">Summary</a>
+                        <button class="toggleBtn">More</button>
+                        <div id="moreInfo">
+                            <p><b>Summary:</b> {{volume.volumeInfo.description}}</p>
+                            <p><b>Published:</b> {{volume.volumeInfo.publishedDate}}</p>
+                            <p><b>Page Count:</b> {{volume.volumeInfo.pageCount}}</p>
+                        </div>
+                      
                         <form action="/add_book" method="post">
                             <input type="hidden" id={{volume.id}} name="volume_id" value={{volume.id}}>
                             <input type="submit" value="Add to List" id="addToList">
@@ -31,4 +37,10 @@
             </div>
         </div>
     {% endfor %}
+{% endblock %}
+
+{% block js %}
+    <script src="{{ url_for('static', filename='js/index.js')}}"> 
+        
+    </script>
 {% endblock %}

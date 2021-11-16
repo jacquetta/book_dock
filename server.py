@@ -175,8 +175,9 @@ def book_details(volumeId):
 
     res = requests.get(url, params=payload)
     volume = res.json()
-    volumeInfo = volume
-    return render_template('/book_details.html', volume=volumeInfo)
+  
+    print(volume)
+    return render_template('/book_details.html', volume=volume)
 
 if __name__ == "__main__":
     connect_to_db(app)
