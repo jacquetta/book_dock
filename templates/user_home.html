@@ -22,7 +22,7 @@
                     <li id={{book.volume_id}}>
                         <div class="book-card">
                             {{book.volume.title}}
-                            <img src="{{book.volume.img_links}}" alt="harry potter book img"/>
+                            <img src="{{book.volume.img_links}}" alt="update image link"/>
                             {# update list and database with user_id.reading#}
                             <form action="/completed" method="post">
                                 <input type="hidden" id={{book.volume.volume_id}} name="volume_id" value={{book.volume_id}}>
@@ -32,7 +32,7 @@
                             {# update list and database and moving book back to To Read List #}
                             <form action="/to_read" method="post">
                                 <input type="hidden" class={{book.bookuser_id}} name="volume_id" value={{book.volume_id}}>
-                                <input type="submit" value="To Read" id="To Read">
+                                <input type="submit" value="To Read" id="toRead">
                             </form>
                         </div>
                     </li>
@@ -49,7 +49,7 @@
                     <li id={{book.volume_id}}>
                         <div class="book-card">
                             {{book.volume.title}}
-                            <img src="{{book.volume.img_links}}" alt="harry potter book img"/>
+                            <img src="{{book.volume.img_links}}" alt="update image link"/>
                             {# update list and database with user_id.reading#}
                             <form action="/current" method="post">
                                 <input type="hidden" id={{book.volume.volume_id}} name="volume_id" value={{book.volume_id}}>
@@ -78,7 +78,7 @@
                     <li id={{book.volume_id}}>
                         <div class="book-card">
                             {{book.volume.title}}
-                            <img src="{{book.volume.img_links}}" alt="harry potter book img"/>
+                            <img src="{{book.volume.img_links}}" alt="update image link"/>
 
                             {# update list and database completed == False #}
                             <form action="/current" method="post">
