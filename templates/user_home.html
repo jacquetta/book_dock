@@ -29,7 +29,7 @@
                                 <input type="submit" value="Completed" id="completed">
                             </form>
 
-                            {# update list and database with bookuser delete from database#}
+                            {# update list and database and moving book back to To Read List #}
                             <form action="/toRead" method="post">
                                 <input type="hidden" class={{book.bookuser_id}} name="volume_id" value={{book.volume_id}}>
                                 <input type="submit" value="To Read" id="To Read">
@@ -80,7 +80,7 @@
                             {{book.volume.title}}
                             <img src="{{book.volume.img_links}}" alt="harry potter book img"/>
 
-                            {# update list and database with bookuser delete from database#}
+                            {# update list and database completed == False #}
                             <form action="/toRead" method="post">
                                 <input type="hidden" class={{book.bookuser_id}} name="volume_id" value={{book.volume_id}}>
                                 <input type="submit" value="To Read" id="To Read">
