@@ -67,6 +67,13 @@ def sign_in():
 def signup_form():
     return render_template('/signup_form.html')
 
+@app.route('/profile')
+def update_profile():
+    user_id = session['key']
+    user_profile = crud.get_user_id(user_id)
+    # Need to update database if user changes profile information
+    return render_template('/profile.html', user_profile=user_profile)
+
 
 """USER HOME ROUTE"""
 @app.route('/user_home')
@@ -101,23 +108,26 @@ def book_list():
 def create_list():
     user_id = session['key']
     volume_id = request.form.get('volume_id')
+    title = request.form.get('volume_title')
+    authors = request.form.get('volume_authors')
+    genre = request.form.get('volume_genre')
+    summary = request.form.get('volume_description')
+    published_date = request.form.get('volume_publishedDate')
+    page_count = request.form.get('volume_pageCount')
+    img_links = request.form.get('volume_imageLinks')
+
     bookuser_id = crud.check_bookuser(volume_id, user_id)
 
-    volumes = crud.all_volumes()
 
     if bookuser_id:
         flash('Book already on list')
-        return render_template('book_list.html', volumes=volumes)  
+        return render_template('book_list.html')  
     else:
+        crud.create_volume(volume_id, title, authors, genre, summary, published_date, page_count, img_links)
         crud.create_bookuser(volume_id, user_id)
         flash('Book Added!')
         return redirect('user_home')
 
-@app.route('/profile')
-def update_profile():
-    user_id = session['key']
-    user_profile = crud.get_user_id(user_id)
-    return render_template('/profile.html', user_profile=user_profile)
 
 @app.route('/current', methods=["POST"])
 def move_current():
