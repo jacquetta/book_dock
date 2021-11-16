@@ -1,9 +1,34 @@
 {% extends 'base.html' %}
 
-{% block title %}ADD TITLE HERE{% endblock %}
-
+{% block title %}SEARCH RESULTS{% endblock %}
+{% block link %} 
+    <a id="book_list" href="{{url_for('book_list')}}">Back</a>
+    <a id="user_home" href="{{url_for('user_home')}}">Home</a>
+    <a id="log_out" href="{{url_for('log_out')}}">Log Out</a> 
+{% endblock %}
 {% block content %}
-
-ADD CONTENT HERE
-
+    {% for volume in results %}
+        <div class="card mb-3" style="max-width: 540px">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    {% if 'imageLinks' in volume.volumeInfo %}
+                        <img src="{{volume.volumeInfo.imageLinks.smallThumbnail}}" class="img-fluid rounded-start" alt="book image">
+                    {% else %}
+                        <img src="https://img.icons8.com/ios-glyphs/30/000000/book.png" class="img-fluid rounded-start" alt="placeholder book image"/>
+                    {% endif %}
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">{{volume.volumeInfo.title}}</h5>
+                        <p class="card-text">{{volume.volumeInfo.authors}}</p>
+                        <a href="/volumes/{{volume.id}}" target="_blank" rel="noreferrer noopener">Summary</a>
+                        <form action="/add_book" method="post">
+                            <input type="hidden" id={{volume.id}} name="volume_id" value={{volume.id}}>
+                            <input type="submit" value="Add to List" id="addToList">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
 {% endblock %}
