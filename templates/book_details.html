@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}{{volume.title}}{% endblock %}
+{% block title %}{% endblock %}
 {% block link %} 
     <a id="book_list" href="{{url_for('book_list')}}">Back</a>
     <a id="user_home" href="{{url_for('user_home')}}">Home</a>
@@ -8,24 +8,40 @@
 {% endblock %}
 
 {% block content %}
-<form action="/add_book" method="GET"></form>
-<div id="{{volume.title}}">
-    <h2>{{volume.title}}</h2>
-    <h5>{{volume.authors}}</h5>
-    <img src="{{volume.img_links}}" alt="book image">
-    <p>{{volume.summary}}</p>
-    <p>{{volume.page_count}}</p>
-    <p>{{volume.published_date}}</p>
-    <p>{{volume.genre}}</p>
-    <form action="/add_book" method="post">
-        <input type="hidden" id={{volume.volume_id}} name="volume_id" value={{volume.volume_id}}>
-        <input type="submit">
-    </form>
+<div id="details">
+    <h2>{{volume.volumeInfo.title}}</h2>
+    <h4>{{volume.volumeInfo.authors}}</h4>
+    <img src="{{volume.volumeInfo.imageLinks.thumbnail}}" alt="{{volume.volumeInfo.title}} image">
+    {% if 'description' in volume.volumeInfo %}
+    <p><b>Summary:</b> {{volume.volumeInfo.description}}</p>
+    {% else %}
+        <p><b>Summary:</b> Unavailable</p>
+    {% endif %}
+
+    {% if 'publishedDate' in volume.volumeInfo %}
+        <p><b>Published:</b> {{volume.volumeInfo.publishedDate}}</p>
+    {% else %}
+        <p><b>Published:</b> Unavailable</p>
+    {% endif %}
+
+    {% if 'pageCount' in volume.volumeInfo %}
+        <p><b>Page Count:</b> {{volume.volumeInfo.pageCount}}</p>
+    {% else %}
+        <p><b>Page Count:</b> Unavailable</p>
+    {% endif %}
+
+    {% if 'categories' in volume.volumeInfo %}
+        <p><b>Genres:</b> {{volume.volumeInfo.categories}}</p>
+    {% else %}
+        <p><b>Genre:</b> Unavailable</p>
+    {% endif %}
+        
 </div>
+
 <div id="review-list">
     <h4>Reviews</h4>
     <ul>
-
+        
     </ul>
 </div>
 {% endblock %}
