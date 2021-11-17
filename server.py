@@ -167,7 +167,7 @@ def book_search():
     q = request.args.get('q', '')
 
     url = 'https://www.googleapis.com/books/v1/volumes'
-    payload = {'key': API_KEY, 'q': q ,' maxResult': 20}
+    payload = {'key': API_KEY, 'q': q ,' maxResult': 20 }
 
     res = requests.get(url, params=payload)
     data = res.json()
@@ -180,7 +180,7 @@ def book_search():
 def book_details(volumeId):
     # volume = crud.get_volume_id(volume_id)
     # return render_template("/book_details.html", volume=volume)
-    url = 'https://www.googleapis.com/books/v1/volumes/volumeId'
+    url = f'https://www.googleapis.com/books/v1/volumes/{volumeId}'
     payload = {'key': API_KEY}
 
     res = requests.get(url, params=payload)
