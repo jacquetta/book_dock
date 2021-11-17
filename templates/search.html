@@ -43,8 +43,8 @@
                             <p><b>Page Count:</b> Unavailable</p>
                         {% endif %}
                         
-                        {% if 'mainCategory' in volume.volumeInfo %}
-                            <p><b>Genres:</b> {{volume.volumeInfo.mainCategory}}</p>
+                        {% if 'categories' in volume.volumeInfo %}
+                            <p><b>Genres:</b> {{volume.volumeInfo.categories}}</p>
                         {% else %}
                             <p><b>Genre:</b> Unavailable</p>
                         {% endif %}
