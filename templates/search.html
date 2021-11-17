@@ -49,6 +49,41 @@
                             <p><b>Genre:</b> Unavailable</p>
                         {% endif %}
                     </div> {# end of div moreInfo #}
+                    <form action="/add_book" method="post">
+                        <input type="hidden" id={{volume.id}} name="volume_id" value={{volume.id}}>
+                        <input type="hidden" id={{volume.volumeInfo.title}} name="volume_title" value={{volume.volumeInfo.title}}>
+                        <input type="hidden" id={{volume.volumeInfo.authors}} name="volume_authors" value={{volume.volumeInfo.authors}}>
+                        {% if 'mainCategory' in volume.volumeInfo %}
+                            <input type="hidden" id={{volume.volumeInfo.mainCategory}} name="volume_genre" value={{volume.volumeInfo.mainCategory}}>
+                        {% else %}
+                            <input type="hidden" id="mainCategory" name="volume_genre" value="none">
+                        {% endif %}
+
+                        {% if 'description' in volume.volumeInfo %}
+                            <input type="hidden" id={{volume.volumeInfo.description}} name="volume_description" value={{volume.volumeInfo.description}}>
+                        {% else %}
+                            <input type="hidden" id="volume.description" name="volume_description" value="Unavailable">
+                        {% endif %}
+                        
+                        {% if 'publishedDate' in volume.volumeInfo %}
+                        <input type="hidden" id={{volume.volumeInfo.publishedDate}} name="volume_publishedDate" value={{volume.volumeInfo.publishedDate}}>
+                        {% else %}
+                        <input type="hidden" id="volume.publishedDate" name="volume_publishedDate" value="Unavailable">
+                        {% endif %}
+
+                        {% if 'pageCount' in volume.volumeInfo %}
+                            <input type="hidden" id={{volume.volumeInfo.pageCount}} name="volume_pageCount" value={{volume.volumeInfo.pageCount}}>
+                        {% else %}
+                            <input type="hidden" id="volume.pageCount" name="volume_pageCount" value=0>
+                        {% endif %}
+                        
+                        {% if 'imageLinks' in volume.volumeInfo %}
+                            <input type="hidden" id={{volume.volumeInfo.imageLinks}} name="volume_imageLinks" value={{volume.volumeInfo.imageLinks}}>
+                        {% else %}
+                            <input type="hidden" id="imageLinks" name="volume_imageLinks" value="none">
+                        {% endif %}
+                        <input type="submit" value="Add to List" id="addToList">
+                    </form>
                 </div> {# end of div card body #}
             </div> {# end of div col-md-8 #}
         </div> {# end of div row g-0 #}
