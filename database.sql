@@ -184,9 +184,9 @@ COPY public.bookusers (bookuser_id, user_id, volume_id, reading, completed) FROM
 5	1	HPBook6	false	false
 4	1	HPBook4	false	false
 3	1	HPBook3	false	false
-10	1	XtecDwAAQBAJ	true	false
-11	1	d_f1DwAAQBAJ	false	false
-12	1	lMM4jgEACAAJ	false	false
+14	4	mZwbCwAAQBAJ	false	false
+17	1	JjplDwAAQBAJ	true	true
+20	1	L196MiLaqFIC	false	false
 \.
 
 
@@ -227,6 +227,10 @@ HPBook7	Harry Potter and the Deathly Hallows	J.K Rowling	fantasy	Its no longer s
 XtecDwAAQBAJ	#FutureBoards	['Sarah	none	Learn	2019-07-09 00:00:00	224	none
 d_f1DwAAQBAJ	Python	['Reuven	none	The	2020-08-04 00:00:00	248	none
 lMM4jgEACAAJ	Harry	['Inc.	none	Packed	2015-11-10 00:00:00	96	{'smallThumbnail':
+TOCgDwAAQBAJ	The	['Ben	none	This	2019-07-05 00:00:00	219	{'smallThumbnail':
+mZwbCwAAQBAJ	Think	['Allen	none	If	2015-12-02 00:00:00	292	{'smallThumbnail':
+L196MiLaqFIC	Python	['Allen	none	Python	2009-03-09 00:00:00	251	{'smallThumbnail':
+JjplDwAAQBAJ	Hustle	['Sarah	none	From	2019-07-02 00:00:00	392	http://books.google.com/books/content?id=JjplDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api
 \.
 
 
@@ -234,7 +238,7 @@ lMM4jgEACAAJ	Harry	['Inc.	none	Packed	2015-11-10 00:00:00	96	{'smallThumbnail':
 -- Name: bookusers_bookuser_id_seq; Type: SEQUENCE SET; Schema: public; Owner: jacquetta
 --
 
-SELECT pg_catalog.setval('public.bookusers_bookuser_id_seq', 12, true);
+SELECT pg_catalog.setval('public.bookusers_bookuser_id_seq', 20, true);
 
 
 --
