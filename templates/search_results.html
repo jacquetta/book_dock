@@ -79,7 +79,7 @@
                         {% endif %}
                         
                         {% if 'imageLinks' in volume.volumeInfo %}
-                            <input type="hidden" id={{volume.volumeInfo.imageLinks}} name="volume_imageLinks" value={{volume.volumeInfo.imageLinks}}>
+                            <input type="hidden" id={{volume.volumeInfo.imageLinks}} name="volume_imageLinks" value={{volume.volumeInfo.imageLinks.smallThumbnail}}>
                         {% else %}
                             <input type="hidden" id="imageLinks" name="volume_imageLinks" value="none">
                         {% endif %}
