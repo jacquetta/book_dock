@@ -37,3 +37,13 @@ function btnToggle(ID){
         book_id.style.display = "none";
     }
 }
+
+$('#delete_bookuser').on('submit', function(evt) {
+    evt.preventDefault();
+    const bookUserId = {
+        bookuser : $('#bookuser').val()
+    };
+    $.get('/delete_bookuser', bookUserId, res => {
+        $(this).closest("li").remove();
+    });
+});

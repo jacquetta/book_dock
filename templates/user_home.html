@@ -57,8 +57,8 @@
                             </form>
 
                             {# update list and database with bookuser delete from database#}
-                            <form action="/delete" method="post">
-                                <input type="hidden" class={{book.bookuser_id}} name="volume_id" value={{book.volume_id}}>
+                            <form action="/delete_bookuser" method="get" id="delete_bookuser">
+                                <input type="hidden" class={{book.bookuser_id}} id="bookuser" name="bookuser_id" value={{book.bookuser_id}}>
                                 <input type="submit" value="Delete" id="deleteItem">
                             </form>
                         </div>
