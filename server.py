@@ -116,16 +116,25 @@ def create_list():
     img_links = request.form.get('volume_imageLinks')
 
     bookuser_id = crud.check_bookuser(volume_id, user_id)
+    bookvolume_id = crud.get_volume_id(volume_id)
 
-
+    # NEED TO FIX IF USER TRIES TO ADD BOOK TO THEIR LIST AGAIN
+    # RIGHT NOW IT TAKES USERS BACK TO SEARCH PAGE NOT SEARCH RESULTS(WHICH RESULTS IN ERROR)
     if bookuser_id:
-        flash('Book already on list')
-        return render_template('/search_results.html')  
+    #    flash('Book already on list')
+       return 'Book already on list'
+    #    render_template('search.html')
+       
     else:
-        crud.create_volume(volume_id, title, authors, genre, summary, published_date, page_count, img_links)
-        crud.create_bookuser(volume_id, user_id)
-        flash('Book Added!')
-        return redirect('user_home')
+        if bookvolume_id:
+            crud.create_bookuser(volume_id, user_id)
+            flash('Book Added!')
+            return redirect('user_home')
+        else:
+            crud.create_volume(volume_id, title, authors, genre, summary, published_date, page_count, img_links)
+            crud.create_bookuser(volume_id, user_id)
+            flash('Book Added!')
+            return redirect('user_home')
 
 
 @app.route('/current', methods=["POST"])
@@ -188,6 +197,14 @@ def book_details(volumeId):
     print(volume)
     return render_template('/book_details.html', volume=volume)
 
+
+@app.route('/delete_bookuser', methods=["GET"])
+def delete_book():
+    user_id = session['key']
+    bookuser_id = request.args.get("bookuser_id")
+    bookuser = crud.delete_bookuser(bookuser_id)
+    flash ('Book deleted from list')
+    return redirect('/user_home')
 
 # REVIEWS
 
