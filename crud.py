@@ -52,6 +52,14 @@ def create_bookuser(volume_id, user_id):
     db.session.commit()
     return book_user
 
+
+def delete_bookuser(bookuser_id):
+    bookuser = Book_User.query.get(bookuser_id)
+
+    db.session.delete(bookuser)
+    db.session.commit()
+    return bookuser
+
 """get book_users id"""
 def get_bookuser(bookuser_id):
     return Book_User.query.get(bookuser_id)
