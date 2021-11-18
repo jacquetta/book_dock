@@ -97,10 +97,9 @@ def log_out():
     return render_template('/homepage.html')
 
 """VOLUMES ROUTE"""
-@app.route('/volumes')
-def book_list():
-    volumes = crud.all_volumes();
-    return render_template("/book_list.html", volumes=volumes)
+@app.route('/search')
+def book_search():
+    return render_template("/search.html",)
 
 
 """ADD A BOOK ROUTE"""
@@ -121,7 +120,7 @@ def create_list():
 
     if bookuser_id:
         flash('Book already on list')
-        return render_template('book_list.html')  
+        return render_template('/search_results.html')  
     else:
         crud.create_volume(volume_id, title, authors, genre, summary, published_date, page_count, img_links)
         crud.create_bookuser(volume_id, user_id)
@@ -162,8 +161,8 @@ def move_toread():
     return redirect('user_home')
 
 # SEARCH THROUGH GOOGLE BOOKS USING API
-@app.route('/search')
-def book_search():
+@app.route('/search_books')
+def book_request():
     q = request.args.get('q', '')
 
     url = 'https://www.googleapis.com/books/v1/volumes'
@@ -173,7 +172,7 @@ def book_search():
     data = res.json()
     # print(data)
     volumes = data['items']
-    return render_template('/search.html', pformat=pformat, data=data, results=volumes)
+    return render_template('/search_results.html', pformat=pformat, data=data, results=volumes)
 
 """VOLUME ROUTE"""
 @app.route('/volumes/<volumeId>')
