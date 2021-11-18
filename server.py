@@ -188,6 +188,21 @@ def book_details(volumeId):
     print(volume)
     return render_template('/book_details.html', volume=volume)
 
+
+# REVIEWS
+
+@app.route('/review_form')
+def review_form():
+    return render_template('/review_form.html')
+
+@app.route('/add_review', methods=["POST"])
+def add_review():
+    volume_title = request.form.get('volumeTitle')
+    review_title = request.form.get('reviewTitle')
+    review_post = request.form.get('reviewPost')
+    user_id = session['key']
+    volume_id = request.form.get('volume_id')
+
 if __name__ == "__main__":
     connect_to_db(app)
     app.run(host="0.0.0.0", debug=True)

@@ -1,9 +1,28 @@
 {% extends 'base.html' %}
 
-{% block title %}ADD TITLE HERE{% endblock %}
-
+{% block title %}Add a Review{% endblock %}
+{% block link %} 
+    <a id="book_search" href="{{url_for('book_search')}}">Book Search</a>
+    <a id="user_home" href="{{url_for('user_home')}}">Home</a>
+    <a id="log_out" href="{{url_for('log_out')}}">Log Out</a> 
+{% endblock %}
 {% block content %}
+    <form action="/add_review" method="post">
+        {# <input type="hidden" id={{volume.id}} name="volume_id" value={{volume.id}}> #}
+        {# <input type="hidden" id={{volume.volumeInfo.title}} name="volume_title" value={{volume.volumeInfo.title}}> #}
+        <label for="volumeTitle">Book:</label>
+        <input type="text" id="volumeTitle" name="volumeTitle" value="Add Book Title" readonly>
+        <br>
 
-ADD CONTENT HERE
+        <label for="reviewTitle">Title:</label>
+        <input type="text" id="reviewTitle" name="reviewTitle" required>
+        <br>
+
+        <label for="reviewPost">Review:</label>
+        <textarea name="reviewPost" id="reviewPost" cols="30" rows="5"></textarea>
+        <br>
+        <input type="submit" value="Post Review">
+    </form>
+
 
 {% endblock %}
