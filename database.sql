@@ -180,9 +180,13 @@ ALTER TABLE ONLY public.users ALTER COLUMN user_id SET DEFAULT nextval('public.u
 COPY public.bookusers (bookuser_id, user_id, volume_id, reading, completed) FROM stdin;
 1	4	HPBook1	false	false
 2	4	HPBook3	false	false
-3	1	HPBook3	false	false
-4	1	HPBook4	false	false
+6	1	HPBook1	false	false
 5	1	HPBook6	false	false
+4	1	HPBook4	false	false
+3	1	HPBook3	false	false
+10	1	XtecDwAAQBAJ	true	false
+11	1	d_f1DwAAQBAJ	false	false
+12	1	lMM4jgEACAAJ	false	false
 \.
 
 
@@ -220,6 +224,9 @@ HPBook4	Harry Potter and the Goblet of Fire	J.K Rowling	fantasy	Harry Potter is 
 HPBook5	Harry Potter and the Order of the Phoenix	J.K Rowling	fantasy	There is a door at the end of a silent corridor. And it’s haunting Harry Pottter’s dreams. Why else would he be waking in the middle of the night, screaming in terror?	2003-06-21 00:00:00	870	https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1546910265l/2.jpg
 HPBook6	Harry Potter and the Half Blood Prince	J.K Rowling	fantasy	The war against Voldemort is not going well; even Muggle governments are noticing.	2006-07-16 00:00:00	652	https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1587697303l/1._SX318_.jpg
 HPBook7	Harry Potter and the Deathly Hallows	J.K Rowling	fantasy	Its no longer safe for Harry at Hogwarts, so he and his best friends, Ron and Hermione, are on the run.	2007-07-21 00:00:00	759	https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1474171184l/136251._SY475_.jpg
+XtecDwAAQBAJ	#FutureBoards	['Sarah	none	Learn	2019-07-09 00:00:00	224	none
+d_f1DwAAQBAJ	Python	['Reuven	none	The	2020-08-04 00:00:00	248	none
+lMM4jgEACAAJ	Harry	['Inc.	none	Packed	2015-11-10 00:00:00	96	{'smallThumbnail':
 \.
 
 
@@ -227,7 +234,7 @@ HPBook7	Harry Potter and the Deathly Hallows	J.K Rowling	fantasy	Its no longer s
 -- Name: bookusers_bookuser_id_seq; Type: SEQUENCE SET; Schema: public; Owner: jacquetta
 --
 
-SELECT pg_catalog.setval('public.bookusers_bookuser_id_seq', 5, true);
+SELECT pg_catalog.setval('public.bookusers_bookuser_id_seq', 12, true);
 
 
 --
