@@ -22,7 +22,9 @@
                     <li id={{book.volume_id}}>
                         <div class="book-card">
                             {{book.volume.title}}
-                            <img src="{{book.volume.img_links}}" alt="update image link"/>
+                            <a href="/volumes/{{book.volume_id}}" target="_blank">
+                                <img src="{{book.volume.img_links}}" alt="book image">
+                            </a>
                             {# update list and database with user_id.reading#}
                             <form action="/completed" method="post">
                                 <input type="hidden" id={{book.volume.volume_id}} name="volume_id" value={{book.volume_id}}>
@@ -49,7 +51,9 @@
                     <li id={{book.volume_id}}>
                         <div class="book-card">
                             {{book.volume.title}}
-                            <img src="{{book.volume.img_links}}" alt="update image link"/>
+                            <a href="/volumes/{{book.volume_id}}" target="_blank">
+                                <img src="{{book.volume.img_links}}" alt="book image"/>
+                            </a>
                             {# update list and database with user_id.reading#}
                             <form action="/current" method="post">
                                 <input type="hidden" id={{book.volume.volume_id}} name="volume_id" value={{book.volume_id}}>
@@ -78,11 +82,13 @@
                     <li id={{book.volume_id}}>
                         <div class="book-card">
                             {{book.volume.title}}
-                            <img src="{{book.volume.img_links}}" alt="update image link"/>
-
+                            <a href="/volumes/{{book.volume_id}}" target="_blank">
+                                <img src="{{book.volume.img_links}}" alt="book image"/>
+                            </a>
                             {# update list and database completed == False #}
+                            <h5>Click here to <a class="review_form" href="{{url_for('review_form')}}">create</a> an review</h5>
                             <form action="/current" method="post">
-                                <input type="hidden" class={{book.bookuser_id}} name="volume_id" value={{book.volume_id}}>
+                                <input type="hidden" class={{book.bookuser_id}} name="volume_id" value="{{book.volume_id}}">
                                 <input type="submit" value="To Current" id="toCurrent">
                             </form>
                         </div>
@@ -96,4 +102,5 @@
 
 {% block js %}
     <script src="{{ url_for('static', filename='js/index.js')}}"> </script>
+    <script src="/static/js/review_form.js"></script>
 {% endblock %}
