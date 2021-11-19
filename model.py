@@ -32,7 +32,7 @@ class Volume(db.Model):
     authors = db.Column(db.String)
     genre = db.Column(db.String)
     summary = db.Column(db.Text)
-    published_date = db.Column(db.DateTime)
+    published_date = db.Column(db.Date)
     page_count = db.Column(db.Integer)
     img_links = db.Column(db.String)
 
