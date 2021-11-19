@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}{% endblock %}
+{% block title %}{{volume.volumeInfo.title}}{% endblock %}
 {% block link %} 
     <a id="book_search" href="{{url_for('book_search')}}">Book Search</a>
     <a id="user_home" href="{{url_for('user_home')}}">Home</a>
@@ -8,8 +8,8 @@
 {% endblock %}
 
 {% block content %}
-<div id="details">
-    <h2>{{volume.volumeInfo.title}}</h2>
+<div id="details {{volume.etag}}">
+    <h2 id="book-title">{{volume.volumeInfo.title}}</h2>
     <h4>{{volume.volumeInfo.authors}}</h4>
     <img src="{{volume.volumeInfo.imageLinks.thumbnail}}" alt="{{volume.volumeInfo.title}} image">
     {% if 'description' in volume.volumeInfo %}
@@ -40,7 +40,7 @@
 
 <div id="review-list">
     <h4>Reviews</h4>
-    <h5>Click here to <a id="review_form" href="{{url_for('review_form')}}">create</a> an review</h5>
+    <h5>Click here to <a class="review_form" id="{{volume.id}}" href="{{url_for('review_form')}}">create</a> an review</h5>
     <ul>
         
     </ul>
@@ -50,4 +50,5 @@
 {% block js %}
     
     <script src="/static/js/index.js"></script>
+    <script src="/static/js/review_form.js"></script>
 {% endblock %}
