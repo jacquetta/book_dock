@@ -179,14 +179,23 @@ ALTER TABLE ONLY public.users ALTER COLUMN user_id SET DEFAULT nextval('public.u
 
 COPY public.bookusers (bookuser_id, user_id, volume_id, reading, completed) FROM stdin;
 1	4	HPBook1	false	false
-2	4	HPBook3	false	false
 6	1	HPBook1	false	false
 5	1	HPBook6	false	false
 4	1	HPBook4	false	false
 3	1	HPBook3	false	false
-14	4	mZwbCwAAQBAJ	false	false
 17	1	JjplDwAAQBAJ	true	true
-20	1	L196MiLaqFIC	false	false
+21	1	L196MiLaqFIC	false	false
+22	1	mZwbCwAAQBAJ	false	false
+23	1	d_f1DwAAQBAJ	false	false
+24	1	wnwszgEACAAJ	false	false
+25	1	8KhXzo96YjkC	false	false
+26	4	2hAoCgAAQBAJ	true	true
+27	4	qT_-wQEACAAJ	false	false
+29	4	ncCpDAAAQBAJ	false	false
+30	4	cmNSzQEACAAJ	false	false
+31	4	zkQuDgAAQBAJ	false	false
+32	4	47udDwAAQBAJ	false	false
+33	4	1VQqEAAAQBAJ	false	false
 \.
 
 
@@ -231,6 +240,15 @@ TOCgDwAAQBAJ	The	['Ben	none	This	2019-07-05 00:00:00	219	{'smallThumbnail':
 mZwbCwAAQBAJ	Think	['Allen	none	If	2015-12-02 00:00:00	292	{'smallThumbnail':
 L196MiLaqFIC	Python	['Allen	none	Python	2009-03-09 00:00:00	251	{'smallThumbnail':
 JjplDwAAQBAJ	Hustle	['Sarah	none	From	2019-07-02 00:00:00	392	http://books.google.com/books/content?id=JjplDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api
+wnwszgEACAAJ	Python	['Vaskaran	none	Python	2021-01-16 00:00:00	325	http://books.google.com/books/content?id=wnwszgEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api
+8KhXzo96YjkC	I	['Dodie	none	One	2003-04-01 00:00:00	352	http://books.google.com/books/content?id=8KhXzo96YjkC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api
+2hAoCgAAQBAJ	Golden	none	none	Includes	2016-07-26 00:00:00	368	http://books.google.com/books/content?id=2hAoCgAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api
+qT_-wQEACAAJ	The Golden Girls: You Are My Golden Girl	none	none	Let your spouse, sister, mom, or best friend know, "you're my Golden Girl" with this charming DIY gift book, inspired by everyone's favorite foursome from The Golden Girls: Dorothy, Rose, Blanche, and Sophia. Whether your recipient is a Rose or decidedly a Sophia, this is the perfect way to let her know how you feel about your friendship. Once you fill in the prompts, this book becomes a personalized gift full of funny, memorable, and sweet expressions of appreciation that your loved one will cherish for years to come. This gift book features full-color photography from The Golden Girls throughout.	2019-10-08 00:00:00	96	http://books.google.com/books/content?id=qT_-wQEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api
+ncCpDAAAQBAJ	Think DSP	['Allen B. Downey']	none	If you understand basic mathematics and know how to program with Python, you’re ready to dive into signal processing. While most resources start with theory to teach this complex subject, this practical book introduces techniques by showing you how they’re applied in the real world. In the first chapter alone, you’ll be able to decompose a sound into its harmonics, modify the harmonics, and generate new sounds. Author Allen Downey explains techniques such as spectral decomposition, filtering, convolution, and the Fast Fourier Transform. This book also provides exercises and code examples to help you understand the material. You’ll explore: Periodic signals and their spectrums Harmonic structure of simple waveforms Chirps and other sounds whose spectrum changes over time Noise signals and natural sources of noise The autocorrelation function for estimating pitch The discrete cosine transform (DCT) for compression The Fast Fourier Transform for spectral analysis Relating operations in time to filters in the frequency domain Linear time-invariant (LTI) system theory Amplitude modulation (AM) used in radio Other books in this series include Think Stats and Think Bayes, also by Allen Downey.	2016-07-12 00:00:00	168	http://books.google.com/books/content?id=ncCpDAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api
+cmNSzQEACAAJ	Harry Potter and the Philosopher's Stone: MinaLima Edition	['J. K. Rowling']	['Hogwarts School of Witchcraft and Wizardry (Imaginary organization)']	Harry Potter has never even heard of Hogwarts when the letters start dropping on the doormat at number four, Privet Drive. Addressed in green ink on yellowish parchment with a purple seal, they are swiftly confiscated by his grisly aunt and uncle. Then, on Harry's eleventh birthday, a great beetle-eyed giant of a man called Rubeus Hagrid bursts in with some astonishing news: Harry Potter is a wizard, and he has a place at Hogwarts School of Witchcraft and Wizardry. An incredible adventure is about to begin!	2020-10-20 00:00:00	368	http://books.google.com/books/content?id=cmNSzQEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api
+zkQuDgAAQBAJ	The Freddy Files (Five Nights At Freddy's)	['Scott Cawthon']	['Juvenile Nonfiction']	Don't miss the first official guide to the world of the bestselling horror video game series, Five Nights at Freddy's, including easter eggs, gameplay tips, and the most hotly-debated fan theories.	2017-08-29 00:00:00	160	http://books.google.com/books/content?id=zkQuDgAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api
+47udDwAAQBAJ	Fetch (Five Nights at Freddy’s: Fazbear Frights #2)	['Scott Cawthon', 'Carly Anne West', 'Andrea Waggener']	['Young Adult Fiction']	The Fazbear Frights series continues with three more bone-chilling, novella-length tales to keep even the bravest Five Nights at Freddy's player up at night...	2020-03-03 00:00:00	272	http://books.google.com/books/content?id=47udDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api
+1VQqEAAAQBAJ	Prankster: An AFK Book (Five Nights at Freddy’s: Fazbear Frights #11)	['Scott Cawthon', 'Elley Cooper', 'Andrea Waggener']	['Young Adult Fiction']	Five Nights at Freddy's fans won't want to miss this pulse-pounding collection of three novella-length tales that will keep even the bravest FNAF player up at night... Standing up for yourself can be hard . . .Jeremiah decides he's done being the butt of his coworker's jokes at their small game studio. Joel is counting the days until he can quit his family's garden center and hit the road to a new life. Aimee finally works up the courage to ditch her loud-mouthed, annoying friend at Freddy Fazbear's Pizza. But when it comes to Five Nights at Freddy's, even the most well-meaning actions can reap horrible consequences. In this eleventh volume, Five Nights at Freddy's creator Scott Cawthon spins three sinister novella-length stories from different corners of his series' canon. Readers beware: This collection of terrifying tales is enough to unsettle even the most hardened Five Nights at Freddy's fans.	2021-11-02 00:00:00	224	http://books.google.com/books/content?id=1VQqEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api
 \.
 
 
@@ -238,7 +256,7 @@ JjplDwAAQBAJ	Hustle	['Sarah	none	From	2019-07-02 00:00:00	392	http://books.googl
 -- Name: bookusers_bookuser_id_seq; Type: SEQUENCE SET; Schema: public; Owner: jacquetta
 --
 
-SELECT pg_catalog.setval('public.bookusers_bookuser_id_seq', 20, true);
+SELECT pg_catalog.setval('public.bookusers_bookuser_id_seq', 33, true);
 
 
 --
