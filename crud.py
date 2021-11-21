@@ -87,6 +87,10 @@ def create_review(title, review_title, review, published, user_id, volume_id):
     db.session.commit()
     return user_review
 
+def check_reviews(volume_id, user_id):
+    return Review.query.filter((User.volume_id == user_id) & (Volume.volume_id == volume_id))
+
+
 """list all reviews for book"""
 # change query to filter by book
 def book_reviews(volume_id):
