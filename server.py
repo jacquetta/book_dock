@@ -208,9 +208,14 @@ def delete_book():
 
 # REVIEWS
 
-@app.route('/review_form')
+@app.route('/review_form', methods=["POST"])
 def review_form():
-    return render_template('/review_form.html')
+    book_title = request.form.get("bookTitle")
+    book_id = request.form.get('volumeId')
+    return render_template('/review_form.html', title=book_title, book_id=book_id)
+
+
+# @app.route('/title')
 
 @app.route('/add_review', methods=["POST"])
 def add_review():

@@ -79,14 +79,20 @@
         {# update list and database with user_id.completed. If completed == False move to to read list else True completed#}
         {% for book in bookuser %}
             {% if book.completed == "true" %}
-                    <li id={{book.volume_id}}>
+                    <li id={{book.volume.volume_id}}>
                         <div class="book-card">
                             {{book.volume.title}}
                             <a href="/volumes/{{book.volume_id}}" target="_blank">
                                 <img src="{{book.volume.img_links}}" alt="book image"/>
                             </a>
+                            
+                            {# goes to review form with volume title and id #}
+                            <form action="/review_form" method="post" target="_blank">
+                                <input type="hidden" id="volumeId" name="volumeId" value="{{book.volume_id}}">
+                                <input type="hidden" id="bookTitle" name="bookTitle" value="{{book.volume.title}}">
+                                <input type="submit" name="reviewBtn" value="Review" id="reviewBtn">
+                            </form>
                             {# update list and database completed == False #}
-                            <h5>Click here to <a class="review_form" href="{{url_for('review_form')}}">create</a> an review</h5>
                             <form action="/current" method="post">
                                 <input type="hidden" class={{book.bookuser_id}} name="volume_id" value="{{book.volume_id}}">
                                 <input type="submit" value="To Current" id="toCurrent">
