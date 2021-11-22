@@ -120,22 +120,17 @@ def create_list():
     bookvolume_id = crud.get_volume_id(volume_id)
 
     # NEED TO FIX IF USER TRIES TO ADD BOOK TO THEIR LIST AGAIN
-    # RIGHT NOW IT TAKES USERS BACK TO SEARCH PAGE NOT SEARCH RESULTS(WHICH RESULTS IN ERROR)
     if bookuser_id:
-    #    flash('Book already on list')
-       return 'Book already on list'
-    #    render_template('search.html')
-       
+        flash('Book already on list')
     else:
         if bookvolume_id:
             crud.create_bookuser(volume_id, user_id)
             flash('Book Added!')
-            return redirect('user_home')
         else:
             crud.create_volume(volume_id, title, authors, genre, summary, published_date, page_count, img_links)
             crud.create_bookuser(volume_id, user_id)
             flash('Book Added!')
-            return redirect('user_home')
+    return redirect('user_home')
 
 
 @app.route('/current', methods=["POST"])
@@ -176,7 +171,7 @@ def book_request():
     q = request.args.get('q', '')
 
     url = 'https://www.googleapis.com/books/v1/volumes'
-    payload = {'key': API_KEY, 'q': q ,' maxResult': 20 }
+    payload = {'key': API_KEY, 'q': q ,' maxResult': 40 }
 
     res = requests.get(url, params=payload)
     data = res.json()
