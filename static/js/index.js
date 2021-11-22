@@ -47,3 +47,7 @@ $('#delete_bookuser').on('click', function(evt) {
         $(this).closest("li").remove();
     });
 });
+
+function goBack() {
+    window.history.back();
+}
