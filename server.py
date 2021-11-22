@@ -187,8 +187,7 @@ def book_request():
 """VOLUME ROUTE"""
 @app.route('/volumes/<volumeId>')
 def book_details(volumeId):
-    # volume = crud.get_volume_id(volume_id)
-    # return render_template("/book_details.html", volume=volume)
+#    volumeId = request.args.get()
     url = f'https://www.googleapis.com/books/v1/volumes/{volumeId}'
     payload = {'key': API_KEY}
 
@@ -201,11 +200,10 @@ def book_details(volumeId):
 
 @app.route('/delete_bookuser', methods=["GET"])
 def delete_book():
-    user_id = session['key']
     bookuser_id = request.args.get("bookuser_id")
-    bookuser = crud.delete_bookuser(bookuser_id)
+    bookuser =  crud.delete_bookuser(bookuser_id)
     flash ('Book deleted from list')
-    return redirect('/user_home')
+    return redirect('user_home')
 
 # REVIEWS
 
@@ -216,7 +214,7 @@ def review_form():
     return render_template('/review_form.html', title=book_title, book_id=book_id)
 
 
-# @app.route('/title')
+
 
 @app.route('/add_review', methods=["POST"])
 def add_review():
@@ -225,15 +223,15 @@ def add_review():
     review = request.form.get('reviewPost')
     published = datetime.datetime.now()
     user_id = session['key']
-    volume_id = request.form.get('volume_id')
-    user_review = crud.check_reviews(volume_id, user_id)
-
+    volumeId = request.form.get('volume_id')
+    user_review = crud.check_reviews(volumeId, user_id)
+    
     if user_review:
         flash('Cannot post review. Review already posted.')     
     else:
-        crud.create_review(title, review_title, review, published, user_id, volume_id)
+        crud.create_review(title, review_title, review, published, user_id, volumeId)
         flash('Review Added!')
-    return redirect('/user_home')
+    return redirect("user_home")
 
 
 

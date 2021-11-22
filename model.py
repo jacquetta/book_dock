@@ -75,7 +75,7 @@ class Review(db.Model):
     volume = db.relationship("Volume", backref="reviews")
 
     def __repr__(self):
-        return f"<Review review_title={self.review_title} title={self.title} review={self.review} user={self.user_id}>"
+        return f"<Review title={self.title} review_title={self.review_title} review={self.review} user={self.user_id}>"
 
 
 

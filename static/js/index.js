@@ -38,7 +38,7 @@ function btnToggle(ID){
     }
 }
 
-$('#delete_bookuser').on('submit', function(evt) {
+$('#delete_bookuser').on('click', function(evt) {
     evt.preventDefault();
     const bookUserId = {
         bookuser : $('#bookuser').val()

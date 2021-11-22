@@ -75,9 +75,9 @@ def user_list(user_id):
 def check_bookuser(volume_id, user_id):
     return Book_User.query.filter((Book_User.volume_id == volume_id) & (Book_User.user_id == user_id )).all()
 
-# def update_reading(bookuser):
-#     bookuser = Book_User.query.filter(Book_User.reading)
-#     return bookuser
+def update_reading(bookuser):
+    bookuser = Book_User.query.filter(Book_User.reading)
+    return bookuser
 
 """create a new review"""
 def create_review(title, review_title, review, published, user_id, volume_id):
@@ -94,4 +94,4 @@ def check_reviews(volume_id, user_id):
 """list all reviews for book"""
 # change query to filter by book
 def book_reviews(volume_id):
-    return Review.query.filter(volume_id).all()
+    return Review.query.get(volume_id)
