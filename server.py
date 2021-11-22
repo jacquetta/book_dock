@@ -182,15 +182,16 @@ def book_request():
 """VOLUME ROUTE"""
 @app.route('/volumes/<volumeId>')
 def book_details(volumeId):
-#    volumeId = request.args.get()
+    
+    reviews = crud.book_reviews(volumeId)
     url = f'https://www.googleapis.com/books/v1/volumes/{volumeId}'
     payload = {'key': API_KEY}
 
     res = requests.get(url, params=payload)
     volume = res.json()
-  
+    volumeId = volume
     print(volume)
-    return render_template('/book_details.html', volume=volume)
+    return render_template('/book_details.html', volume=volume, reviews=reviews)
 
 
 @app.route('/delete_bookuser', methods=["GET"])
