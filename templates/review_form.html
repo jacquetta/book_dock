@@ -7,19 +7,20 @@
     <a id="log_out" href="{{url_for('log_out')}}">Log Out</a> 
 {% endblock %}
 {% block content %}
-    <form action="/add_review" method="post">
+    <form action="/add_review" method="post" id="formPost">
         <input type="hidden" id="volume_id" name="volume_id" value="{{book_id}}">
+        <label for="volume_title">Book Title:</label>
         <input type="text" id="volume_title" name="volume_title" value="{{title}}" readonly> 
-        <p>Book: <span id="volumeTitle"></span></p>
-    
-        <label for="reviewTitle">Title:</label>
+        <br>
+
+        <label for="reviewTitle">Review Title:</label>
         <input type="text" id="reviewTitle" name="reviewTitle" required>
         <br>
 
         <label for="reviewPost">Review:</label>
-        <textarea name="reviewPost" id="reviewPost" cols="30" rows="5"></textarea>
+        <textarea name="reviewPost" id="reviewPost" cols="30" rows="5" required></textarea>
         <br>
-        <input type="submit" value="Post Review">
+        <input type="submit" value="Post Review" id="reviewPost">
     </form>
 
 

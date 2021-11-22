@@ -1,5 +1,6 @@
 from flask import (Flask, render_template, request, flash, session, redirect)
 from model import db, Book_User, connect_to_db
+import datetime
 import json
 import crud
 import os
@@ -219,11 +220,23 @@ def review_form():
 
 @app.route('/add_review', methods=["POST"])
 def add_review():
-    volume_title = request.form.get('volumeTitle')
+    title = request.form.get('volume_title')
     review_title = request.form.get('reviewTitle')
-    review_post = request.form.get('reviewPost')
+    review = request.form.get('reviewPost')
+    published = datetime.datetime.now()
     user_id = session['key']
     volume_id = request.form.get('volume_id')
+    user_review = crud.check_reviews(volume_id, user_id)
+
+    if user_review:
+        flash('Cannot post review. Review already posted.')     
+    else:
+        crud.create_review(title, review_title, review, published, user_id, volume_id)
+        flash('Review Added!')
+    return redirect('/user_home')
+
+
+
 
 if __name__ == "__main__":
     connect_to_db(app)

@@ -88,7 +88,7 @@ def create_review(title, review_title, review, published, user_id, volume_id):
     return user_review
 
 def check_reviews(volume_id, user_id):
-    return Review.query.filter((User.volume_id == user_id) & (Volume.volume_id == volume_id))
+    return Review.query.filter((Review.volume_id == volume_id) & (Review.user_id == user_id) ).all()
 
 
 """list all reviews for book"""
