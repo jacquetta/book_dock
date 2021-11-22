@@ -40,7 +40,7 @@
 
 <div id="review-list">
     <h4>Reviews</h4>
-    <h5>Click here to <a class="review_form" id="{{volume.id}}" href="{{url_for('review_form')}}">create</a> an review</h5>
+    <h5>Click here to <a class="review_form" id="{{volume.id}}" href="{{url_for('review_form')}}" target="_blank">create</a> an review</h5>
     <ul>
         
     </ul>
@@ -49,6 +49,6 @@
 
 {% block js %}
     
-    <script src="/static/js/index.js"></script>
-    <script src="/static/js/review_form.js"></script>
+<script src="{{ url_for('static', filename='js/index.js')}}"> </script>
+<script src="/static/js/review_form.js"></script>
 {% endblock %}
