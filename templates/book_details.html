@@ -42,7 +42,11 @@
     <h4>Reviews</h4>
     <h5>Click here to <a class="review_form" id="{{volume.id}}" href="{{url_for('review_form')}}" target="_blank">create</a> an review</h5>
     <ul>
-        
+        {% for review in reviews %}
+            <h5>{{review.review_title}}</h5>
+            <p>User: {{review.review_id}}</p>
+            <p>{{review.review}}</p>
+        {% endfor %}
     </ul>
 </div>
 {% endblock %}
