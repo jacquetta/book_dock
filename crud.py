@@ -94,4 +94,4 @@ def check_reviews(volume_id, user_id):
 """list all reviews for book"""
 # change query to filter by book
 def book_reviews(volume_id):
-    return Review.query.get(volume_id)
+    return Review.query.filter(Review.volume_id == volume_id).all()
