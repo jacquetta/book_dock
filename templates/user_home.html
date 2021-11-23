@@ -86,7 +86,7 @@
                             <a href="/volumes/{{book.volume_id}}" target="_blank">
                                 <img src="{{book.volume.img_links}}" alt="book image"/>
                             </a>
-                            
+                            <a href="https://www.google.com/books/edition/_/{{book.volume_id}}?hl=en&kptab=sideways" target="_blank">Similar Books</a>
                             {# goes to review form with volume title and id #}
                             <form action="/review_form" method="post" target="_blank">
                                 <input type="hidden" id="volumeId" name="volumeId" value="{{book.volume_id}}">
