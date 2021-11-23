@@ -16,8 +16,7 @@ $('#reviewBtn').on('click', () => {
     });
 });
 
-$('#reviewPost').on('click', evt => {
-    evt.preventDefault()
+$('#reviewPost').on('click', () => {
     // let reviewPosting = {
     //     volume_id: $('#volume_id').val(),
     //     title: $('#volume_title').val(),
