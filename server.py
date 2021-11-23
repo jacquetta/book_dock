@@ -196,8 +196,12 @@ def book_details(volumeId):
 
 @app.route('/delete_bookuser', methods=["GET"])
 def delete_book():
-    bookuser_id = request.args.get("bookuser_id")
+    bookuser_id = request.args.get("bookuser")
     bookuser =  crud.delete_bookuser(bookuser_id)
+    print(bookuser_id)
+    db.session.delete(bookuser)
+    db.session.commit()
+   
     flash ('Book deleted from list')
     return redirect('user_home')
 
@@ -211,7 +215,6 @@ def review_form():
 
 
 
-
 @app.route('/add_review', methods=["POST"])
 def add_review():
     title = request.form.get('volume_title')
@@ -221,13 +224,16 @@ def add_review():
     user_id = session['key']
     volumeId = request.form.get('volume_id')
     user_review = crud.check_reviews(volumeId, user_id)
-    
-    if user_review:
-        flash('Cannot post review. Review already posted.')     
-    else:
+  
+    # review_id = crud.check_reviews(bookuser_id)
+    if not user_review:
         crud.create_review(title, review_title, review, published, user_id, volumeId)
-        flash('Review Added!')
+        flash('Review Added!')        
+    else:
+        flash('Cannot post review. Review already posted.') 
     return redirect("user_home")
+
+    
 
 
 

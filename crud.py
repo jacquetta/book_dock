@@ -56,8 +56,8 @@ def create_bookuser(volume_id, user_id):
 def delete_bookuser(bookuser_id):
     bookuser = Book_User.query.get(bookuser_id)
 
-    db.session.delete(bookuser)
-    db.session.commit()
+    # db.session.delete(bookuser)
+    # db.session.commit()
     return bookuser
 
 """get book_users id"""
@@ -88,9 +88,14 @@ def create_review(title, review_title, review, published, user_id, volume_id):
     return user_review
 
 def check_reviews(volume_id, user_id):
-    return Review.query.filter((Review.volume_id == volume_id) & (Review.user_id == user_id) ).all()
+    return Review.query.filter((Review.volume_id == volume_id) & (Review.user_id == user_id)).first()
 
+def get_review_id(review_id):
+    return Review.query.get(review_id)
 
+def review(volume_id, user_id):
+   Review.query.filter((Review.volume_id == volume_id) & (Review.user_id == user_id )).first()
+   
 """list all reviews for book"""
 # change query to filter by book
 def book_reviews(volume_id):
