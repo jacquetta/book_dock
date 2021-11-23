@@ -69,11 +69,33 @@ def signup_form():
     return render_template('/signup_form.html')
 
 @app.route('/profile')
-def update_profile():
+def profile():
     user_id = session['key']
     user_profile = crud.get_user_id(user_id)
     # Need to update database if user changes profile information
     return render_template('/profile.html', user_profile=user_profile)
+
+@app.route('/update_profile', methods=['POST'])
+def update_profile():
+    user_id = session['key']
+    full_name = request.form.get('full_name')
+    email = request.form.get('email')
+    password = request.form.get('password')
+    book_goal = request.form.get('book_goal')
+    goal_date = request.form.get('goal_date')
+
+    if user_id.full_name != full_name:
+        user_id.full_name = full_name
+    if user_id.email != email:
+        user_id.email = email
+    if user_id.password != password:
+        user_id.password = password
+    if user_id.book_goal != book_goal:
+        user_id.book_goal = book_goal
+    if user_id.goal_date != goal_date:
+        user_id.goal_date = goal_date
+    db.session.commit()
+    return redirect('user_home')
 
 
 """USER HOME ROUTE"""
