@@ -1,5 +1,6 @@
 """Models for book tracking app"""
 
+from requests import NullHandler
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import backref
 from datetime import datetime
@@ -54,6 +55,7 @@ class Book_User(db.Model):
 
     user = db.relationship("User", backref="bookusers")
     volume = db.relationship("Volume", backref="bookusers")
+    
 
     def __repr__(self):
         return f"<Book User volume_id={self.volume_id} user={self.user_id} reading={self.reading} completed={self.completed}>"
@@ -73,6 +75,7 @@ class Review(db.Model):
 
     user = db.relationship("User", backref="reviews")
     volume = db.relationship("Volume", backref="reviews")
+  
 
     def __repr__(self):
         return f"<Review title={self.title} review_title={self.review_title} review={self.review} user={self.user_id}>"
