@@ -40,7 +40,12 @@
 
 <div id="review-list">
     <h4>Reviews</h4>
-    <h5>Click here to <a class="review_form" id="{{volume.id}}" href="{{url_for('review_form')}}" target="_blank">create</a> an review</h5>
+    {# goes to review form with volume title and id #}
+    <form action="/review_form" method="post" target="_blank">
+        <input type="hidden" id="volumeId" name="volumeId" value="{{volume.id}}">
+        <input type="hidden" id="bookTitle" name="bookTitle" value="{{volume.volumeInfo.title}}">
+        <input type="submit" name="reviewBtn" value="Review" id="reviewBtn">
+    </form>
     <ul>
         {% for review in reviews %}
             <h5>{{review.review_title}}</h5>
