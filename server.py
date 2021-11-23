@@ -222,15 +222,17 @@ def add_review():
     review = request.form.get('reviewPost')
     published = datetime.datetime.now()
     user_id = session['key']
-    volumeId = request.form.get('volume_id')
-    user_review = crud.check_reviews(volumeId, user_id)
-  
+    volume_id = request.form.get('volume_id')
+
+    user_review = crud.check_reviews(volume_id, user_id)
+    print (user_review)
     # review_id = crud.check_reviews(bookuser_id)
-    if not user_review:
-        crud.create_review(title, review_title, review, published, user_id, volumeId)
-        flash('Review Added!')        
-    else:
+    if user_review:
         flash('Cannot post review. Review already posted.') 
+    else:
+        crud.create_review(title, review_title, review, published, user_id, volume_id)
+        flash('Review Added!')        
+
     return redirect("user_home")
 
     
