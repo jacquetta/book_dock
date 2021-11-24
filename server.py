@@ -43,8 +43,8 @@ def sign_up():
         return render_template('signup_form.html')
     else:
         crud.new_user(full_name, email, password, book_goal, goal_date)
-        flash('Account created!')
-        return render_template('user_home.html')
+        flash('Account created! Sign In')
+        return redirect('/')
 
 """SIGN IN ROUTE"""
 @app.route('/signin', methods=["POST"])
