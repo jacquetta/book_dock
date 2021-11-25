@@ -103,11 +103,13 @@ def update_profile():
 def user_home():
     user_id = session['key']
     user = crud.get_user_id(user_id)
+    date = user.goal_date
+    goal_date = date.strftime('%m/%d/%Y')
     bookuser = crud.user_list(user_id)
     volumes = crud.all_volumes()
     
     if 'key' in session:
-        return render_template('/user_home.html', bookuser=bookuser,volumes=volumes, user=user)
+        return render_template('/user_home.html', bookuser=bookuser,volumes=volumes, user=user, goal_date=goal_date)
     else:
         return redirect('/homepage')
     
