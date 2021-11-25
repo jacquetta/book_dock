@@ -10,8 +10,10 @@
 {% block content %}
 
 <h1>Welcome to Book Dock!</h1>
-<h2>Book Goal:{{user.book_goal}}</h2>
-<h2>Goal Date:{{user.goal_date}}</h2>
+<h3>Book Goal:{{user.book_goal}}</h3>
+<h4>Goal Date:<span id="goalDate">{{goal_date}}</span></h4>
+<h4>Countdown: <span id="countdownTimer"></span></h4>
+
 <div id="current">
     <button onClick="goBack()">Back</button>
     <h3>Currently Reading</h3>

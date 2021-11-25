@@ -51,3 +51,29 @@ $('#delete_bookuser').on('submit', function(evt) {
 function goBack() {
     window.history.back();
 }
+
+// countdown timer for goal date
+
+let = countDownDate = document.getElementById('goalDate').innerHTML;
+// countDown = new Date(countDownDate).getTime();
+// console.log(typeof(countDownDate));
+let goalDate = new Date(countDownDate);
+
+// console.log(typeof(current));
+
+// calculations for days
+const countdownGoal = setInterval(function(){
+    let currentDate = new Date();
+    // let current = currentDate.toLocaleDateString();
+    let distanceGoal = goalDate - currentDate;
+    // console.log(distanceGoal)
+    let days = Math.floor(distanceGoal / (1000 * 60 * 60 * 24));
+
+    //display results to html
+    document.getElementById('countdownTimer').innerHTML =`${days} left`;
+    //when count down reaches 0
+    if(distanceGoal < 0){
+        clearInterval(countdownGoal);
+        document.getElementById("countdownTimer").innerHTML = "GOAL DATE EXPIRED";
+    }
+}, 1000);
