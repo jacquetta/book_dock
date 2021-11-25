@@ -77,3 +77,31 @@ const countdownGoal = setInterval(function(){
         document.getElementById("countdownTimer").innerHTML = "GOAL DATE EXPIRED";
     }
 }, 1000);
+
+//book counter
+let counterValue = 0;
+
+function incrementCount(){
+    updateCounter(++counterValue);
+}
+
+const incrementCounter = () => {
+    updateCounter(++counterValue);
+}
+
+function decrementCounter(){
+    updateCounter(--counterValue);
+}
+
+const updateCounter = value => {
+    document.getElementById('bookGoal').innerText = value;
+}
+
+let completedBtn = document.getElementById('completed');
+$('#completed').on('submit', () => {
+    updateCounter(++counterValue);
+});
+
+$('#toCurrent').on('submit', () => {
+    updatedCounter(--counterValue);
+});
