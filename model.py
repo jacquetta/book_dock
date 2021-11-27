@@ -1,7 +1,7 @@
 """Models for book tracking app"""
 
 from requests import NullHandler
-from crud import review
+# from crud import review
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import backref
 from datetime import datetime
