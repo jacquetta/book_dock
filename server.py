@@ -1,5 +1,5 @@
 from flask import (Flask, render_template, request, flash, session, redirect)
-from model import db, Book_User, connect_to_db
+from model import db, connect_to_db
 import datetime
 import json
 import crud
@@ -12,7 +12,6 @@ from jinja2 import StrictUndefined
 
 app = Flask(__name__)
 
-app.debug = True
 app.secret_key = "books2012"
 app.jinja_env.undefined = StrictUndefined
 
@@ -265,5 +264,6 @@ def add_review():
 
 
 if __name__ == "__main__":
+    app.debug = True
     connect_to_db(app)
-    app.run(host="0.0.0.0", debug=True)
+    app.run(host="0.0.0.0")
