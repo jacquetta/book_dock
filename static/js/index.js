@@ -81,17 +81,17 @@ const countdownGoal = setInterval(function(){
 //book counter
 let counterValue = 0;
 
-function incrementCount(){
-    updateCounter(++counterValue);
-}
+// function incrementCount(){
+//     updateCounter(++counterValue);
+// }
 
-const incrementCounter = () => {
-    updateCounter(++counterValue);
-}
+// const incrementCounter = () => {
+//     updateCounter(++counterValue);
+// }
 
-function decrementCounter(){
-    updateCounter(--counterValue);
-}
+// function decrementCounter(){
+//     updateCounter(--counterValue);
+// }
 
 const updateCounter = value => {
     document.getElementById('bookGoal').innerText = value;
