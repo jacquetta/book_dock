@@ -12,6 +12,7 @@ from jinja2 import StrictUndefined
 
 app = Flask(__name__)
 
+app.debug = True
 app.secret_key = "books2012"
 app.jinja_env.undefined = StrictUndefined
 
@@ -102,8 +103,9 @@ def update_profile():
 def user_home():
     user_id = session['key']
     user = crud.get_user_id(user_id)
-    date = user.goal_date
-    goal_date = date.strftime('%m/%d/%Y')
+    goal_date = user.goal_date.strftime('%m/%d/%Y')
+    # print(date)
+    # goal_date = date.strftime('%m/%d/%Y')
     bookuser = crud.user_list(user_id)
     volumes = crud.all_volumes()
     
@@ -264,6 +266,5 @@ def add_review():
 
 
 if __name__ == "__main__":
-    app.debug = True
     connect_to_db(app)
-    app.run(host="0.0.0.0")
+    app.run(host="0.0.0.0", debug=True)
