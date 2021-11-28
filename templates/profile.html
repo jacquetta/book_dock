@@ -9,17 +9,17 @@
 {% endblock %}
 {% block content %}
 <legend>Update Profile</legend>
-<form action="/signup" method="get">
+<form action="/update_profile" method="post" id="updateForm">
     
     <label for="full_name">Full Name:</label><br>
-    <input type="text" id="full_name" name="full_name" required value={{user_profile.full_name}}><br>
+    <input type="text" id="full_name" name="full_name" required value="{{user_profile.full_name}}"><br>
 
     <label for="email">Email:</label><br>
-    <input type="email" id="email" name="email" required value={{user_profile.email}}><br>
+    <input type="email" id="email" name="email" required value="{{user_profile.email}}"><br>
 
     
     <label for="password">Password:</label><br>
-    <input type="password" id="password" name="password" pattern="(?=.*\d) (?=.*[a-z]) (?=.*[A-Z]).{8, 20}" title="Password must include at least one number, one uppercase, one lowercase letter, and at min 8 characters and max 20 characters" required value={{user_profile.password}}><br>
+    <input type="password" id="password" name="password" pattern="(?=.*\d) (?=.*[a-z]) (?=.*[A-Z]).{8, 20}" title="Password must include at least one number, one uppercase, one lowercase letter, and at min 8 characters and max 20 characters" required value="{{user_profile.password}}"><br>
 
     <label for="confirm-pw">Confirm Password:</label><br>
     <input type="password" id="confirm-pw" name="confirm-pw" required><br>
@@ -30,6 +30,11 @@
     <label for="goal_date">Choose Goal Date:</label><br>
     <input type="date" id="goal_date" name="goal_date" value={{user_profile.goal_date}}><br>
 
-    <input type="submit" value="Update">
+    <input type="submit" value="Update" id="updateBtn">
     <a id="user_home" class="btn-link" href="{{url_for('user_home')}}">Back</a> 
+{% endblock %}
+
+
+{% block js %}
+    <script src="/static/js/review_form.js"></script>
 {% endblock %}
