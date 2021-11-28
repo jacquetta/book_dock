@@ -26,12 +26,16 @@ class LoggedInTest(TestCase):
         """testing if user is logged in"""
         result = self.client.get("/user_home")
         self.assertIn(b"Welcome to Book Dock!", result.data)
-    
+
+    def test_book_list(self):
+        """test search route"""
+        result = self.client.get('/search')
+        self.assertIn(b'search', result.data)
+
     def test_not_logged_in(self):
         """testing for user not logged in"""
         result = self.client.get('/', follow_redirects=True)
         self.assertIn(b'Book Dock', result.data)
-
 
 
 class LandingPageTest(TestCase):
@@ -55,6 +59,7 @@ class SignInTest(TestCase):
         with self.client as c:
             result = c.post('/signin', data={'email': 'bw@email.com', 'password': 'Password123'}, follow_redirects=True)
         self.assertIn(b'Welcome to Book Dock', result.data)
+
 
     def test_logout(self):
         """testing log out route"""
@@ -85,6 +90,8 @@ class AppTest(TestCase):
         db.session.remove()
         db.drop_all()
         db.engine.dispose()
+    
+
 
 
 
