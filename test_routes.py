@@ -9,13 +9,31 @@ from flask_sqlalchemy import SQLAlchemy
 app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql:///testtracker"
 db = SQLAlchemy(app)
 
-# @pytest.fixture
-# def client():
-#     db_path - 
-# def test_landing_page(self):
-#     self.client= app.test_client()
-#     result = self.client.get('/')
-#     self.assertIn(b'Book Dock', result.data)
+
+
+class LoggedInTest(TestCase):
+    def setUp(self):
+        app.config['TESTING'] = True
+        app.config['SECRET_KEY'] = 'key'
+        self.client = app.test_client()
+
+        with self.client as c:
+            with c.session_transaction() as session:
+                session['key'] = 22
+    
+    def test_user_home(self):
+
+        result = self.client.get("/user_home")
+        self.assertIn(b"Welcome to Book Dock!", result.data)
+
+    def test_landing_page(self):
+        result = self.client.get('/')
+        self.assertEqual(result.status_code, 200)
+        self.assertIn(b'Book Dock', result.data)
+    
+    def test_not_logged_in(self):
+        result = self.client.get('/', follow_redirects=True)
+        self.assertIn(b'Book Dock', result.data)
 
 class AppTest(TestCase):
     def setUp(self):
@@ -34,19 +52,10 @@ class AppTest(TestCase):
         db.drop_all()
         db.engine.dispose()
 
-    def test_landing_page(self):
-        result = self.client.get('/')
-        self.assertEqual(result.status_code, 200)
-        self.assertIn(b'Book Dock', result.data)
     
-    def test_not_logged_in(self):
-        result = self.client.get('/', follow_redirects=True)
-        self.assertIn(b'Book Dock', result.data)
-    
-    def test_signup_form(self):
-        result = self.client.post('/signup', data={'user_id':23, 'full_name':'Bettie White', 'email':'bwhite@email.com', 'password':'Password123', 'book_goal':30, 'goal_date':'2022-12-20'}, follow_redirects=True)
-        self.assertIn(b'Sign up to create your Book Dock Account', result.data)
-
+    # def test_signup_form(self):
+    #     result = self.client.post('/signup', data={'email'}, follow_redirects=True)
+    #     self.assertIn(b'Sign up to create your Book Dock Account', result.data)
 
 # class TestDataBase(TestCase):
 
@@ -63,22 +72,6 @@ class AppTest(TestCase):
 #         db.drop_all()
 #         db.engine.dispose()
 
-# class LoggedInTest(TestCase):
-#     def setUp(self):
-#         app.config['TESTING'] = True
-#         app.config['SECRET_KEY'] = 'key'
-#         self.client = app.test_client()
-
-#         with self.client as c:
-#             with c.session_transaction() as session:
-#                 session['key'] = 22
-    
-#     def test_user_home(self):
-
-#         result = self.client.get("/user_home")
-#         self.assertIn(b"Welcome to Book Dock!", result.data)
-
-    
 # class LogOutTest(TestCase):
 
 #     def setUp(self):
