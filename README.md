@@ -7,6 +7,12 @@ User's dashboard shows users how many days are left of their goal date, how many
 ## Tech Stack
 
 ## Features
+* Set Goal Date and shows countdown of days left to reach goal
+* Books Read shows number of books currently in completed list
+* Search for books to add to book list with Google Books API
+* Search for books by title, authors, or category
+* Create review for book once completed
+* Move books from currently reading, completed, to read or delete book
 
 ## Screenshots
 
