@@ -19,5 +19,10 @@ User's dashboard shows users how many days are left of their goal date, how many
 
 ## Screenshots
 
+## Version 3 Updates
+* Add message when user completes book goal before or by goal date
+* Reminders to read current book
+* Map to search for nearest book store
+
 ## About Developer
-Jacquetta Bommuluri is a Software Engineer currently living in Minneapolis, MN. Created this project while attending Hackbright Academy. Connect with me on [LinkedIn](https://www.linkedin.com/in/jbommuluri)
+Jacquetta Bommuluri is a Software Engineer currently living in Minneapolis, MN. Created this project while attending Hackbright Academy. Connect with me on [LinkedIn](https://www.linkedin.com/in/jbommuluri).
