@@ -5,9 +5,9 @@ Book Dock helps users set and track their book goals. Users can search and add b
 User's dashboard shows users how many days are left of their goal date, how many books they have read, and which books they want to read.
 
 ## Tech Stack
-Backend: Python, Flask, SQLAlchemy, Jinja2, POSTGRESQL, UnitTest
-Frontend: HTML5, CSS3, Bootstrap, JavaScript, jQuery 
-API: Google Books
+<p>Backend: Python, Flask, SQLAlchemy, Jinja2, POSTGRESQL, UnitTest</p>
+<p>Frontend: HTML5, CSS3, Bootstrap, JavaScript, jQuery</p> 
+<p>API: Google Books</p>
 ## Features
 * Set Goal Date and shows countdown of days left to reach goal
 * Books Read shows number of books currently in completed list
