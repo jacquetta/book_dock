@@ -32,7 +32,7 @@
                             {# update list and database with user_id.reading#}
                             <form action="/completed" method="post">
                                 <input type="hidden" id={{book.volume.volume_id}} name="volume_id" value={{book.volume_id}}>
-                                <input type="submit" value="Completed" id="completed" onsubmit="increaseCount()">
+                                <input type="submit" value="Completed" id="completed">
                             </form>
 
                             {# update list and database and moving book back to To Read List #}
@@ -66,7 +66,7 @@
 
                             {# update list and database with bookuser delete from database#}
                             <form action="/delete_bookuser" method="get" id="delete_bookuser">
-                                <input type="hidden" class={{book.bookuser_id}} id="bookuser" name="bookuser_id" value={{book.bookuser_id}}>
+                                <input type="hidden" class={{book.bookuser_id}} id="bookuser_id" name="bookuser_id" value={{book.bookuser_id}}>
                                 <input type="submit" value="Delete" id="deleteItem">
                             </form>
                         </div>
@@ -99,7 +99,7 @@
                             {# update list and database completed == False #}
                             <form action="/current" method="post">
                                 <input type="hidden" class={{book.bookuser_id}} name="volume_id" value="{{book.volume_id}}">
-                                <input type="submit" value="To Current" id="toCurrent" onsubmit="decreaseCount()">
+                                <input type="submit" value="To Current" id="toCurrent">
                             </form>
                         </div>
                     </li>
