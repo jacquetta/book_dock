@@ -24,7 +24,12 @@
                     <h5 class="card-title" id="title">{{volume.volumeInfo.title}}</h5>
                     
                     {% if 'authors' in volume.volumeInfo %}
-                        <p class="card-text" id="authors">{{volume.volumeInfo.authors}}</p>
+                    <p class="card-text" id="authors">
+                        {% for author in volume.volumeInfo.authors %}
+                            *{{author}} 
+                        {% endfor %}
+                    </p>
+                      
                     {% else %}
                         <p><b>Authors:</b> Unavailable</p>
                     {% endif %}
@@ -49,7 +54,11 @@
                         {% endif %}
                         
                         {% if 'categories' in volume.volumeInfo %}
-                            <p id="genre"><b>Genres:</b> {{volume.volumeInfo.categories}}</p>
+                        <p><b>Genre(s)</b>: 
+                            {% for category in volume.volumeInfo.categories %}
+                                *{{category}} 
+                            {% endfor %}
+                            </p>
                         {% else %}
                             <p><b>Genre:</b> Unavailable</p>
                         {% endif %}
