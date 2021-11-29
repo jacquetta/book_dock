@@ -27,7 +27,7 @@ const countdownGoal = setInterval(function(){
     let days = Math.floor(distanceGoal / (1000 * 60 * 60 * 24));
 
     //display results to html
-    document.getElementById('countdownTimer').innerHTML =`${days} left`;
+    document.getElementById('countdownTimer').innerHTML =`${days} days left`;
     //when count down reaches 0
     if(distanceGoal < 0){
         clearInterval(countdownGoal);
