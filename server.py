@@ -6,6 +6,7 @@ import crud
 import os
 import requests
 from pprint import pformat, pprint
+from sqlalchemy import delete
 from sys import argv
 from flask_debugtoolbar import DebugToolbarExtension
 from jinja2 import StrictUndefined
@@ -222,12 +223,10 @@ def book_details(volumeId):
 # DELETE BOOKUSER FROM DATABASE
 @app.route('/delete_bookuser', methods=["GET"])
 def delete_book():
-    bookuser_id = request.args.get("bookuser")
-    bookuser =  crud.delete_bookuser(bookuser_id)
-    print(bookuser_id)
+    bookuser_id = request.args.get("bookuser_id")
+    bookuser = crud.get_bookuser(bookuser_id)
     db.session.delete(bookuser)
     db.session.commit()
-   
     flash ('Book deleted from list')
     return redirect('user_home')
 
