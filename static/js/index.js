@@ -26,7 +26,7 @@ function goBack() {
 }
 
 // COUNTDOWN TIMER FOR GOAL DATE
-let = countDownDate = document.getElementById('goalDate').innerHTML;
+let countDownDate = document.getElementById('goalDate').innerHTML;
 let goalDate = new Date(countDownDate);
 
 
