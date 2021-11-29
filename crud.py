@@ -2,6 +2,7 @@
 
 from model import db, User, Book_User, Volume, Review, connect_to_db
 from datetime import datetime
+from sqlalchemy import delete
 
 if __name__ == '__main__':
     from server import app
@@ -53,12 +54,11 @@ def create_bookuser(volume_id, user_id):
     return book_user
 
 
-def delete_bookuser(bookuser_id):
-    bookuser = Book_User.query.get(bookuser_id)
-
-    # db.session.delete(bookuser)
-    # db.session.commit()
-    return bookuser
+# def delete_bookuser(bookuser_id):
+#     bookuser = Book_User.query.get(bookuser_id)
+#     # bookuser = Book_User.query.filter(bookuserId == bookuser_id).delete()
+#     # db.session.commit
+#     return bookuser
 
 """get book_users id"""
 def get_bookuser(bookuser_id):
