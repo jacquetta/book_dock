@@ -17,4 +17,4 @@ User's dashboard shows users how many days are left of their goal date, how many
 ## Screenshots
 
 ## About Developer
-
+Jacquetta Bommuluri is a Software Engineer currently living in Minneapolis, MN. Created this project while attending Hackbright Academy. Connect with me on [LinkedIn](www.linkedin.com/in/jbommuluri)
