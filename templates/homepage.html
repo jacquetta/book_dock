@@ -1,49 +1,50 @@
 {% extends 'base.html' %}
-
+    {% block link %}
+    <p class="me-2">Sign In:</p>
+        <form action="/signin" class="d-flex" method="POST">
+            <input type="text" id="email" name="email" class="form-control form-control-sm mb-4 mr-sm-2 me-2" placeholder="Email" required>
+            <input type="text" id="password" name="password" class="form-control mb-4 mr-sm-2 me-2" placeholder="Password" required>
+            <input type="submit" id="loginSubmit" class="btn btn-primary mb-4">
+        </form>
+    
+    {% endblock %}
 {% block title %}Book Dock{% endblock %}
 
 
 {% block content %}
-    <h1>Book Dock</h1>
+    <main class="container" id="homepage-main">
 
-    <h3>Book Dock Subtitle</h3>
+        <h1>Meet your reading goals with Book Dock!</h1>
+        {# link that is a button to route to sign up form #}
+        <p id="signUpBtn"><a type="button" href="{{ url_for('signup_form') }}">Sign Up</a> Today</p>
 
-    <p>Information about what Book Dock is</p>
+        <section class="summary">
+            <figure>
+                <figcaption>Set a goal for how many books you would like to read by creating a goal date and watch the countdown.</figcaption>
+                    <img class="img-fluid" src="https://via.placeholder.com/850x300?text=will+add+screenshot" alt="">
+            </figure>
+            
+            <figure>
+                <figcaption>Add books to your list by using the search feature.</figcaption>
+                <img class="img-fluid" src="https://via.placeholder.com/850x300?text=will+add+screenshot" alt="">
+            </figure>
 
-   
-    {# link that is a button to route to sign up form #}
-    <a type="button" href="{{ url_for('signup_form') }}" class="btn btn-primary">Sign Up</a>
+            <figure>
+                <figcaption>Your books can be moved between lists from books to read, currently reading, and completed.</figcaption>
+                <img class="img-fluid" src="https://via.placeholder.com/850x300?text=will+add+screenshot" alt="">
+            </figure>
 
-    {# 
-        creating an modal login form using w3schools for reference
-        https://www.w3schools.com/howto/howto_css_login_form.asp
-    #}
+            <figure>
+                <figcaption>Once a book is added to the completed list your books read count updates.</figcaption>
+                <img class="img-fluid" src="https://via.placeholder.com/850x300?text=will+add+screenshot" alt="">
+            </figure>
 
-    <button type="button" id="sign_in" class="btn btn-secondary">Sign In</button>
-    {# modal #}
-    <div id="modalOne">
-        {# will create a event function to close modal and open#}
-        <span class="closeModal" title="Close Modal">&times;</span>
+            <figure>
+                <figcaption>You can also write a review at anytime after completing the book.</figcaption>
+                <img class="img-fluid" src="https://via.placeholder.com/850x300?text=will+add+screenshot" alt="">
+            </figure>
+        </section>
 
-    {# content for modal #}
-        <form action="/signin" class="modalForm animate" method="POST">
-            <h5>Please Log In</h5>
-            <div class="container">
-                <label for="email">Email:</label>
-                <input type="text" id="email" name="email" required>
-                <br>
-                <label for="password">Password:</label>
-                <input type="text" id="password" name="password" required>
-                <br>
-                <input type="submit" id="loginSubmit">
-            </div>
-            <!-- <div class="container">
-                {# will create a event function for cancel btn #}
-                <button class="cancelbtn">Cancel</button>
-
-                {# will look into forgot password #}
-                 <span class="password">Forgot <a href="#">password?</a></span> -->
-            </div> 
-        </form>
-    </div>
+     
+</main>
 {% endblock %}
