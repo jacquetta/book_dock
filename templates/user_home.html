@@ -11,7 +11,7 @@
 
 <h1>Welcome to Book Dock!</h1>
 <h3>Book Goal: <span id="userGoal">{{user.book_goal}}</span></h3>
-<h4>Book Read: <span id="bookGoal"></span>0</h4>
+<h4>Book Read: <span id="bookGoals"></span></h4>
 <h4>Goal Date:<span id="goalDate">{{goal_date}}</span></h4>
 <h4>Countdown: <span id="countdownTimer"></span></h4>
 
@@ -30,9 +30,9 @@
                                 <img src="{{book.volume.img_links}}" alt="book image">
                             </a>
                             {# update list and database with user_id.reading#}
-                            <form action="/completed" method="post" onsubmit="increaseCounter()">
+                            <form action="/completed" method="post">
                                 <input type="hidden" id={{book.volume.volume_id}} name="volume_id" value={{book.volume_id}}>
-                                <input type="submit" value="Completed" id="completed">
+                                <input type="submit" value="Completed" id="completed" onsubmit="increaseCount()">
                             </form>
 
                             {# update list and database and moving book back to To Read List #}
@@ -97,9 +97,9 @@
                                 <input type="submit" name="reviewBtn" value="Review" id="reviewBtn">
                             </form>
                             {# update list and database completed == False #}
-                            <form action="/current" method="post" onsubmit="decrementCounter()">
+                            <form action="/current" method="post">
                                 <input type="hidden" class={{book.bookuser_id}} name="volume_id" value="{{book.volume_id}}">
-                                <input type="submit" value="To Current" id="toCurrent">
+                                <input type="submit" value="To Current" id="toCurrent" onsubmit="decreaseCount()">
                             </form>
                         </div>
                     </li>
@@ -111,6 +111,8 @@
 {% endblock %}
 
 {% block js %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/collect.js/4.29.3/collect.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/collect.js/4.29.3/collect.js"></script>
     <script src="{{ url_for('static', filename='js/index.js')}}"> </script>
     <script src="/static/js/review_form.js"></script>
 {% endblock %}

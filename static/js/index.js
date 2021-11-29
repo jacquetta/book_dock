@@ -1,34 +1,5 @@
 // TOGGLE FOR MORE BUTTON IN BOOK LIST
 
-// $('.toggleBtn').click(function (evt) {
-//     let btn = evt.target.id;
-//     btn.toggle();
-// });
-// let book_id = $('.moreInfo').attr('id');
-// let btn = $('.toggleBtn').attr('id');
-// $("#" + btn).click(function () {
-//     $("#" + book_id).toggle();
-// });
-
-// $('.toggleBtn').click( ()  => {
-//     let p = document.getElementsByClassName('moreInfo')
-//     let moreInfo = p.id;
-//     moreInfo.toggle();
-// });
-
-// $('.toggleBtn').toggle(getId);
-
-// $("toggleBtn").click(function(evt){
-//     let p = document.getElementsByClassName('moreInfo')
-//     let moreInfo = p.id;
-//     console.log(moreInfo)
-//     $("p").toggle();
-//   });
-
-
-// let book_id = $('.moreInfo').attr('id')
-// let btn_id = $('.toggleBtn').attr('id')
-
 function btnToggle(ID){
     let book_id = document.getElementById(ID)
     if(book_id.style.display === "none"){
@@ -38,6 +9,7 @@ function btnToggle(ID){
     }
 }
 
+// DELETE BOOKUSER ON SUBMIT BUTTON
 $('#delete_bookuser').on('submit', function(evt) {
     evt.preventDefault();
     const bookUserId = {
@@ -48,25 +20,19 @@ $('#delete_bookuser').on('submit', function(evt) {
     });
 });
 
+// BACK HISTORY BUTTON
 function goBack() {
     window.history.back();
 }
 
-// countdown timer for goal date
-
+// COUNTDOWN TIMER FOR GOAL DATE
 let = countDownDate = document.getElementById('goalDate').innerHTML;
-// countDown = new Date(countDownDate).getTime();
-// console.log(typeof(countDownDate));
 let goalDate = new Date(countDownDate);
 
-// console.log(typeof(current));
 
-// calculations for days
 const countdownGoal = setInterval(function(){
     let currentDate = new Date();
-    // let current = currentDate.toLocaleDateString();
     let distanceGoal = goalDate - currentDate;
-    // console.log(distanceGoal)
     let days = Math.floor(distanceGoal / (1000 * 60 * 60 * 24));
 
     //display results to html
@@ -78,30 +44,16 @@ const countdownGoal = setInterval(function(){
     }
 }, 1000);
 
-//book counter
-let counterValue = 0;
-
-// function incrementCount(){
-//     updateCounter(++counterValue);
-// }
-
-// const incrementCounter = () => {
-//     updateCounter(++counterValue);
-// }
-
-// function decrementCounter(){
-//     updateCounter(--counterValue);
-// }
-
-const updateCounter = value => {
-    document.getElementById('bookGoal').innerText = value;
+//BOOKS READ IN COMPLETED 
+let listUL = document.getElementById('finished-list');
+console.log(listUL);
+let listItems = [];
+for(let i = 0; i < listUL.childNodes.length; i++){
+    if(listUL.childNodes[i].nodeName == "LI"){
+        listItems.push(listUL.childNodes[i]);
+    }
 }
-
-let completedBtn = document.getElementById('completed');
-$('#completed').on('submit', () => {
-    updateCounter(++counterValue);
-});
-
-$('#toCurrent').on('submit', () => {
-    updatedCounter(--counterValue);
-});
+const data = collect(listItems);
+const num = data.count();
+// console.log(listItems)
+document.getElementById('bookGoals').innerHTML = num;
