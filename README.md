@@ -20,8 +20,8 @@ User's dashboard shows users how many days are left of their goal date, how many
 ## Screenshots
 
 ## Version 3 Updates
-* Add message when user completes book goal before or by goal date
-* Reminders to read current book
+* Shows message when user completes book goal before or by goal date
+* Users can create daily or weekly reminders
 * Map to search for nearest book store
 
 ## About Developer
