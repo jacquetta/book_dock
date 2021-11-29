@@ -12,15 +12,21 @@
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
-    <nav>
-        {% block nav %}
-            <p>Book Dock</p>
-            {% block link %}
-                <a href="{{ url_for('homepage') }}">Home</a>
-                <a  id="homepage" href="{{ url_for('homepage') }}">Sign In</a>
-             {% endblock %}
-        {% endblock %}
-    </nav>
+    <header class="container-fluid" id="headerId">
+        <div class="jumbotron jumbotron-fluid">
+            <nav class="navbar navbar-expand-sm justify-content-end">
+                {% block nav %}
+                    {% block link %}
+                        <ul class="navbar-nav">
+                            <li class="navbar-item">
+                                <a  id="homepage" href="{{ url_for('homepage') }}" class="nav-link">Sign In</a>
+                            </li>
+                        </ul>
+                    {% endblock %}
+                {% endblock %}
+            </nav>
+        </div>
+    </header>
     
     {# get_flashed_messages will register any flashed messages #}
     {% with messages = get_flashed_messages() %} 
@@ -40,7 +46,7 @@
     {% endblock %}
 
 
-    <footer>
+    <footer class="container-fluid">
         <p>Book Dock &copy;2021</p>
     </footer>
     <!-- Bootstrap bundle and Popper -->
