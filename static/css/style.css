@@ -1,3 +1,9 @@
+/* BODY STYLES */
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #121113 /* Smoky Black */
+}
+
 /* BASE TEMPLATE STYLES */
 #headerId {
     background-image: url("/static/img/banner3.png");
