@@ -1,30 +1,22 @@
 'use strict';
+
+// REVIEW FORM SUBMIT
 $('#reviewBtn').on('click', () => {
-    // let title = document.getElementById('book_title');
-    // evt.preventDefault();
+    
     let formInput = {
         title: $('#bookTitle').val(),
         bookId: $('#volumeId').val(),
     }
-
-    console.log(formInput);
     
     $.post('/review_form', formInput, res => {
-
         $('#volumeTitle').append(res);
         $('#volumeId').append(res);
     });
 });
 
+
+// UPDATE PROFILE ON SUBMIT
 $('#updateBtn').on('submit', () => {
-    // let reviewPosting = {
-    //     volume_id: $('#volume_id').val(),
-    //     title: $('#volume_title').val(),
-    //     review_title: $('#reviewTitle').val(),
-    //     review: $('#reviewPost').val(),
-    // }
     const updateForm = $('#updateForm').serialize(); 
     $.get('/update_profile', updateForm);
-
-
 });
