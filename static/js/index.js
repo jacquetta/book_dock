@@ -1,19 +1,10 @@
-// TOGGLE FOR MORE BUTTON IN BOOK LIST
-
-function btnToggle(ID){
-    let book_id = document.getElementById(ID)
-    if(book_id.style.display === "none"){
-        book_id.style.display = "block";
-    } else {
-        book_id.style.display = "none";
-    }
-}
+'use strict';
 
 // DELETE BOOKUSER ON SUBMIT BUTTON
-$('#delete_bookuser').on('submit', function(evt) {
+$('#deleteItem').on('submit', function(evt) {
     evt.preventDefault();
     const bookUserId = {
-        bookuser : $('#bookuser').val()
+        bookuser_id : $('#bookuser_id').val()
     };
     $.get('/delete_bookuser', bookUserId, res => {
         $(this).closest("li").remove();
