@@ -10,7 +10,11 @@
 {% block content %}
 <div id="details {{volume.etag}}">
     <h2 id="book-title">{{volume.volumeInfo.title}}</h2>
-    <h4>{{volume.volumeInfo.authors}}</h4>
+    <h5><b>Author(s)</b>: 
+    {% for author in volume.volumeInfo.authors %}
+        *{{author}} 
+    {% endfor %}
+    </h5>
     <img src="{{volume.volumeInfo.imageLinks.thumbnail}}" alt="{{volume.volumeInfo.title}} image">
     {% if 'description' in volume.volumeInfo %}
     <p><b>Summary:</b> {{volume.volumeInfo.description}}</p>
@@ -31,7 +35,11 @@
     {% endif %}
 
     {% if 'categories' in volume.volumeInfo %}
-        <p><b>Genres:</b> {{volume.volumeInfo.categories}}</p>
+        <p><b>Genre(s)</b>: 
+        {% for category in volume.volumeInfo.categories %}
+            *{{category}} 
+        {% endfor %}
+        </p>
     {% else %}
         <p><b>Genre:</b> Unavailable</p>
     {% endif %}
