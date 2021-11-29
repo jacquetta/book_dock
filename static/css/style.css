@@ -2,7 +2,10 @@
 /* BODY STYLES */
 body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: #121113 /* Smoky Black */
+    color: #121113; /* Smoky Black */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 a {
@@ -25,16 +28,12 @@ a:hover {
 }
 
 footer {
-    margin-top: 20px;
-    display: block;
-    position: relative;
+    margin-top: auto;
     background-color:#c9cad9;  /* Lavender Gray */
-    left: 0;
-    bottom: 0;
     width: 100%;
     height: 60px;
-    text-align: center;
     padding-top: 10px;
+    text-align: center;
 }
 
 
