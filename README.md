@@ -1,4 +1,4 @@
-<img src="https://user-images.githubusercontent.com/24457948/143801917-a27342ea-a56e-48f9-ae34-3ca2d4ef7058.png" alt="my banner">
+<img src="/static/img/banner3.png" alt="my banner">
 
 ## Project Summary
 Book Dock helps users set and track their book goals. Users can search and add books to their book list through Google Books API.
