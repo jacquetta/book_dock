@@ -1,24 +1,29 @@
 {% extends 'base.html' %}
 
 {% block title %}Book List{% endblock %}
-{% block link %} 
-    <a id="user_home" href="{{url_for('user_home')}}">Home</a>
-    <a id="log_out" href="{{url_for('log_out')}}">Log Out</a> 
+
+{% block link %}
+    <ul class="navbar-nav">
+        <li class="navbar-item">
+            <a id="user_home" class="nav-link" href="{{url_for('user_home')}}">Home</a>
+        </li>
+        <li class="navbar-item">
+            <a id="log_out" class="nav-link" href="{{url_for('log_out')}}">Log Out</a> 
+        </li>
+    </ul>
 {% endblock %}
 
-
-
 {% block content %}
-
-    <h2>Main Book List</h2>
-    <h4>Add books to your list.</h4>
-    {# working on Search feature #}
-    <form action="/search_books">
-        {# MDN: "q is the most common name given to search inputs, although it's not mandatory". #}
-        {# "When submitted, the data name/value pair sent to the server will be q=searchterm" #}
-        <input type="search" id="userSearch" name="q" placeholder="Search for books..." required>
-        <button class="search-btn">Search</button>
-    </form>
+   <section  class="container" id="searchSection">
+        <h2>Add books to your list.</h2>
+        {# working on Search feature #}
+        <form action="/search_books" class="custom-centered" role="form" id="searchInput">
+            {# MDN: "q is the most common name given to search inputs, although it's not mandatory". #}
+            {# "When submitted, the data name/value pair sent to the server will be q=searchterm" #}
+            <input type="search" id="userSearch" class+"form-control" name="q" placeholder="Search for books..." required>
+            <button type="button" class="btn search-btn mb-2">Search</button>
+        </form>
+   </section>
     
    
 {% endblock %}

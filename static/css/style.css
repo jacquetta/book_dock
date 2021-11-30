@@ -16,6 +16,24 @@ a:hover {
     color: #F87666;
 }
 
+.nav-link {
+    color: #121113;
+}
+
+/* .nav-link:hover {
+    color: #F87666;
+} */
+
+.btn {
+    color: #121113; /* smoky black*/
+    background-color: #F87666; /* rhythm */
+}
+
+.btn:hover {
+    background-color: #121113;
+    color: #F87666;
+}
+
 /* BASE TEMPLATE STYLES */
 #headerId {
     background-image: url("/static/img/banner3.png");
@@ -43,10 +61,6 @@ footer {
     margin-bottom: 20px;
 }
 
-#loginSubmit {
-    color: #121113; /* smoky black*/
-    background-color: #F87666; /* rhythm */
-}
 
 #signUpBtn {
     text-align: center;
@@ -115,3 +129,23 @@ figure {
     padding-bottom: 20px;
 }
 
+/* SEARCH PAGE STYLES */
+
+#searchSection h2 {
+    color: #736892;
+    margin-bottom: 20px;
+}
+
+#searchSection{
+    align-content:center;
+}
+/* animation for input search field  */
+input[type="search"] {
+    width: 230px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+input[type="search"]:focus {
+    width: 70%;
+}
