@@ -178,3 +178,38 @@ input[type="search"] {
 input[type="search"]:focus {
     width: 70%;
 }
+
+
+/* SEARCH RESULTS PAGE */
+
+.resultsDiv {
+    margin-bottom: 30px;
+}
+
+/* limit the lines of the description that shows */
+.summaryDescr {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    /* line-height: 16px;
+    max-height: 32px; */
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+}
+
+.card {
+    height: auto;
+}
+
+h5 {
+    color: #736892;
+}
+
+h2 {
+    font-size: 50px;
+    text-align: center;
+    color: #736892;  /* Rhythm */
+    margin-bottom: 40px;
+
+}
+

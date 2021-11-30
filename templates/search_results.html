@@ -2,115 +2,130 @@
 
 {% block title %}SEARCH RESULTS{% endblock %}
 {% block link %} 
-    <a id="book_search" href="{{url_for('book_search')}}">Book Search</a>
-    <a id="user_home" href="{{url_for('user_home')}}">Home</a>
-    <a id="log_out" href="{{url_for('log_out')}}">Log Out</a> 
+    <ul class="navbar-nav">
+        <li class="navbar-item">
+            <a id="book_search" href="{{url_for('book_search')}}" class="nav-link">Book Search</a>
+        </li>
+        <li class="navbar-item">
+            <a id="user_home" href="{{url_for('user_home')}}" class="nav-link">Home</a> 
+        </li>
+        <li class="navbar-item">
+            <a id="log_out" href="{{url_for('log_out')}}" class="nav-link">Log Out</a>
+        </li>
+    </ul>
 {% endblock %}
+
 {% block content %}
-{% for volume in results %}
-    <div class="card mb-3" style="max-width: 540px" id="{{volume.id}}">
-        <div class="row g-0">
-            <div class="col-md-4">
-                {% if 'imageLinks' in volume.volumeInfo %}
-                    <a href="/volumes/{{volume.id}}" target="_blank">
-                        <img id="book_img" src="{{volume.volumeInfo.imageLinks.smallThumbnail}}" class="img-fluid rounded-start" alt="book image">
-                    </a>
-                    {% else %}
-                    <img src="https://img.icons8.com/ios-glyphs/30/000000/book.png" class="img-fluid rounded-start" alt="placeholder book image"/>
-                {% endif %}
-            </div> {# end of div col-md-4 #}
-            <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title" id="title">{{volume.volumeInfo.title}}</h5>
-                    
-                    {% if 'authors' in volume.volumeInfo %}
-                    <p class="card-text" id="authors">
-                        {% for author in volume.volumeInfo.authors %}
-                            *{{author}} 
-                        {% endfor %}
-                    </p>
-                      
-                    {% else %}
-                        <p><b>Authors:</b> Unavailable</p>
-                    {% endif %}
-                    <button class="toggleBtn" onclick="btnToggle('{{volume.etag}}')">More</button>
-                    <div class="moreInfo" id="{{volume.etag}}" style="display:none">
-                        {% if 'description' in volume.volumeInfo %}
-                            <p id="description"><b>Summary:</b> {{volume.volumeInfo.description}}</p>
-                        {% else %}
-                            <p><b>Summary:</b> Unavailable</p>
-                        {% endif %}
-
-                        {% if 'publishedDate' in volume.volumeInfo %}
-                            <p id="published"><b>Published:</b> {{volume.volumeInfo.publishedDate}}</p>
-                        {% else %}
-                            <p><b>Published:</b> Unavailable</p>
-                        {% endif %}
-
-                        {% if 'pageCount' in volume.volumeInfo %}
-                            <p id="pageCount"><b>Page Count:</b> {{volume.volumeInfo.pageCount}}</p>
-                        {% else %}
-                            <p><b>Page Count:</b> Unavailable</p>
-                        {% endif %}
-                        
-                        {% if 'categories' in volume.volumeInfo %}
-                        <p><b>Genre(s)</b>: 
-                            {% for category in volume.volumeInfo.categories %}
-                                *{{category}} 
-                            {% endfor %}
-                            </p>
-                        {% else %}
-                            <p><b>Genre:</b> Unavailable</p>
-                        {% endif %}
-                    </div> {# end of div moreInfo #}
-                    <div id="add_book"></div>
-                    <form action="/add_book" method="post">
-                        <input type="hidden" id={{volume.id}} name="volume_id" value="{{volume.id}}">
-                        <input type="hidden" id={{volume.volumeInfo.title}} name="volume_title" value="{{volume.volumeInfo.title}}">
-                        
-                        {% if 'authors' in volume.volumeInfo %}
-                        <input type="hidden" id={{volume.volumeInfo.authors}} name="volume_authors" value="{{volume.volumeInfo.authors}}">
-                        {% else %}
-                            <input type="hidden" id="volume_authors" name="volume_authors" value="none">
-                        {% endif %}
-
-                        {% if 'categories' in volume.volumeInfo %}
-                            <input type="hidden" id={{volume.volumeInfo.categories}} name="volume_genre" value="{{volume.volumeInfo.categories}}">
-                        {% else %}
-                            <input type="hidden" id="mainCategory" name="volume_genre" value="none">
-                        {% endif %}
-
-                        {% if 'description' in volume.volumeInfo %}
-                            <input type="hidden" id={{volume.volumeInfo.description}} name="volume_description" value="{{volume.volumeInfo.description}}">
-                        {% else %}
-                            <input type="hidden" id="volume.description" name="volume_description" value="Unavailable">
-                        {% endif %}
-                        
-                        {% if 'publishedDate' in volume.volumeInfo %}
-                        <input type="hidden" id={{volume.volumeInfo.publishedDate}} name="volume_publishedDate" value={{volume.volumeInfo.publishedDate}}>
-                        {% else %}
-                        <input type="hidden" id="volume.publishedDate" name="volume_publishedDate" value="Unavailable">
-                        {% endif %}
-
-                        {% if 'pageCount' in volume.volumeInfo %}
-                            <input type="hidden" id={{volume.volumeInfo.pageCount}} name="volume_pageCount" value="{{volume.volumeInfo.pageCount}}">
-                        {% else %}
-                            <input type="hidden" id="volume.pageCount" name="volume_pageCount" value=0>
-                        {% endif %}
-                        
-                        {% if 'imageLinks' in volume.volumeInfo %}
-                            <input type="hidden" id={{volume.volumeInfo.imageLinks}} name="volume_imageLinks" value="{{volume.volumeInfo.imageLinks.smallThumbnail}}">
-                        {% else %}
-                            <input type="hidden" id="imageLinks" name="volume_imageLinks" value="none">
-                        {% endif %}
-                        <input type="submit" value="Add to List" id="addToList">
-                    </form>
-                </div> {# end of div card body #}
-            </div> {# end of div col-md-8 #}
-        </div> {# end of div row g-0 #}
-    </div> {# end of div card mb-3 #}
-                    
-{% endfor %}
+<h2>Results:</h2>
+    <div class="container resultsDiv">
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+            {% for volume in results %}
+                <div class="col">
+                    <div class="card mb-3" id="{{volume.id}}">
+                        <div class="row g-0">
+                            <div class="col-md-3">
+                                {% if 'imageLinks' in volume.volumeInfo %}
+                                    <a href="/volumes/{{volume.id}}" target="_blank">
+                                        <img id="book_img" src="{{volume.volumeInfo.imageLinks.smallThumbnail}}" class="img-fluid rounded-start" alt="book image">
+                                    </a>
+                                    {% else %}
+                                    <img src="https://img.icons8.com/ios-glyphs/30/000000/book.png" class="img-fluid rounded-start" alt="placeholder book image"/>
+                                {% endif %}
+                            </div> {# end of div col-md-4 #}
+                            <div class="col-md-9">
+                                <div class="card-body">
+                                    <h5 class="card-title" id="title">{{volume.volumeInfo.title}}</h5>
+                                    
+                                    {% if 'authors' in volume.volumeInfo %}
+                                    <p class="card-text" id="authors">
+                                        {% for author in volume.volumeInfo.authors %}
+                                            *{{author}} 
+                                        {% endfor %}
+                                    </p>
+                                    
+                                    {% else %}
+                                        <p><b>Authors:</b> Unavailable</p>
+                                    {% endif %}
+                                    <p class="btn toggleBtn btn-results" onclick="btnToggle('{{volume.etag}}')">More</p>
+                                    <div class="moreInfo" id="{{volume.etag}}" style="display:none">
+                                        {% if 'description' in volume.volumeInfo %}
+                                            <p id="description" class="summaryDescr"><b>Summary:</b> {{volume.volumeInfo.description}}</p>
+                                        {% else %}
+                                            <p><b>Summary:</b> Unavailable</p>
+                                        {% endif %}
+                
+                                        {% if 'publishedDate' in volume.volumeInfo %}
+                                            <p id="published"><b>Published:</b> {{volume.volumeInfo.publishedDate}}</p>
+                                        {% else %}
+                                            <p><b>Published:</b> Unavailable</p>
+                                        {% endif %}
+                
+                                        {% if 'pageCount' in volume.volumeInfo %}
+                                            <p id="pageCount"><b>Page Count:</b> {{volume.volumeInfo.pageCount}}</p>
+                                        {% else %}
+                                            <p><b>Page Count:</b> Unavailable</p>
+                                        {% endif %}
+                                        
+                                        {% if 'categories' in volume.volumeInfo %}
+                                        <p><b>Genre(s)</b>: 
+                                            {% for category in volume.volumeInfo.categories %}
+                                                *{{category}} 
+                                            {% endfor %}
+                                            </p>
+                                        {% else %}
+                                            <p><b>Genre:</b> Unavailable</p>
+                                        {% endif %}
+                                    </div> {# end of div moreInfo #}
+                                    
+                                    <form action="/add_book" method="post">
+                                        <input type="hidden" id={{volume.id}} name="volume_id" value="{{volume.id}}">
+                                        <input type="hidden" id={{volume.volumeInfo.title}} name="volume_title" value="{{volume.volumeInfo.title}}">
+                                        
+                                        {% if 'authors' in volume.volumeInfo %}
+                                        <input type="hidden" id={{volume.volumeInfo.authors}} name="volume_authors" value="{{volume.volumeInfo.authors}}">
+                                        {% else %}
+                                            <input type="hidden" id="volume_authors" name="volume_authors" value="none">
+                                        {% endif %}
+                
+                                        {% if 'categories' in volume.volumeInfo %}
+                                            <input type="hidden" id={{volume.volumeInfo.categories}} name="volume_genre" value="{{volume.volumeInfo.categories}}">
+                                        {% else %}
+                                            <input type="hidden" id="mainCategory" name="volume_genre" value="none">
+                                        {% endif %}
+                
+                                        {% if 'description' in volume.volumeInfo %}
+                                            <input type="hidden" id={{volume.volumeInfo.description}} name="volume_description" value="{{volume.volumeInfo.description}}">
+                                        {% else %}
+                                            <input type="hidden" id="volume.description" name="volume_description" value="Unavailable">
+                                        {% endif %}
+                                        
+                                        {% if 'publishedDate' in volume.volumeInfo %}
+                                        <input type="hidden" id={{volume.volumeInfo.publishedDate}} name="volume_publishedDate" value={{volume.volumeInfo.publishedDate}}>
+                                        {% else %}
+                                        <input type="hidden" id="volume.publishedDate" name="volume_publishedDate" value="Unavailable">
+                                        {% endif %}
+                
+                                        {% if 'pageCount' in volume.volumeInfo %}
+                                            <input type="hidden" id={{volume.volumeInfo.pageCount}} name="volume_pageCount" value="{{volume.volumeInfo.pageCount}}">
+                                        {% else %}
+                                            <input type="hidden" id="volume.pageCount" name="volume_pageCount" value=0>
+                                        {% endif %}
+                                        
+                                        {% if 'imageLinks' in volume.volumeInfo %}
+                                            <input type="hidden" id={{volume.volumeInfo.imageLinks}} name="volume_imageLinks" value="{{volume.volumeInfo.imageLinks.smallThumbnail}}">
+                                        {% else %}
+                                            <input type="hidden" id="imageLinks" name="volume_imageLinks" value="none">
+                                        {% endif %}
+                                        <input type="submit" value="Add Book" id=" addToList" class="btn btn-results">
+                                    </form>
+                                </div> {# end of div card body #}
+                            </div> {# end of div col-md-8 #}
+                        </div> {# end of div row g-0 #}
+                    </div> {# end of div card mb-3 #}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}
 
 {% block js %}
