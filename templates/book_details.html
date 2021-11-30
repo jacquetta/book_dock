@@ -16,95 +16,116 @@
 {% endblock %}
 
 {% block content %}
-<div id="details {{volume.etag}}">
-    <h2 id="book-title">{{volume.volumeInfo.title}}</h2>
-    <h5><b>Author(s)</b>: 
-    {% for author in volume.volumeInfo.authors %}
-        *{{author}} 
-    {% endfor %}
-    </h5>
-    <img src="{{volume.volumeInfo.imageLinks.thumbnail}}" alt="{{volume.volumeInfo.title}} image">
-    {% if 'description' in volume.volumeInfo %}
-    <p><b>Summary:</b> {{volume.volumeInfo.description}}</p>
-    {% else %}
-        <p><b>Summary:</b> Unavailable</p>
-    {% endif %}
-
-    {% if 'publishedDate' in volume.volumeInfo %}
-        <p><b>Published:</b> {{volume.volumeInfo.publishedDate}}</p>
-    {% else %}
-        <p><b>Published:</b> Unavailable</p>
-    {% endif %}
-
-    {% if 'pageCount' in volume.volumeInfo %}
-        <p><b>Page Count:</b> {{volume.volumeInfo.pageCount}}</p>
-    {% else %}
-        <p><b>Page Count:</b> Unavailable</p>
-    {% endif %}
-
-    {% if 'categories' in volume.volumeInfo %}
-        <p><b>Genre(s)</b>: 
-        {% for category in volume.volumeInfo.categories %}
-            *{{category}} 
-        {% endfor %}
-        </p>
-    {% else %}
-        <p><b>Genre:</b> Unavailable</p>
-    {% endif %}
-        
-</div>
-<form action="/add_book" method="post">
-    <input type="hidden" id={{volume.id}} name="volume_id" value="{{volume.id}}">
-    <input type="hidden" id={{volume.volumeInfo.title}} name="volume_title" value="{{volume.volumeInfo.title}}">
-    
-    {% if 'authors' in volume.volumeInfo %}
-    <input type="hidden" id={{volume.volumeInfo.authors}} name="volume_authors" value="{{volume.volumeInfo.authors}}">
-    {% else %}
-        <input type="hidden" id="volume_authors" name="volume_authors" value="none">
-    {% endif %}
-
-    {% if 'categories' in volume.volumeInfo %}
-        <input type="hidden" id={{volume.volumeInfo.categories}} name="volume_genre" value="{{volume.volumeInfo.categories}}">
-    {% else %}
-        <input type="hidden" id="mainCategory" name="volume_genre" value="none">
-    {% endif %}
-
-    {% if 'description' in volume.volumeInfo %}
-        <input type="hidden" id={{volume.volumeInfo.description}} name="volume_description" value="{{volume.volumeInfo.description}}">
-    {% else %}
-        <input type="hidden" id="volume.description" name="volume_description" value="Unavailable">
-    {% endif %}
-    
-    {% if 'publishedDate' in volume.volumeInfo %}
-    <input type="hidden" id={{volume.volumeInfo.publishedDate}} name="volume_publishedDate" value={{volume.volumeInfo.publishedDate}}>
-    {% else %}
-    <input type="hidden" id="volume.publishedDate" name="volume_publishedDate" value="Unavailable">
-    {% endif %}
-
-    {% if 'pageCount' in volume.volumeInfo %}
-        <input type="hidden" id={{volume.volumeInfo.pageCount}} name="volume_pageCount" value="{{volume.volumeInfo.pageCount}}">
-    {% else %}
-        <input type="hidden" id="volume.pageCount" name="volume_pageCount" value=0>
-    {% endif %}
-    
-    {% if 'imageLinks' in volume.volumeInfo %}
-        <input type="hidden" id={{volume.volumeInfo.imageLinks}} name="volume_imageLinks" value="{{volume.volumeInfo.imageLinks.smallThumbnail}}">
-    {% else %}
-        <input type="hidden" id="imageLinks" name="volume_imageLinks" value="none">
-    {% endif %}
-    <input type="submit" value="Add to List" id="addToList">
-</form>
-<a href="https://www.google.com/books/edition/_/{{volume.id}}?hl=en&kptab=sideways" target="_blank">Similar Books</a>
-<div id="review-list">
-    <h4>Reviews</h4>
-    {# goes to review form with volume title and id #}
-    <ul>
-        {% for review in reviews %}
-            <h5>{{review.review_title}}</h5>
-            <p>User: {{review.review_id}}</p>
-            <p>{{review.review}}</p>
-        {% endfor %}
-    </ul>
+<div class="container" id="detailsDiv">
+    <div id="details {{volume.etag}}">
+        <h2 id="book-title">{{volume.volumeInfo.title}}</h2>
+        <div class="row">
+            <div class="col-3">
+                <img src="{{volume.volumeInfo.imageLinks.thumbnail}}" alt="{{volume.volumeInfo.title}} image">
+                <form action="/add_book" method="post">
+                    <input type="hidden" id={{volume.id}} name="volume_id" value="{{volume.id}}">
+                    <input type="hidden" id={{volume.volumeInfo.title}} name="volume_title" value="{{volume.volumeInfo.title}}">
+                    
+                    {% if 'authors' in volume.volumeInfo %}
+                    <input type="hidden" id={{volume.volumeInfo.authors}} name="volume_authors" value="{{volume.volumeInfo.authors}}">
+                    {% else %}
+                        <input type="hidden" id="volume_authors" name="volume_authors" value="none">
+                    {% endif %}
+                
+                    {% if 'categories' in volume.volumeInfo %}
+                        <input type="hidden" id={{volume.volumeInfo.categories}} name="volume_genre" value="{{volume.volumeInfo.categories}}">
+                    {% else %}
+                        <input type="hidden" id="mainCategory" name="volume_genre" value="none">
+                    {% endif %}
+                
+                    {% if 'description' in volume.volumeInfo %}
+                        <input type="hidden" id={{volume.volumeInfo.description}} name="volume_description" value="{{volume.volumeInfo.description}}">
+                    {% else %}
+                        <input type="hidden" id="volume.description" name="volume_description" value="Unavailable">
+                    {% endif %}
+                    
+                    {% if 'publishedDate' in volume.volumeInfo %}
+                    <input type="hidden" id={{volume.volumeInfo.publishedDate}} name="volume_publishedDate" value={{volume.volumeInfo.publishedDate}}>
+                    {% else %}
+                    <input type="hidden" id="volume.publishedDate" name="volume_publishedDate" value="Unavailable">
+                    {% endif %}
+                
+                    {% if 'pageCount' in volume.volumeInfo %}
+                        <input type="hidden" id={{volume.volumeInfo.pageCount}} name="volume_pageCount" value="{{volume.volumeInfo.pageCount}}">
+                    {% else %}
+                        <input type="hidden" id="volume.pageCount" name="volume_pageCount" value=0>
+                    {% endif %}
+                    
+                    {% if 'imageLinks' in volume.volumeInfo %}
+                        <input type="hidden" id={{volume.volumeInfo.imageLinks}} name="volume_imageLinks" value="{{volume.volumeInfo.imageLinks.smallThumbnail}}">
+                    {% else %}
+                        <input type="hidden" id="imageLinks" name="volume_imageLinks" value="none">
+                    {% endif %}
+                    <input type="submit" class="btn" value="Add to List" id="addToList">
+                </form>
+            </div>
+            <div class="col-9">
+                <h5><b>Author(s)</b>: 
+                    {% for author in volume.volumeInfo.authors %}
+                        *{{author}} 
+                    {% endfor %}
+                </h5>
+                {% if 'description' in volume.volumeInfo %}
+                <p><b>Summary:</b> {{volume.volumeInfo.description}}</p>
+                {% else %}
+                {# way to remove html tags in code check this website out shows how in Javascript #}
+                {# https://www.tutorialspoint.com/how-to-remove-html-tags-from-a-string-in-javascript #}
+                    <p><b>Summary:</b> Unavailable</p>
+                {% endif %}
+            
+                {% if 'publishedDate' in volume.volumeInfo %}
+                    <p><b>Published:</b> {{volume.volumeInfo.publishedDate}}</p>
+                {% else %}
+                    <p><b>Published:</b> Unavailable</p>
+                {% endif %}
+            
+                {% if 'pageCount' in volume.volumeInfo %}
+                    <p><b>Page Count:</b> {{volume.volumeInfo.pageCount}}</p>
+                {% else %}
+                    <p><b>Page Count:</b> Unavailable</p>
+                {% endif %}
+            
+                {% if 'categories' in volume.volumeInfo %}
+                    <p><b>Genre(s)</b>: 
+                    {% for category in volume.volumeInfo.categories %}
+                        *{{category}} 
+                    {% endfor %}
+                    </p>
+                {% else %}
+                    <p><b>Genre:</b> Unavailable</p>
+                {% endif %}
+                <a href="https://www.google.com/books/edition/_/{{volume.id}}?hl=en&kptab=sideways" target="_blank">Similar Books</a>
+            </div>
+                
+        </div>
+    </div>
+   
+    <div id="review-list">
+        <h3>Reviews</h3>
+        {# goes to review form with volume title and id #}
+       <div class="row row-cols-1 rows-cols-md-3">
+            <ul>
+                {% for review in reviews %}
+                    <div class="col">
+                        <div class="card review-card mb-3">
+                            <div class="card-header">
+                                <h5 class="card-title">{{review.review_title}}</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">UserName{{review.review_id}}</p>
+                                <p class="card-text">{{review.review}}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </ul>
+       </div>
+    </div>
 </div>
 {% endblock %}
 

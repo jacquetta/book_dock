@@ -180,7 +180,7 @@ input[type="search"]:focus {
 }
 
 
-/* SEARCH RESULTS PAGE */
+/* SEARCH RESULTS PAGE STYLES */
 
 .resultsDiv {
     margin-bottom: 30px;
@@ -213,3 +213,27 @@ h2 {
 
 }
 
+/* DETAILS PAGE STYLES */
+
+#detailsDiv {
+    margin-bottom: 30px;
+}
+
+p b {
+    color: #736892;
+}
+
+#detailsDiv .btn {
+    margin-top: 20px;
+}
+
+#review-list h3{
+    margin-top: 30px;
+    /* text-align: center; */
+    color: #736892;
+}
+
+.review-card {
+    max-width: 18rem;
+    height: auto;
+}
