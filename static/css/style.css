@@ -146,6 +146,17 @@ legend {
     padding-bottom: 20px;
 }
 
+/*  UPDATE PROFILE STYLES */
+
+#updateId {
+    margin-bottom: 20px;
+}
+
+.btn-link {
+    color: #736892;
+    text-decoration: none;
+}
+
 /* SEARCH PAGE STYLES */
 
 #searchSection h2 {
