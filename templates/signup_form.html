@@ -1,33 +1,58 @@
 {% extends 'base.html' %}
-
+{% block link %}
+    <ul class="navbar-nav">
+        <li class="navbar-item">
+            <a href="{{ url_for('homepage') }}" class="nav-link">Home</a>
+        </li>
+        <li class="navbar-item">
+            <a  id="homepage" href="{{ url_for('homepage') }}" class="nav-link">Sign In</a>
+        </li>
+    </ul>
+{% endblock %}
 {% block title %}Sign Up{% endblock %}
 
 {% block content %}
-    <legend>Sign up to create your Book Dock Account</legend>
-    <form action="/signup" method="POST">
-        
-        <label for="full_name">Full Name:</label><br>
-        <input type="text" id="full_name" name="full_name" required><br>
+    <div class="container" id="signFormId">
+        <fieldset>
+            <legend>Sign up to create your Book Dock Account</legend>
+            <form action="/signup" method="POST">
+                
+                <div class="mb-3">
+                    <label for="full_name" class="form-label">Full Name:</label>
+                    <input type="text" class="form-control w-25" id="full_name" name="full_name" required>
+                </div>
 
-        <label for="email">Email:</label><br>
-        <input type="email" id="email" name="email" required><br>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email:</label>
+                    <input type="email" class="form-control w-25" id="email" name="email" required>
+                </div>
 
-        {# https://www.w3schools.com/howto/howto_js_password_validation.asp #}
-        <label for="password">Password:</label><br>
-        <input type="password" id="password" name="password" pattern="(?=.*\d) (?=.*[a-z]) (?=.*[A-Z]).{8, 20}" title="Password must include at least one number, one uppercase, one lowercase letter, and at min 8 characters and max 20 characters" required><br>
+                {# https://www.w3schools.com/howto/howto_js_password_validation.asp #}
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password:</label>
+                    <input type="password" class="form-control w-25" id="password" name="password" pattern="(?=.*\d) (?=.*[a-z]) (?=.*[A-Z]).{8, 20}" title="Password must include at least one number, one uppercase, one lowercase letter, and at min 8 characters and max 20 characters" required>
+                </div>
 
-        <label for="confirm-pw">Confirm Password:</label><br>
-        <input type="password" id="confirm-pw" name="confirm-pw" required><br>
+                <div class="mb-3">
+                    <label for="confirm-pw" class="form-label">Confirm Password:</label>
+                    <input type="password" id="confirm-pw" class="form-control w-25" name="confirm-pw" required>
+                </div>
+                    
+                <div class="mb-3">
+                    <label for="book_goal" class="form-label">Set Book Goal:</label>
+                    <input type="number" id="book_goal" class="form-control w-25" name="book_goal" min="0" max="300" value="0">
+                </div>
 
-        <label for="book_goal">Set Book Goal:</label><br>
-        <input type="number" id="book_goal" name="book_goal" min="0" max="300" value="0"><br>
-
-        <label for="goal_date">Choose Goal Date:</label><br>
-        <input type="date" id="goal_date" name="goal_date"><br>
-
-        <input type="submit" value="Submit">
-        <input type="reset">
-    </form>
+                <div class="mb-3">
+                    <label for="goal_date" class="form-label">Choose Goal Date:</label>
+                    <input type="date" id="goal_date" class="form-control w-25" name="goal_date"> 
+                </div>
+                
+                <input type="submit" class="btn" value="Submit">
+                <input class="btn btn-reset"type="reset">
+            </form>
+        </fieldset>
+    </div>
 
     <div id="pwMessage">
         <h4>Password must contain the following:</h4>

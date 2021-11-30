@@ -118,7 +118,24 @@ figure {
 }
 
 
-/* USER HOME */
+/* SIGN IN FORM STYLES */
+#signFormId {
+    margin-bottom: 30px;
+    /* align-items: center; */
+}
+
+legend {
+    color: #736892;
+    margin-bottom: 10px;
+}
+
+.btn-reset {
+    color: #F87666;
+    background-color:#121113;
+}
+
+
+/* USER HOME STYLES*/
 .book-card {
     display: inline;
 }
