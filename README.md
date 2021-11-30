@@ -23,6 +23,8 @@ User's dashboard shows users how many days are left of their goal date, how many
 * Shows message when user completes book goal before or by goal date
 * Users can create daily or weekly reminders
 * Map to search for nearest book store
+* Create anonymous username for review
+* Remove HTML tags from some of the API search results using JavaScript
 
 ## About Developer
 Jacquetta Bommuluri is a Software Engineer currently living in Minneapolis, MN. Created this project while attending Hackbright Academy. Connect with me on [LinkedIn](https://www.linkedin.com/in/jbommuluri).
