@@ -17,11 +17,11 @@
    <section  class="container" id="searchSection">
         <h2>Add books to your list.</h2>
         {# working on Search feature #}
-        <form action="/search_books" class="custom-centered" role="form" id="searchInput">
+        <form action="/search_books">
             {# MDN: "q is the most common name given to search inputs, although it's not mandatory". #}
             {# "When submitted, the data name/value pair sent to the server will be q=searchterm" #}
-            <input type="search" id="userSearch" class+"form-control" name="q" placeholder="Search for books..." required>
-            <button type="button" class="btn search-btn mb-2">Search</button>
+            <input type="search" id="userSearch" class="form-control" name="q" placeholder="Search for books..." required>
+            <button class="btn search-btn mb-2">Search</button>
         </form>
    </section>
     
