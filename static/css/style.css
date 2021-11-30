@@ -169,9 +169,10 @@ legend {
 }
 /* animation for input search field  */
 input[type="search"] {
-    width: 230px;
+    width: 250px;
     -webkit-transition: width 0.4s ease-in-out;
     transition: width 0.4s ease-in-out;
+    margin-bottom: 10px;
 }
 
 input[type="search"]:focus {
