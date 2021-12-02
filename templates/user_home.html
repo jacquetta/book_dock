@@ -4,6 +4,9 @@
 {% block link %} 
     <ul class="navbar-nav">
         <li class="navbar-item">
+            <p onClick="goBack()" class="nav-link">Back</p>
+        </li>
+        <li class="navbar-item">
             <a id="book_search" href="{{url_for('book_search')}}" class="nav-link">Book Search</a>
         </li>
         <li class="navbar-item">
@@ -18,11 +21,19 @@
 {% block content %}
 <div class="container homePage">
     <h1>Welcome to Book Dock!</h1>
-    <h3>Book Goal: <span id="userGoal">{{user.book_goal}}</span></h3>
-    <h4>Total Books Read: <span id="bookGoals"></span></h4>
-    <h4>Goal Date:<span id="goalDate">{{goal_date}}</span></h4>
-    <h4>Countdown: <span id="countdownTimer"></span></h4>
-    <button onClick="goBack()">Back</button>
+    <div id="goals" class="row align-items-center">
+        <h3 class="user-goals">My Goals:</h3>
+        <hr class="hr1">
+        <div class="books col-4">
+            <h4><b>Book Goal:</b> <span id="userGoal">{{user.book_goal}}</span></h4>
+            <h4><b>Total Books Read:</b> <span id="bookGoals"></span></h4>
+        </div>
+        <div class="datesGoal col-4 ms-auto">
+            <h4><b>Goal Date: </b><span id="goalDate">{{goal_date}}</span></h4>
+            <h4><b>Countdown: </b><span id="countdownTimer"></span></h4>
+        </div>
+    </div>
+    
 
     <div id="current">
         <h3>Currently Reading:</h3>
@@ -85,7 +96,7 @@
     </div> {# div for id read-list #}
 
     <div id="finished">
-        <h3>Books Completed</h3>
+        <h3>Completed:</h3>
         <ul id="finished-list" class="book-card row row-cols-1 row-cols-4 g-4">
             {# will list title of book and button to move read list #}
             {# update list and database with user_id.completed. If completed == False move to to read list else True completed#}

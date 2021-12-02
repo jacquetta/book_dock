@@ -138,12 +138,22 @@ legend {
 /* USER HOME STYLES*/
 .homePage h3 {
     color: #736892;
-    text-align: center;
+    /* text-align: center; */
     margin: 20px auto;
 }
 
-.book-card{
-    border-style: none;
+.hr1 {
+    
+    border-bottom: 3px solid #F87666;
+}
+
+
+#goals {
+    margin: 80px auto;
+}
+
+.card{
+    box-shadow: 5px 5px #d1d2f9;
     margin: 20px auto 40px auto;
 } 
 
