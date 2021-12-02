@@ -103,7 +103,7 @@
             {% for book in bookuser %}
                 {% if book.completed == "true" %}
                         <li id={{book.volume.volume_id}} class="col">
-                            <div class="book-card">
+                            <div class="book-card card">
                                 <a href="/volumes/{{book.volume_id}}" target="_blank">
                                     <img src="{{book.volume.img_links}}" alt="book image"/>
                                 </a>
