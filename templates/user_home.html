@@ -16,106 +16,108 @@
 {% endblock %}
 
 {% block content %}
-
-<h1>Welcome to Book Dock!</h1>
-<h3>Book Goal: <span id="userGoal">{{user.book_goal}}</span></h3>
-<h4>Total Books Read: <span id="bookGoals"></span></h4>
-<h4>Goal Date:<span id="goalDate">{{goal_date}}</span></h4>
-<h4>Countdown: <span id="countdownTimer"></span></h4>
-
-<div id="current">
+<div class="container homePage">
+    <h1>Welcome to Book Dock!</h1>
+    <h3>Book Goal: <span id="userGoal">{{user.book_goal}}</span></h3>
+    <h4>Total Books Read: <span id="bookGoals"></span></h4>
+    <h4>Goal Date:<span id="goalDate">{{goal_date}}</span></h4>
+    <h4>Countdown: <span id="countdownTimer"></span></h4>
     <button onClick="goBack()">Back</button>
-    <h3>Currently Reading</h3>
-    <ul class="book-card">
-        {# will list book and image and link to book details #}
-        {# update list and database with user_id.completed#}
-        {% for book in bookuser %}
-            {% if book.reading == "true" and book.completed == "false" %}
-                    <li id={{book.volume_id}}>
-                        <div class="book-card">
-                            {{book.volume.title}}
-                            <a href="/volumes/{{book.volume_id}}" target="_blank">
-                                <img src="{{book.volume.img_links}}" alt="book image">
-                            </a>
-                            {# update list and database with user_id.reading#}
-                            <form action="/completed" method="post">
-                                <input type="hidden" id={{book.volume.volume_id}} name="volume_id" value={{book.volume_id}}>
-                                <input type="submit" value="Completed" id="completed">
-                            </form>
 
-                            {# update list and database and moving book back to To Read List #}
-                            <form action="/to_read" method="post">
-                                <input type="hidden" class={{book.bookuser_id}} name="volume_id" value={{book.volume_id}}>
-                                <input type="submit" value="To Read" id="toRead">
-                            </form>
-                        </div>
-                    </li>
-            {% endif %}
-        {% endfor %}
-    </ul>
-</div>
+    <div id="current">
+        <h3>Currently Reading</h3>
+        <ul class="book-card row row-cols-1 row-cols-4 g-4">
+            {# will list book and image and link to book details #}
+            {# update list and database with user_id.completed#}
+            {% for book in bookuser %}
+                {% if book.reading == "true" and book.completed == "false" %}
+                        <li id={{book.volume_id}} class="col">
+                            <div class="book-card card">
+                                <a href="/volumes/{{book.volume_id}}" target="_blank">
+                                    <img src="{{book.volume.img_links}}" alt="book image">
+                                </a>
+                                <h5 class="card-title">{{book.volume.title}}</h5>
+                                {# update list and database with user_id.reading#}
+                                <form action="/completed" method="post">
+                                    <input type="hidden" id={{book.volume.volume_id}} name="volume_id" value={{book.volume_id}}>
+                                    <input type="submit" value="Completed" id="completed" class="btn">
+                                </form>
 
-<div id="read-list">
-    <h3>To Read:</h3>
-    <ul id="user-list">
-        {% for book in bookuser %}
-            {% if book.reading == "false" %}
-                    <li id={{book.volume_id}}>
-                        <div class="book-card">
-                            {{book.volume.title}}
-                            <a href="/volumes/{{book.volume_id}}" target="_blank">
-                                <img src="{{book.volume.img_links}}" alt="book image"/>
-                            </a>
-                            {# update list and database with user_id.reading#}
-                            <form action="/current" method="post">
-                                <input type="hidden" id={{book.volume.volume_id}} name="volume_id" value={{book.volume_id}}>
-                                <input type="submit" value="Reading" id="reading">
-                            </form>
+                                {# update list and database and moving book back to To Read List #}
+                                <form action="/to_read" method="post">
+                                    <input type="hidden" class={{book.bookuser_id}} name="volume_id" value={{book.volume_id}}>
+                                    <input type="submit" value="To Read" id="toRead" class="btn">
+                                </form>
+                            </div>
+                        </li>
+                {% endif %}
+            {% endfor %}
+        </ul> {# div class for book-card row row-cols-1 row-cols-3 g-4 #}
+    </div> {# div for id current #}
 
-                            {# update list and database with bookuser delete from database#}
-                            <form action="/delete_bookuser" method="get" id="delete_bookuser">
-                                <input type="hidden" class={{book.bookuser_id}} id="bookuser_id" name="bookuser_id" value={{book.bookuser_id}}>
-                                <input type="submit" value="Delete" id="deleteItem">
-                            </form>
-                        </div>
-                    </li>
-            {% endif %}
-        {% endfor %}
-    </ul>
-</div>
+    <div id="read-list">
+        <h3>To Read:</h3>
+        <ul id="user-list">
+            {% for book in bookuser %}
+                {% if book.reading == "false" %}
+                        <li id={{book.volume_id}}>
+                            <div class="book-card">
+                                {{book.volume.title}}
+                                <a href="/volumes/{{book.volume_id}}" target="_blank">
+                                    <img src="{{book.volume.img_links}}" alt="book image"/>
+                                </a>
+                                {# update list and database with user_id.reading#}
+                                <form action="/current" method="post">
+                                    <input type="hidden" id={{book.volume.volume_id}} name="volume_id" value={{book.volume_id}}>
+                                    <input type="submit" value="Reading" id="reading">
+                                </form>
 
-<div id="finished">
-    <h3>Books Completed</h3>
-    <ul id="finished-list">
-        {# will list title of book and button to move read list #}
-        {# update list and database with user_id.completed. If completed == False move to to read list else True completed#}
-        {% for book in bookuser %}
-            {% if book.completed == "true" %}
-                    <li id={{book.volume.volume_id}}>
-                        <div class="book-card">
-                            {{book.volume.title}}
-                            <a href="/volumes/{{book.volume_id}}" target="_blank">
-                                <img src="{{book.volume.img_links}}" alt="book image"/>
-                            </a>
-                            <a href="https://www.google.com/books/edition/_/{{book.volume_id}}?hl=en&kptab=sideways" target="_blank">Similar Books</a>
-                            {# goes to review form with volume title and id #}
-                            <form action="/review_form" method="post" target="_blank">
-                                <input type="hidden" id="volumeId" name="volumeId" value="{{book.volume_id}}">
-                                <input type="hidden" id="bookTitle" name="bookTitle" value="{{book.volume.title}}">
-                                <input type="submit" name="reviewBtn" value="Review" id="reviewBtn">
-                            </form>
-                            {# update list and database completed == False #}
-                            <form action="/current" method="post">
-                                <input type="hidden" class={{book.bookuser_id}} name="volume_id" value="{{book.volume_id}}">
-                                <input type="submit" value="To Current" id="toCurrent">
-                            </form>
-                        </div>
-                    </li>
-            {% endif %}
-        {% endfor %}
-    </ul>
+                                {# update list and database with bookuser delete from database#}
+                                <form action="/delete_bookuser" method="get" id="delete_bookuser">
+                                    <input type="hidden" class={{book.bookuser_id}} id="bookuser_id" name="bookuser_id" value={{book.bookuser_id}}>
+                                    <input type="submit" value="Delete" id="deleteItem">
+                                </form>
+                            </div>
+                        </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div> {# div for id read-list #}
 
-</div>
+    <div id="finished">
+        <h3>Books Completed</h3>
+        <ul id="finished-list">
+            {# will list title of book and button to move read list #}
+            {# update list and database with user_id.completed. If completed == False move to to read list else True completed#}
+            {% for book in bookuser %}
+                {% if book.completed == "true" %}
+                        <li id={{book.volume.volume_id}}>
+                            <div class="book-card">
+                                {{book.volume.title}}
+                                <a href="/volumes/{{book.volume_id}}" target="_blank">
+                                    <img src="{{book.volume.img_links}}" alt="book image"/>
+                                </a>
+                                <a href="https://www.google.com/books/edition/_/{{book.volume_id}}?hl=en&kptab=sideways" target="_blank">Similar Books</a>
+                                {# goes to review form with volume title and id #}
+                                <form action="/review_form" method="post" target="_blank">
+                                    <input type="hidden" id="volumeId" name="volumeId" value="{{book.volume_id}}">
+                                    <input type="hidden" id="bookTitle" name="bookTitle" value="{{book.volume.title}}">
+                                    <input type="submit" name="reviewBtn" value="Review" id="reviewBtn">
+                                </form>
+                                {# update list and database completed == False #}
+                                <form action="/current" method="post">
+                                    <input type="hidden" class={{book.bookuser_id}} name="volume_id" value="{{book.volume_id}}">
+                                    <input type="submit" value="To Current" id="toCurrent">
+                                </form>
+                            </div>
+                        </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+
+    </div> {# div for id finished #}
+</div>{# div class for container #}
+
 {% endblock %}
 
 {% block js %}
