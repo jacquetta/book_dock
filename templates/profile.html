@@ -18,40 +18,48 @@
 
 {% block content %}
     <div class="container" id="updateId">
-        <legend>Update Profile</legend>
-    <form action="/update_profile" method="post" id="updateForm">
-        
-        <div class="mb-3">
-            <label for="full_name" class="form-label">Full Name:</label>
-            <input type="text" id="full_name" name="full_name" required value="{{user_profile.full_name}}" class="form-control w-25">
-        </div>
+    <div class="row">
+        <div class="col-6">
+            <legend>Update Profile</legend>
+            <form action="/update_profile" method="post" id="updateForm">
+                
+                <div class="mb-3">
+                    <label for="full_name" class="form-label">Full Name:</label>
+                    <input type="text" id="full_name" name="full_name" required value="{{user_profile.full_name}}" class="form-control w-50">
+                </div>
 
-        <div class="mb-3">
-            <label for="email" class="form-label">Email:</label>
-            <input type="email" id="email" name="email" required value="{{user_profile.email}}" class="form-control w-25">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email:</label>
+                    <input type="email" id="email" name="email" required value="{{user_profile.email}}" class="form-control w-50">
+                </div>
+                
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password:</label>
+                    <input type="password" id="password" name="password" pattern="(?=.*\d) (?=.*[a-z]) (?=.*[A-Z]).{8, 20}" title="Password must include at least one number, one uppercase, one lowercase letter, and at min 8 characters and max 20 characters" required value="{{user_profile.password}}" class="form-control w-50">
+                </div>
+                
+                <div class="mb-3">
+                    <label for="confirm-pw" class="form-label">Confirm Password:</label>
+                    <input type="password" id="confirm-pw" name="confirm-pw" required class="form-control w-50">
+                </div>
+                
+                <div class="mb-3">
+                    <label for="book_goal" class="form-label">Set Book Goal:</label>
+                    <input type="number" id="book_goal" name="book_goal" min="0" max="300" value={{user_profile.book_goal}} class="form-control w-50">
+                </div>
+                
+                <div class="mb-3">
+                    <label for="goal_date" class="form-label">Choose Goal Date:</label>
+                    <input type="date" id="goal_date" name="goal_date" value={{user_profile.goal_date}} class="form-control w-50">
+                </div>
+                <input type="submit" class="btn" value="Update" id="updateBtn">
+                <a id="user_home" class="btn-link" href="{{url_for('user_home')}}">Back</a> 
+                </form>
         </div>
-        
-        <div class="mb-3">
-            <label for="password" class="form-label">Password:</label>
-            <input type="password" id="password" name="password" pattern="(?=.*\d) (?=.*[a-z]) (?=.*[A-Z]).{8, 20}" title="Password must include at least one number, one uppercase, one lowercase letter, and at min 8 characters and max 20 characters" required value="{{user_profile.password}}" class="form-control w-25">
+        <div class="col-4">
+            <img class="img-fluid" src="/static/img/ishaq-robin-caND1D-Kh9Y-unsplash.jpg" alt="Photo by Ishaq Robin https://unsplash.com/@ishaqrobin?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">
         </div>
-        
-        <div class="mb-3">
-            <label for="confirm-pw" class="form-label">Confirm Password:</label>
-            <input type="password" id="confirm-pw" name="confirm-pw" required class="form-control w-25">
-        </div>
-        
-        <div class="mb-3">
-            <label for="book_goal" class="form-label">Set Book Goal:</label>
-            <input type="number" id="book_goal" name="book_goal" min="0" max="300" value={{user_profile.book_goal}} class="form-control w-25">
-        </div>
-        
-        <div class="mb-3">
-            <label for="goal_date" class="form-label">Choose Goal Date:</label>
-            <input type="date" id="goal_date" name="goal_date" value={{user_profile.goal_date}} class="form-control w-25">
-        </div>
-        <input type="submit" class="btn" value="Update" id="updateBtn">
-        <a id="user_home" class="btn-link" href="{{url_for('user_home')}}">Back</a> 
+    </div>
     </div>
 {% endblock %}
 
