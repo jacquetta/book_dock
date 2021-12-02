@@ -191,6 +191,11 @@ ul li{
     text-decoration: none;
 }
 
+#updateId img {
+    width: 500px;
+    border-radius: 50%;
+}
+
 /* SEARCH PAGE STYLES */
 
 #searchSection h2 {
@@ -272,3 +277,14 @@ p b {
     height: auto;
 }
 
+/* REVIEW FORM STYLES */
+
+#idForm {
+    margin-bottom: 30px;
+}
+
+#idForm img {
+    width: 500px;
+    filter: sepia(50%);
+    border-radius: 10px;
+}
