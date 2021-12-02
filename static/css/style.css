@@ -136,14 +136,23 @@ legend {
 
 
 /* USER HOME STYLES*/
-.book-card {
-    display: inline;
+.homePage h3 {
+    color: #736892;
+    text-align: center;
+    margin: 20px auto;
 }
 
-.book-card img{
-    width: 300px;
-    height: 400px;
-    padding-bottom: 20px;
+.book-card{
+    border-style: none;
+    margin: 20px auto 40px auto;
+} 
+
+ul li{
+    list-style-type: none;
+}
+
+.book-card .btn {
+    margin-bottom: 10px;
 }
 
 /*  UPDATE PROFILE STYLES */
@@ -216,7 +225,7 @@ h2 {
 /* DETAILS PAGE STYLES */
 
 #detailsDiv {
-    margin-bottom: 30px;
+    margin-bottom: 40px;
 }
 
 p b {
@@ -237,3 +246,4 @@ p b {
     max-width: 18rem;
     height: auto;
 }
+
