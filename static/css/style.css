@@ -135,6 +135,16 @@ figure {
     /* align-items: center; */
 }
 
+#signFormId legend{
+    text-align: center;
+}
+
+#signFormId form {
+    width: 800px;
+    /* text-align: center; */
+    margin: 20px  auto;
+}
+
 legend {
     color: #736892;
     margin-bottom: 10px;
