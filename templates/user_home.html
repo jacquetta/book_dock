@@ -25,7 +25,7 @@
     <button onClick="goBack()">Back</button>
 
     <div id="current">
-        <h3>Currently Reading</h3>
+        <h3>Currently Reading:</h3>
         <ul class="book-card row row-cols-1 row-cols-4 g-4">
             {# will list book and image and link to book details #}
             {# update list and database with user_id.completed#}
@@ -57,25 +57,25 @@
 
     <div id="read-list">
         <h3>To Read:</h3>
-        <ul id="user-list">
+        <ul id="user-list" class="book-card row row-cols-1 row-cols-4 g-4">
             {% for book in bookuser %}
                 {% if book.reading == "false" %}
-                        <li id={{book.volume_id}}>
-                            <div class="book-card">
-                                {{book.volume.title}}
+                        <li id={{book.volume_id}} class="col">
+                            <div class="book-card card">
                                 <a href="/volumes/{{book.volume_id}}" target="_blank">
                                     <img src="{{book.volume.img_links}}" alt="book image"/>
                                 </a>
+                                <h5 class="card-title">{{book.volume.title}}</h5>
                                 {# update list and database with user_id.reading#}
                                 <form action="/current" method="post">
                                     <input type="hidden" id={{book.volume.volume_id}} name="volume_id" value={{book.volume_id}}>
-                                    <input type="submit" value="Reading" id="reading">
+                                    <input type="submit" value="Reading" id="reading" class="btn">
                                 </form>
 
                                 {# update list and database with bookuser delete from database#}
                                 <form action="/delete_bookuser" method="get" id="delete_bookuser">
                                     <input type="hidden" class={{book.bookuser_id}} id="bookuser_id" name="bookuser_id" value={{book.bookuser_id}}>
-                                    <input type="submit" value="Delete" id="deleteItem">
+                                    <input type="submit" value="Delete" id="deleteItem" class="btn">
                                 </form>
                             </div>
                         </li>
@@ -86,28 +86,28 @@
 
     <div id="finished">
         <h3>Books Completed</h3>
-        <ul id="finished-list">
+        <ul id="finished-list" class="book-card row row-cols-1 row-cols-4 g-4">
             {# will list title of book and button to move read list #}
             {# update list and database with user_id.completed. If completed == False move to to read list else True completed#}
             {% for book in bookuser %}
                 {% if book.completed == "true" %}
-                        <li id={{book.volume.volume_id}}>
+                        <li id={{book.volume.volume_id}} class="col">
                             <div class="book-card">
-                                {{book.volume.title}}
                                 <a href="/volumes/{{book.volume_id}}" target="_blank">
                                     <img src="{{book.volume.img_links}}" alt="book image"/>
                                 </a>
                                 <a href="https://www.google.com/books/edition/_/{{book.volume_id}}?hl=en&kptab=sideways" target="_blank">Similar Books</a>
+                                <h5 class="card-title">{{book.volume.title}}</h5>
                                 {# goes to review form with volume title and id #}
                                 <form action="/review_form" method="post" target="_blank">
                                     <input type="hidden" id="volumeId" name="volumeId" value="{{book.volume_id}}">
                                     <input type="hidden" id="bookTitle" name="bookTitle" value="{{book.volume.title}}">
-                                    <input type="submit" name="reviewBtn" value="Review" id="reviewBtn">
+                                    <input type="submit" name="reviewBtn" value="Review" id="reviewBtn" class="btn">
                                 </form>
                                 {# update list and database completed == False #}
                                 <form action="/current" method="post">
                                     <input type="hidden" class={{book.bookuser_id}} name="volume_id" value="{{book.volume_id}}">
-                                    <input type="submit" value="To Current" id="toCurrent">
+                                    <input type="submit" value="To Current" id="toCurrent" class="btn">
                                 </form>
                             </div>
                         </li>

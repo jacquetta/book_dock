@@ -152,7 +152,11 @@ ul li{
 }
 
 .book-card .btn {
-    margin-bottom: 10px;
+    margin: 10px auto;
+}
+
+.book-card h5 {
+    margin-top: 8px;
 }
 
 /*  UPDATE PROFILE STYLES */
