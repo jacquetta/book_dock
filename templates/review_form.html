@@ -15,27 +15,34 @@
     </ul>
 {% endblock %}
 {% block content %}
-   <section class="container">
-        <legend>Create Your Review</legend>
-        <form action="/add_review" method="post" id="formPost">
-            <input type="hidden" id="volume_id" name="volume_id" value="{{book_id}}">
+   <section class="container" id="idForm">
+        <div class="row">
+            <div class="col-8">
+                <legend>Create Your Review</legend>
+                <form action="/add_review" method="post" id="formPost">
+                    <input type="hidden" id="volume_id" name="volume_id" value="{{book_id}}">
 
-            <div class="mb-3">
-                <label for="volume_title" class="form-label">Book Title:</label>
-                <input type="text" id="volume_title" name="volume_title" value="{{title}}" readonly class="form-control w-25"> 
-            </div>
-    
-            <div class="mb-3">
-                <label for="reviewTitle" class="form-label">Review Title:</label>
-                <input type="text" id="reviewTitle" name="reviewTitle" required class="form-control w-25">
-            </div>
-            <div class="mb-3">
-                <label for="reviewPost" class="form-label">Review:</label>
-                <textarea name="reviewPost" id="reviewPost" cols="30" rows="5" required class="form-control w-25"></textarea>
-            </div>
+                    <div class="mb-3">
+                        <label for="volume_title" class="form-label">Book Title:</label>
+                        <input type="text" id="volume_title" name="volume_title" value="{{title}}" readonly class="form-control w-50"> 
+                    </div>
+            
+                    <div class="mb-3">
+                        <label for="reviewTitle" class="form-label">Review Title:</label>
+                        <input type="text" id="reviewTitle" name="reviewTitle" required class="form-control w-50">
+                    </div>
+                    <div class="mb-3">
+                        <label for="reviewPost" class="form-label">Review:</label>
+                        <textarea name="reviewPost" id="reviewPost" cols="30" rows="5" required class="form-control w-50"></textarea>
+                    </div>
 
-            <input type="submit" value="Post Review" class="btn" id="reviewPost">
-        </form>
+                    <input type="submit" value="Post Review" class="btn" id="reviewPost">
+                </form>
+            </div>
+            <div class="col-4">
+                <img src="/static/img/markus-winkler--fRAIQHKcc0-unsplash.jpg" alt="Markus Winkler image on unsplash" class="img-fluid">
+            </div>
+        </div>
    </section>
 
 {% endblock %}
